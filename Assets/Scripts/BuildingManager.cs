@@ -18,7 +18,9 @@ public class BuildingManager : MonoBehaviour
 {
 
     [SerializeField]
-    private BuildableItem[] BuildableItems;
+    private BuildableItem[] _buildableItems;
+
+    public IReadOnlyCollection<BuildableItem> BuildableItems => _buildableItems;
 
     // Start is called before the first frame update
     void Start() => RecordRequiredResources();
@@ -27,14 +29,14 @@ public class BuildingManager : MonoBehaviour
     {
 
         // Generate the requirements as a dictionary
-        foreach (var item in BuildableItems)
+        foreach (var item in _buildableItems)
         {
             
             foreach (var requiredItem in item.RequiredItems)
             {
                 
                 var commaSplitIndex = requiredItem.IndexOf(",");
-                var resourceName = requiredItem.Substring(0, commaSplitIndex).ToLower();
+                var resourceName = requiredItem.Substring(0, commaSplitIndex);
                 var requiredQuantity = int.Parse(requiredItem.Substring(commaSplitIndex + 1));
                 item.RequiredResources.Add(resourceName, requiredQuantity);
 
@@ -44,16 +46,16 @@ public class BuildingManager : MonoBehaviour
 
     }
 
-    public bool CanBuild(string itemName, Dictionary<string, int> inventory, out GameObject buildablePrefab)
+    public bool CanBuild(string itemName, Dictionary<string, int> inventory, out (GameObject buildablePrefab, Dictionary<string, int> cost) result)
     {
 
-        buildablePrefab = null;
-        itemName = itemName.ToLower();
+        result = (null, null);
 
-        var matchingBuildable = BuildableItems.Where(item => item.Name.ToLower() == itemName).FirstOrDefault();
+        var matchingBuildable = _buildableItems.Where(item => item.Name == itemName).FirstOrDefault();
         if (matchingBuildable != null)
         {
 
+            // Check that the player has all required resources to build the thing
             foreach (var requiredResource in matchingBuildable.RequiredResources)
             {
 
@@ -61,13 +63,14 @@ public class BuildingManager : MonoBehaviour
                 var requiredQuantity = requiredResource.Value;
 
                 var hasItem = inventory
-                    .Where(pair => pair.Key.ToLower() == resourceName && pair.Value >= requiredQuantity)
+                    .Where(pair => pair.Key == resourceName && pair.Value >= requiredQuantity)
                     .Count() > 0;
                 if (!hasItem) { return false; }
 
             }
 
-            buildablePrefab = matchingBuildable.PlacableObject;
+            result.buildablePrefab = matchingBuildable.PlacableObject;
+            result.cost = matchingBuildable.RequiredResources;
             return true;
 
         }
