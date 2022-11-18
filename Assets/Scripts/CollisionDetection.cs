@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-   public WeaponController weaponController;
+   private WeaponController weaponController;
+
+    private void Start() 
+    {
+        weaponController = transform.parent.gameObject.GetComponent<WeaponController>();
+    }
    
    private void OnTriggerEnter(Collider other) 
    {
