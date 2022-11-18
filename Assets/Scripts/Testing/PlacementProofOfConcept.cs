@@ -8,10 +8,12 @@ public class PlacementProofOfConcept : MonoBehaviour
     private Camera _cameraComponent;
 
     [SerializeField]
-    private GameObject[] _spawnablePrefabs;
+    private BuildObjectPair[] _spawnablePrefabs;
+    private BuildObjectPair _activeBuildable;
+    private GameObject _activeOutline;
+
     private bool _inSpawnMode;
     private int _currentItemIndex = 0;
-    private GameObject _objectBeingPlaced;
 
     // Start is called before the first frame update
     void Start()
@@ -26,62 +28,82 @@ public class PlacementProofOfConcept : MonoBehaviour
         {
             
             _inSpawnMode = !_inSpawnMode;
-            if (!_inSpawnMode && _objectBeingPlaced != null)
+            if (!_inSpawnMode && _activeBuildable != null && _activeOutline != null)
             {
 
-                Destroy(_objectBeingPlaced);
-                _objectBeingPlaced = null;
+                Destroy(_activeOutline);
+                _activeOutline = null;
+                _activeBuildable = null;
 
             }
             
-            else if (_inSpawnMode && _objectBeingPlaced == null)
+            else if (_inSpawnMode && _activeBuildable == null && _activeOutline == null)
             {
 
-                _objectBeingPlaced = Instantiate(_spawnablePrefabs[_currentItemIndex], transform.position, transform.rotation);
+                _activeBuildable = _spawnablePrefabs[_currentItemIndex];
+                LoadOutline();
 
             }
 
         }
 
         // Increment the current item index
-        if (Input.GetKeyDown(KeyCode.F) && _inSpawnMode)
-        {
-
-            _currentItemIndex++;
-            if (_currentItemIndex >= _spawnablePrefabs.Length) { _currentItemIndex = 0; }
-
-            // Cycle to the next object
-            Destroy(_objectBeingPlaced);
-            _objectBeingPlaced = Instantiate(_spawnablePrefabs[_currentItemIndex], transform.position, transform.rotation);
-
-        }
+        if (Input.GetKeyDown(KeyCode.F) && _inSpawnMode) { CycleToNextBuildable(); }
 
         // Handle placing the item
-        if (Input.GetMouseButtonDown(0) && _objectBeingPlaced != null)
+        if (Input.GetMouseButtonDown(0) && _activeBuildable != null && _activeOutline != null)
         {
 
-            // Let go of the object
-            _objectBeingPlaced = null;
+            Vector3 spawnLocation = _activeOutline.transform.position;
+            Quaternion spawnRotation = _activeOutline.transform.rotation;
+
+            Destroy(_activeOutline);
+            Instantiate(_activeBuildable.ObjectToSpawn, spawnLocation, spawnRotation);
+            _activeOutline = null;
+            _activeBuildable = null;
             _inSpawnMode = false;
 
         }
 
         // Handle making the item follow where the player is looking
-        if (_objectBeingPlaced != null && _inSpawnMode)
+        if (_activeBuildable != null && _activeOutline != null && _inSpawnMode)
         {
 
             // Ignore hits against the object being placed
             IEnumerable<RaycastHit> allHits = Physics.RaycastAll(_cameraComponent.transform.position, _cameraComponent.transform.forward, float.MaxValue);
-            allHits = allHits.Where(hit => hit.collider.gameObject != _objectBeingPlaced);
+            allHits = allHits.Where(hit => hit.collider.gameObject != _activeOutline);
+
+            Renderer outlineRenderer = _activeOutline.GetComponentInChildren<Renderer>();
+            float yOffset = outlineRenderer == null ? 0 : outlineRenderer.bounds.size.y / 2f;
 
             var hitLocation = allHits.FirstOrDefault();
             if (allHits.Count() > 0) 
-            { 
-                _objectBeingPlaced.transform.position = hitLocation.point;
-                _objectBeingPlaced.transform.rotation = transform.rotation;
+            {
+                _activeOutline.transform.position = hitLocation.point + new Vector3(0f, yOffset, 0f);
+                _activeOutline.transform.rotation = transform.rotation;
             }
 
         }
+
+    }
+
+    private void CycleToNextBuildable()
+    {
+
+        _currentItemIndex++;
+        if (_currentItemIndex >= _spawnablePrefabs.Length) { _currentItemIndex = 0; }
+
+        // Cycle to the next object, spawn the new outline for it
+        _activeBuildable = _spawnablePrefabs[_currentItemIndex];
+        LoadOutline();
+
+    }
+
+    private void LoadOutline()
+    {
+
+        Destroy(_activeOutline);
+        _activeOutline = Instantiate(_activeBuildable.OutlineObject, transform.position, transform.rotation);
 
     }
 

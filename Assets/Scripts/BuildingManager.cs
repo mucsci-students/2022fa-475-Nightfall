@@ -4,12 +4,21 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
+public class BuildObjectPair
+{
+
+    public GameObject ObjectToSpawn;
+    public GameObject OutlineObject;
+
+}
+
+[Serializable]
 public class BuildableItem
 {
 
     public string Name;
     public string[] RequiredItems;
-    public GameObject PlacableObject;
+    public BuildObjectPair Spawnables;
     public Dictionary<string, int> RequiredResources = new Dictionary<string, int>();
 
 }
@@ -46,7 +55,7 @@ public class BuildingManager : MonoBehaviour
 
     }
 
-    public bool CanBuild(string itemName, Dictionary<string, int> inventory, out (GameObject buildablePrefab, Dictionary<string, int> cost) result)
+    public bool CanBuild(string itemName, Dictionary<string, int> inventory, out (BuildObjectPair spawnables, Dictionary<string, int> cost) result)
     {
 
         result = (null, null);
@@ -69,7 +78,9 @@ public class BuildingManager : MonoBehaviour
 
             }
 
-            result.buildablePrefab = matchingBuildable.PlacableObject;
+            result.spawnables = new BuildObjectPair();
+            result.spawnables.ObjectToSpawn = matchingBuildable.Spawnables.ObjectToSpawn;
+            result.spawnables.OutlineObject = matchingBuildable.Spawnables.OutlineObject;
             result.cost = matchingBuildable.RequiredResources;
             return true;
 
