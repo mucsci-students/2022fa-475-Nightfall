@@ -21,12 +21,14 @@ public class InventoryTestScript : MonoBehaviour
     {
 
         _inventory.AddItem("Wood", 5);
-        if (_buildingManager.CanBuild("thing", _inventory.GetAllItems(), out var prefab))
+        if (_buildingManager.CanBuild("Thing", _inventory.GetAllItems(), out var result))
         {
 
-            Instantiate(prefab, transform.position, transform.rotation);
+            Instantiate(result.buildablePrefab, transform.position, transform.rotation);
 
         }
+
+        else { print("Can't do that!"); }
 
     }
 
