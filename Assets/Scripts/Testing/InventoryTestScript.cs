@@ -24,7 +24,7 @@ public class InventoryTestScript : MonoBehaviour
         if (_buildingManager.CanBuild("Thing", _inventory.GetAllItems(), out var result))
         {
 
-            Instantiate(result.buildablePrefab, transform.position, transform.rotation);
+            Instantiate(result.spawnables.ObjectToSpawn, transform.position, transform.rotation);
 
         }
 
