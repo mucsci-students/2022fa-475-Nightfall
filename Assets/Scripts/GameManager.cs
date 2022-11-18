@@ -20,6 +20,16 @@ public class GameManager : MonoBehaviour
         _plrUI.Initialize();
 
     }
+    float t = 0;
+    void Update()
+    {
+        t += Time.deltaTime;
+        if (t > 1)
+        {
+            _newPlr.AddValue(_plrUI, "health", -1);
+            t = 0;
+        }
+    }
 
     public void UpdateValue(string field)
     {

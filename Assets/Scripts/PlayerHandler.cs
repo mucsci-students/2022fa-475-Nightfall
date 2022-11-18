@@ -28,15 +28,17 @@ public class PlayerHandler : MonoBehaviour
         Debug.Log(plrInv.GetTool("Sword"));
     }
 
-    public void AddValue(string field, int value)
+    public void AddValue(UIManager ui, string field, int value)
     {
         if (String.Equals(field, "health"))
         {
             _health = Math.Clamp(_health + value, 0, _maxHealth);
+            ui.UpdateValue(field, _health, _maxHealth);
         }
         else if (String.Equals(field, "stamina"))
         {
             _stamina = Math.Clamp(_stamina + value, 0, _maxStamina);
+            ui.UpdateValue(field, _stamina, _maxStamina);
         }
     }
 
