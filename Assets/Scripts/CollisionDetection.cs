@@ -13,7 +13,14 @@ public class CollisionDetection : MonoBehaviour
    
    private void OnTriggerEnter(Collider other) 
    {
+        // If swinging at enemy with a sword
         if(other.tag == "Enemy" && weaponController.isAttacking)
+        {
+            Debug.Log(other.name);
+        }
+        
+        // If swinging at resource.
+        if(other.tag == "Resource" && weaponController.isChopping)
         {
             Debug.Log(other.name);
         }
