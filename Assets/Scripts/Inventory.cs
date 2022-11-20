@@ -5,51 +5,50 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private Dictionary<string, int> items = new Dictionary<string, int>();
+    private Dictionary<string, int> _items = new Dictionary<string, int>();
 
-    private Dictionary<string, string> tools = new Dictionary<string, string>();
+    private Dictionary<string, string> _tools = new Dictionary<string, string>();
     
-    // Start is called before the first frame update
-    void Start()
+    public void Initialize()
     {
-        items.Add("Wood", 0);
-        items.Add("Stone", 0);
-        items.Add("Copper Ore", 0);
-        items.Add("Iron Ore", 0);
+        _items.Add("Wood", 0);
+        _items.Add("Stone", 0);
+        _items.Add("Copper Ore", 0);
+        _items.Add("Iron Ore", 0);
 
-        tools.Add("Sword", "Wood");
-        tools.Add("Axe", "Wood");
-        tools.Add("Pickaxe", "Wood");
-        tools.Add("Torch", "Basic");
+        _tools.Add("Sword", "Wood");
+        _tools.Add("Axe", "Wood");
+        _tools.Add("Pickaxe", "Wood");
+        _tools.Add("Torch", "Basic");
     }
 
     public void AddItem(string n, int qty)
     {
-        items[n] += qty;
+        _items[n] += qty;
     }
 
     public void RemoveItem(string n, int qty)
     {
-        items[n] -= qty;
+        _items[n] -= qty;
     }
 
     public int GetCount(string n)
     {
-        return items[n];
+        return _items[n];
     }
 
     public void ChangeTool(string type, string n)
     {
-        tools[type] = n;
+        _tools[type] = n;
     }
 
     public string GetTool(string type)
     {
-        return tools[type];
+        return _tools[type];
     }
 
     public Dictionary<string, int> GetAllItems()
     {
-        return new Dictionary<string, int>(items);
+        return new Dictionary<string, int>(_items);
     }
 }
