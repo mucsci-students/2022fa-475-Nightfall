@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3438365831904370924}
   m_Layer: 0
   m_Name: Prefab_Birch_03_Red
-  m_TagString: Resource
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 7433555366861186748}
   m_Layer: 0
   m_Name: Birch_03_LOD0
-  m_TagString: Resource
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -41,7 +41,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
-            m_Camera = Camera.main;
+            m_Camera = gameObject.transform.GetChild(0).GetComponent<Camera>();
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
