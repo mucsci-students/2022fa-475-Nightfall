@@ -13,6 +13,7 @@ public class SwordController : MonoBehaviour
     private bool firstAttack = true;
     private bool secondAttack = false;
     private bool isAttacking = false;
+    private bool canDealDamage;
 
     public float firstAttackCooldown = 2.0f;
     public float secondAttackCooldown = 0.6f;
@@ -20,11 +21,12 @@ public class SwordController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        plr = GameManager.GetPlr();
+        //plr = GameManager.GetPlr();
 
         swordAnim = GetComponent<Animator>();
         cameraAnim = gameObject.transform.parent.parent.GetChild(0).GetComponent<Animator>();
         source = gameObject.GetComponent<AudioSource>();
+        canDealDamage = true;
     }
 
     // Update is called once per frame
@@ -60,9 +62,11 @@ public class SwordController : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         // If swinging at enemy with a sword
-        if(other.tag == "Enemy" && isAttacking)
+        if(other.tag == "Enemy" && isAttacking && canDealDamage)
         {
+            canDealDamage = false;
             Debug.Log(other.name);
+            print(other.name);
         }
     }
 
@@ -70,10 +74,11 @@ public class SwordController : MonoBehaviour
     {
         // Set swordAnimator values and start cooldown.
         firstAttack = false; 
-        plr.SwingTool("swords");
+        // plr.SwingTool("swords");
         swordAnim.SetBool("First Attack", firstAttack);
         cameraAnim.SetTrigger("Swing");
         source.PlayOneShot(source.clip);
+        canDealDamage = true;
         isAttacking = true;
         swordAnim.SetTrigger("Attack");
         StartCoroutine(ResetCoolDown());
@@ -83,10 +88,11 @@ public class SwordController : MonoBehaviour
     {
         // Set swordAnimator values.
         secondAttack = false;
-        GameManager.SwingTool("swords");
+        // GameManager.SwingTool("swords");
         swordAnim.SetBool("Second Attack", secondAttack);
         cameraAnim.SetTrigger("Swing2");
         source.PlayOneShot(source.clip);
+        canDealDamage = true;
         isAttacking = true;
         swordAnim.SetTrigger("Attack2");
     }

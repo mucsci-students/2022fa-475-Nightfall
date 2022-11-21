@@ -20,7 +20,7 @@ public class PickaxeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !isMining)
+        if(Input.GetMouseButton(0) && !isMining)
         {
             isMining = true;
             axeAnim.SetTrigger("Swing");

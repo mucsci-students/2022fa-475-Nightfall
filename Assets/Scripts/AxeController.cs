@@ -21,10 +21,10 @@ public class AxeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !isChopping)
+        if(Input.GetMouseButton(0) && !isChopping)
         {
             isChopping = true;
-            GameManager.SwingTool("axes");
+            // GameManager.SwingTool("axes");
             axeAnim.SetTrigger("Swing");
             StartCoroutine(ResetAttackingBool());
         }
