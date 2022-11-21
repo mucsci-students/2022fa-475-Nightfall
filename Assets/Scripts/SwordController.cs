@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SwordController : MonoBehaviour
 {
+    private PlayerHandler plr;
+
     private Animator swordAnim;
     private Animator cameraAnim;
     private AudioSource source;
@@ -18,6 +20,8 @@ public class SwordController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        plr = GameManager.GetPlr();
+
         swordAnim = GetComponent<Animator>();
         cameraAnim = gameObject.transform.parent.parent.GetChild(0).GetComponent<Animator>();
         source = gameObject.GetComponent<AudioSource>();
@@ -65,7 +69,8 @@ public class SwordController : MonoBehaviour
     private void SwordAttack()
     {
         // Set swordAnimator values and start cooldown.
-        firstAttack = false;
+        firstAttack = false; 
+        plr.SwingTool("swords");
         swordAnim.SetBool("First Attack", firstAttack);
         cameraAnim.SetTrigger("Swing");
         source.PlayOneShot(source.clip);
@@ -78,6 +83,7 @@ public class SwordController : MonoBehaviour
     {
         // Set swordAnimator values.
         secondAttack = false;
+        GameManager.SwingTool("swords");
         swordAnim.SetBool("Second Attack", secondAttack);
         cameraAnim.SetTrigger("Swing2");
         source.PlayOneShot(source.clip);

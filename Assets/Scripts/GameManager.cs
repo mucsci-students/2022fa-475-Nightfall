@@ -5,16 +5,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private PlayerHandler _newPlr;
+    private ToolData tools;
+
+    public static PlayerHandler newPlr;
+    public Inventory plrInv;
     private UIManager _plrUI;
-    
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
-        _newPlr = this.AddComponent<PlayerHandler>();
-        _newPlr.Initialize();
+        tools.Initialize();
+
+        newPlr = this.AddComponent<PlayerHandler>();
+        newPlr.Initialize();
+
+        plrInv = this.AddComponent<Inventory>();
+        plrInv.Initialize();
 
         _plrUI = this.AddComponent<UIManager>();
         _plrUI.Initialize();
@@ -26,13 +33,18 @@ public class GameManager : MonoBehaviour
         t += Time.deltaTime;
         if (t > 1)
         {
-            _newPlr.AddValue(_plrUI, "health", -1);
+            newPlr.AddValue(_plrUI, "health", -1);
             t = 0;
         }
     }
 
     public void UpdateValue(string field)
     {
-        
+
+    }
+
+    public static PlayerHandler GetPlr()
+    {
+        return newPlr;
     }
 }

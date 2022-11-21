@@ -16,10 +16,10 @@ public class Inventory : MonoBehaviour
         _items.Add("Copper Ore", 0);
         _items.Add("Iron Ore", 0);
 
-        _tools.Add("Sword", "Wood");
-        _tools.Add("Axe", "Wood");
-        _tools.Add("Pickaxe", "Wood");
-        _tools.Add("Torch", "Basic");
+        _tools.Add("sword", "Wood");
+        _tools.Add("axe", "Wood");
+        _tools.Add("pickaxe", "Wood");
+        _tools.Add("torch", "Basic");
     }
 
     public void AddItem(string n, int qty)

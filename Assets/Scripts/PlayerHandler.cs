@@ -11,8 +11,6 @@ public class PlayerHandler : MonoBehaviour
 
     private int _stamina;
     private int _maxStamina;
-
-    public Inventory plrInv;
     
     public void Initialize()
     {
@@ -21,11 +19,6 @@ public class PlayerHandler : MonoBehaviour
 
         _maxStamina = 100;
         _stamina = _maxStamina;
-        
-        plrInv = this.AddComponent<Inventory>();
-        plrInv.Initialize();
-
-        Debug.Log(plrInv.GetTool("Sword"));
     }
 
     public void AddValue(UIManager ui, string field, int value)

@@ -24,6 +24,7 @@ public class AxeController : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && !isChopping)
         {
             isChopping = true;
+            GameManager.SwingTool("axes");
             axeAnim.SetTrigger("Swing");
             StartCoroutine(ResetAttackingBool());
         }
