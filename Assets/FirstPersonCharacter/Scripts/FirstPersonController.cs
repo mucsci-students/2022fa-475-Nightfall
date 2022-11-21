@@ -83,7 +83,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_NextStep = m_StepCycle + .5f;
         }
 
-
+        private float sprintTimer = 0;
         private void FixedUpdate()
         {
             float speed;
@@ -100,6 +100,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
 
+            sprintTimer += Time.deltaTime;
+            if (sprintTimer >= 1)
+            {
+                sprintTimer = 0;
+                if (m_IsWalking)
+                {
+                    PlayerHandler.AddValue("stamina", 1);
+                }
+                else
+                {
+                    PlayerHandler.AddValue("stamina", -2);
+                }
+            }
 
             if (m_CharacterController.isGrounded)
             {

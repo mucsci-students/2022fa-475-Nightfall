@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public Image healthBar;
-    public Image staminaBar;
-    public Image[] tools = new Image[4];
-    public Image inventory;
+    public static Image healthBar;
+    public static Image staminaBar;
+    public static Image[] tools = new Image[4];
+    public static Image inventory;
     
-    public void Initialize()
+    public static void Initialize()
     {
         healthBar = GameObject.Find("MainUI/StatusBar/Bars/Health").GetComponent<Image>();
         staminaBar = GameObject.Find("MainUI/StatusBar/Bars/Stamina").GetComponent<Image>();
     }
 
-    public void UpdateValue(string field, int v, int maxV)
+    public static void UpdateValue(string field, int v, int maxV)
     {
         if (string.Equals(field, "health"))
         {

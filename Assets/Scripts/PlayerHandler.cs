@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerHandler : MonoBehaviour
+public class PlayerHandler
 {
-    private int _health;
-    private int _maxHealth;
+    private static int _health;
+    private static int _maxHealth;
 
-    private int _stamina;
-    private int _maxStamina;
+    private static int _stamina;
+    private static int _maxStamina;
     
-    public void Initialize()
+    public static void Initialize()
     {
         _maxHealth = 100;
         _health = _maxHealth;
@@ -21,21 +21,21 @@ public class PlayerHandler : MonoBehaviour
         _stamina = _maxStamina;
     }
 
-    public void AddValue(UIManager ui, string field, int value)
+    public static void AddValue(string field, int value)
     {
         if (String.Equals(field, "health"))
         {
             _health = Math.Clamp(_health + value, 0, _maxHealth);
-            ui.UpdateValue(field, _health, _maxHealth);
+            UIManager.UpdateValue(field, _health, _maxHealth);
         }
         else if (String.Equals(field, "stamina"))
         {
             _stamina = Math.Clamp(_stamina + value, 0, _maxStamina);
-            ui.UpdateValue(field, _stamina, _maxStamina);
+            UIManager.UpdateValue(field, _stamina, _maxStamina);
         }
     }
 
-    public int GetValue(string field)
+    public static int GetValue(string field)
     {
         if (String.Equals(field, "health"))
         {

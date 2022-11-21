@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ToolData
 {
-    private Dictionary<string, Dictionary<string, Dictionary<string, int>>> _tools = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
+    private static Dictionary<string, Dictionary<string, Dictionary<string, int>>> _tools = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
 
-    public void Initialize()
+    public static void Initialize()
     {
         Dictionary<string, Dictionary<string, int>> swords = new Dictionary<string, Dictionary<string, int>>();
         Dictionary<string, Dictionary<string, int>> axes = new Dictionary<string, Dictionary<string, int>>();
@@ -38,7 +38,7 @@ public class ToolData
         _tools.Add("torches", torches);
     }
     
-    public int GetValue(string type, string quality, string field)
+    public static int GetValue(string type, string quality, string field)
     {
         return _tools[type][quality][field];
     }

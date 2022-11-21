@@ -20,8 +20,8 @@ public class InventoryTestScript : MonoBehaviour
     void Test()
     {
 
-        _inventory.AddItem("Wood", 5);
-        if (_buildingManager.CanBuild("Thing", _inventory.GetAllItems(), out var result))
+        Inventory.AddItem("Wood", 5);
+        if (_buildingManager.CanBuild("Thing", Inventory.GetAllItems(), out var result))
         {
 
             Instantiate(result.spawnables.ObjectToSpawn, transform.position, transform.rotation);

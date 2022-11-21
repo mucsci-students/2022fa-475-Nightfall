@@ -5,26 +5,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private ToolData tools;
-
-    public static PlayerHandler newPlr;
-    public Inventory plrInv;
-    private UIManager _plrUI;
-
-
     // Start is called before the first frame update
     void Start()
     {
-        tools.Initialize();
+        ToolData.Initialize();
 
-        newPlr = this.AddComponent<PlayerHandler>();
-        newPlr.Initialize();
+        PlayerHandler.Initialize();
 
-        plrInv = this.AddComponent<Inventory>();
-        plrInv.Initialize();
+        Inventory.Initialize();
 
-        _plrUI = this.AddComponent<UIManager>();
-        _plrUI.Initialize();
+        UIManager.Initialize();
 
     }
     float t = 0;
@@ -33,7 +23,7 @@ public class GameManager : MonoBehaviour
         t += Time.deltaTime;
         if (t > 1)
         {
-            newPlr.AddValue(_plrUI, "health", -1);
+            PlayerHandler.AddValue("health", 1);
             t = 0;
         }
     }
@@ -41,10 +31,5 @@ public class GameManager : MonoBehaviour
     public void UpdateValue(string field)
     {
 
-    }
-
-    public static PlayerHandler GetPlr()
-    {
-        return newPlr;
     }
 }
