@@ -18,10 +18,9 @@ public class AxeController : MonoBehaviour
         canGetResource = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SwingAxe()
     {
-        if(Input.GetMouseButton(0) && !isChopping)
+        if(!isChopping)
         {
             isChopping = true;
             // GameManager.SwingTool("axes");

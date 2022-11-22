@@ -17,10 +17,9 @@ public class PickaxeController : MonoBehaviour
         source = gameObject.GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SwingPickaxe()
     {
-        if(Input.GetMouseButton(0) && !isMining)
+        if(!isMining)
         {
             isMining = true;
             axeAnim.SetTrigger("Swing");
