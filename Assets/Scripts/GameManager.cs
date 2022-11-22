@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private float timeOfDay;
+
     // Start is called before the first frame update
     void Start()
     {
+        timeOfDay = 0;
+
         ToolData.Initialize();
 
         PlayerHandler.Initialize();
