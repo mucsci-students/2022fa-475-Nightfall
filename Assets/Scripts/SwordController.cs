@@ -29,27 +29,23 @@ public class SwordController : MonoBehaviour
         canDealDamage = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SwingSword()
     {
-        if(Input.GetMouseButtonDown(0))
+        // Do first attack if first cooldown is over.
+        if(firstAttack)
         {
-            // Do first attack if first cooldown is over.
-            if(firstAttack)
-            {
-                StartCoroutine(ResetSecondAttack());
-                StartCoroutine(ResetAttackingBool());
-                SwordAttack();
-                secondAttack = false;
-                swordAnim.SetBool("Second Attack", secondAttack);
-            }
+            StartCoroutine(ResetSecondAttack());
+            StartCoroutine(ResetAttackingBool());
+            SwordAttack();
+            secondAttack = false;
+            swordAnim.SetBool("Second Attack", secondAttack);
+        }
                 
-            // Do second attack if first cooldown is over
-            else if(secondAttack)
-            {
-                StartCoroutine(ResetAttackingBool());
-                SwordAttack2();
-            }
+        // Do second attack if first cooldown is over
+        else if(secondAttack)
+        {
+            StartCoroutine(ResetAttackingBool());
+            SwordAttack2();
         }
     }
 

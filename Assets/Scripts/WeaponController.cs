@@ -10,12 +10,18 @@ public class WeaponController : MonoBehaviour
     [Header("Keys")]
     [SerializeField] private KeyCode[] keys;
 
+    private PickaxeController pickaxeController;
+    private SwordController swordController;
+    private AxeController axeController;
     private int selectedWeapon;
-    private string weaponName;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        swordController = transform.GetChild(0).GetComponent<SwordController>();
+        axeController = transform.GetChild(1).GetComponent<AxeController>();
+        pickaxeController = transform.GetChild(2).GetComponent<PickaxeController>();
         SetWeapons();
         Select(selectedWeapon);
     }
@@ -42,6 +48,28 @@ public class WeaponController : MonoBehaviour
             anim.Update(0f);
             Select(selectedWeapon);
         }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(selectedWeapon == 0)
+            {
+                swordController.SwingSword();
+            }
+        }
+
+        if(Input.GetMouseButton(0))
+        {
+            switch(selectedWeapon)
+            {
+                case 1:
+                    axeController.SwingAxe();
+                    break;
+
+                case 2:
+                    pickaxeController.SwingPickaxe();
+                    break;
+            }
+        }
     }
 
     private void SetWeapons()
@@ -65,11 +93,5 @@ public class WeaponController : MonoBehaviour
         {
             weapons[i].gameObject.SetActive(i == weaponIndex);
         }
-        weaponName = weapons[weaponIndex].name;
-    }
-
-    public string GetName()
-    {
-        return weaponName;
     }
 }
