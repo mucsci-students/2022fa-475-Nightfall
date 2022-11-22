@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c0ee903c3045e341a3d6af6f4934905
+guid: 4569cc4d6574dc940b5d405e6de952d0
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: basicRig_Skin
-    second: {fileID: 2100000, guid: 0d8e4167d05d82047b465c76a61da785, type: 2}
+    second: {fileID: 2100000, guid: 957f33636bfa54748b5824c2d4ac8b04, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: basicRig_Skin.001
-    second: {fileID: 2100000, guid: cebf05f7726b6ce4088ba36c47ae4836, type: 2}
+    second: {fileID: 2100000, guid: 287f4fa9a8d2b49458bf9fd4bf37b426, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
