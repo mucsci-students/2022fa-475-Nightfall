@@ -15,6 +15,11 @@ public class PlacementProofOfConcept : MonoBehaviour
     private bool _inSpawnMode;
     private int _currentItemIndex = 0;
 
+    private float distanceLimit = 2;
+    private float distanceDeltaSec = 2;
+    private float minDistanceLimit = 2;
+    private float maxdistanceLimit = 7;
+
     // Start is called before the first frame update
     void Start()
         => _cameraComponent = GetComponentInChildren<Camera>();
@@ -65,23 +70,23 @@ public class PlacementProofOfConcept : MonoBehaviour
 
         }
 
+        // Handle adjusting the distance of the object with the mouse wheel
+        float adjustmentAxisValue = Input.GetAxis("AdjustObjectDistance");
+        if (_activeOutline != null && (adjustmentAxisValue != 0))
+        {
+            distanceLimit += Time.deltaTime * distanceDeltaSec * adjustmentAxisValue;
+            distanceLimit = Mathf.Clamp(distanceLimit, minDistanceLimit, maxdistanceLimit);
+        }
+        
         // Handle making the item follow where the player is looking
         if (_activeBuildable != null && _activeOutline != null && _inSpawnMode)
         {
 
-            // Ignore hits against the object being placed
-            IEnumerable<RaycastHit> allHits = Physics.RaycastAll(_cameraComponent.transform.position, _cameraComponent.transform.forward, float.MaxValue);
-            allHits = allHits.Where(hit => hit.collider.gameObject != _activeOutline);
-
             Renderer outlineRenderer = _activeOutline.GetComponentInChildren<Renderer>();
             float yOffset = outlineRenderer == null ? 0 : outlineRenderer.bounds.size.y / 2f;
 
-            var hitLocation = allHits.FirstOrDefault();
-            if (allHits.Count() > 0) 
-            {
-                _activeOutline.transform.position = hitLocation.point + new Vector3(0f, yOffset, 0f);
-                _activeOutline.transform.rotation = transform.rotation;
-            }
+            _activeOutline.transform.position = GetObjectPreviewLocation() + new Vector3(0f, yOffset, 0f);
+            _activeOutline.transform.rotation = transform.rotation;
 
         }
 
@@ -104,6 +109,57 @@ public class PlacementProofOfConcept : MonoBehaviour
 
         Destroy(_activeOutline);
         _activeOutline = Instantiate(_activeBuildable.OutlineObject, transform.position, transform.rotation);
+
+    }
+
+    private Vector3 GetObjectPreviewLocation()
+    {
+
+        // Ignore hits against the object being placed and the player
+        IEnumerable<RaycastHit> allHits = Physics.RaycastAll(_cameraComponent.transform.position, _cameraComponent.transform.forward, distanceLimit);
+        allHits = allHits.Where(hit => hit.collider.gameObject != _activeOutline && hit.collider.gameObject != gameObject);
+
+        // In the case that there was no raycast hits, position at the point at the end of the limit
+        if (allHits.Count() == 0)
+        {
+            Vector3 cameraForwardVector = _cameraComponent.transform.forward;
+            return cameraForwardVector * distanceLimit + _cameraComponent.transform.position;
+        }
+
+        // Take the closest hit to the player
+        RaycastHit hitLocation = allHits.FirstOrDefault();
+        float closestSoFar = Vector3.Distance(hitLocation.point, transform.position);
+        foreach (var hit in allHits)
+        {
+            float distance = Vector3.Distance(hit.point, transform.position);
+            if (distance < closestSoFar)
+            {
+                closestSoFar = distance;
+                hitLocation = hit;
+            }
+        }
+
+        Vector3 targetLocation = hitLocation.point;
+
+        /* Don't allow the obejct to come closer to the player than the min allowed distance
+        float distanceToObject = Vector3.Distance(targetLocation, transform.position);
+        if (distanceToObject < minDistanceLimit)
+        {
+
+            CharacterController characterController = GetComponentInChildren<CharacterController>();
+            float outwardAngle = Mathf.Asin(characterController.bounds.size.y / minDistanceLimit);
+            float distanceOffset = Mathf.Cos(outwardAngle) * minDistanceLimit;
+
+            print($"{outwardAngle} {distanceOffset}");
+
+            targetLocation = transform.forward * distanceOffset + transform.position;
+            targetLocation.y = hitLocation.point.y;
+
+            // targetLocation += offsetVector;
+        }
+        */
+
+        return targetLocation;
 
     }
 
