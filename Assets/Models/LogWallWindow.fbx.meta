@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7a0c6a3f6f6271548bb5cd7bfe24a3b8
+guid: 2eadb5676ee39e443bfbce8ee0c32ed8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -9,16 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Bark
     second: {fileID: 2100000, guid: e28ead75cc3493e41ac34e8dad7143f0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CutWood
-    second: {fileID: 2100000, guid: e669aec6147d0ce4da64521b4669b05b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LogEnd
-    second: {fileID: 2100000, guid: 3c17d59855a8fc04789e80da62334431, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -50,9 +40,9 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 2
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
@@ -103,7 +93,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 2
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
