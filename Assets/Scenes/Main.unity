@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1495357686}
-  m_IndirectSpecularColor: {r: 0.78640896, g: 0.8717543, b: 0.95312405, a: 1}
+  m_IndirectSpecularColor: {r: 0.026905535, g: 0.029826028, b: 0.032616638, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8066,6 +8066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1495357685}
+  skyboxMaterial: {fileID: 2100000, guid: e20022b9e8569196583b2f4849680db4, type: 2}
   timeScale: 1
   intensityScale: 0.25
   colorStep: 0.711
