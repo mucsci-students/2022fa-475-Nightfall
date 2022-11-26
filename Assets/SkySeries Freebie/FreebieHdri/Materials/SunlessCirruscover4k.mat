@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FluffballDay4k
+  m_Name: SunlessCirruscover4k
   m_Shader: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,13 +21,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Tex:
-        m_Texture: {fileID: 8900000, guid: 3e80b688af9b1d84ea52c5d36bb1cbbd, type: 3}
+        m_Texture: {fileID: 8900000, guid: 99af420a4ccafa74abdc47436d8b0685, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Exposure: 1.1977037
-    - _Rotation: 2104.749
+    - _Exposure: 1.1987174
+    - _Rotation: 1165.7944
     m_Colors:
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []

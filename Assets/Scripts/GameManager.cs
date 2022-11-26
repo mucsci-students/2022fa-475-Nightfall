@@ -13,14 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] float colorStep;
     public Color settingColor, noonColor;
 
-    //private int interpolationFramesCount; // Number of frames to completely interpolate between the 2 positions
-   //private int elapsedFrames = 0;
-
     // Start is called before the first frame update
     void Start()
     {
         timeOfDay = 12;
-        //interpolationFramesCount = 45 * (int)(1/timeScale) * 5;
         skyboxMaterial.SetFloat("_Exposure", 1);
 
         ToolData.Initialize();
@@ -33,8 +29,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timeOfDay += Time.deltaTime * timeScale;
-        //float interpolationRatio = (float)elapsedFrames / interpolationFramesCount;
-        Debug.Log("Time: " + timeOfDay);
+
+        skyboxMaterial.SetFloat("_Rotation", skyboxMaterial.GetFloat("_Rotation") + .01f);
 
         if (timeOfDay > 7 && timeOfDay < 21)
         {
@@ -43,18 +39,24 @@ public class GameManager : MonoBehaviour
         if (timeOfDay > 6 && timeOfDay < 11)
         {           
             sun.GetComponent<Light>().intensity += Time.deltaTime * intensityScale;
-            sun.GetComponent<Light>().color = Color.Lerp(settingColor, noonColor, colorStep * Time.deltaTime);
+            //sun.GetComponent<Light>().color = Color.Lerp(settingColor, noonColor, colorStep * Time.deltaTime);
+            float newR = settingColor.r + ((noonColor.r - settingColor.r) * (timeOfDay - 6) / 5);
+            float newG = settingColor.g + ((noonColor.g - settingColor.g) * (timeOfDay - 6) / 5);
+            float newB = settingColor.b + ((noonColor.b - settingColor.b) * (timeOfDay - 6) / 5);
+            sun.GetComponent<Light>().color = new Color(newR, newG, newB);
             skyboxMaterial.SetFloat("_Exposure", (timeOfDay - 5) / 5);
-            //RenderSettings.fogColor = Color.Lerp(Color.black, Color.grey, colorStep * Time.deltaTime);
             float newValue = (timeOfDay - 6) / 10;
             RenderSettings.fogColor = new Color(newValue, newValue, newValue);
         }
         if (timeOfDay > 16 && timeOfDay < 21)
         {
             sun.GetComponent<Light>().intensity -= Time.deltaTime * intensityScale;
-            sun.GetComponent<Light>().color = Color.Lerp(noonColor, settingColor, colorStep * Time.deltaTime);
+            //sun.GetComponent<Light>().color = Color.Lerp(noonColor, settingColor, colorStep * Time.deltaTime);
+            float newR = noonColor.r - ((noonColor.r - settingColor.r) * (timeOfDay - 16) / 5);
+            float newG = noonColor.g - ((noonColor.g - settingColor.g) * (timeOfDay - 16) / 5);
+            float newB = noonColor.b - ((noonColor.b - settingColor.b) * (timeOfDay - 16) / 5);
+            sun.GetComponent<Light>().color = new Color(newR, newG, newB);
             skyboxMaterial.SetFloat("_Exposure", 1.4f - ((timeOfDay - 15) / 5));
-            //RenderSettings.fogColor = Color.Lerp(Color.grey, Color.black, colorStep * Time.deltaTime);
             float newValue = .5f - (timeOfDay - 16) / 10;
             RenderSettings.fogColor = new Color(newValue, newValue, newValue);
         }
@@ -73,7 +75,6 @@ public class GameManager : MonoBehaviour
             PlayerHandler.AddValue("health", 1);
             t = 0;
         }
-        //elapsedFrames = (elapsedFrames + 1) % (interpolationFramesCount + 1);
     }
 
     public void UpdateValue(string field)
