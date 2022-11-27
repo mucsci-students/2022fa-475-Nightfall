@@ -33,8 +33,8 @@ public class PickaxeController : MonoBehaviour
         {
             PlayMiningSound();
             canGetResource = false;
-            Debug.Log(other.name);
-            // Adding to inventory here
+            Inventory.AddItem("Stone" , 1);
+            print("Stone: " + Inventory.GetCount("Stone"));
         }
     }
 

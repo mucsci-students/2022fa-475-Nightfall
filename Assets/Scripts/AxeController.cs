@@ -35,8 +35,8 @@ public class AxeController : MonoBehaviour
         {
             canGetResource = false;
             PlayAxeSound();
-            Debug.Log(other.name);
-            // Adding to inventory goes here.
+            Inventory.AddItem("Wood" , 1);
+            print("Wood: " + Inventory.GetCount("Wood"));
         }
     }
     

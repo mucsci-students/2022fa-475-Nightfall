@@ -26,7 +26,6 @@ public class WeaponController : MonoBehaviour
         playerAnim = GameObject.Find("Male").GetComponent<Animator>();
         SetWeapons();
         Select(selectedWeapon);
-        playerAnim.SetBool("Sword Equipped", true);
     }
 
         // Update is called once per frame
