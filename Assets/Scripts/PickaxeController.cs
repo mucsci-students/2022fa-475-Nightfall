@@ -13,7 +13,7 @@ public class PickaxeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        axeAnim = gameObject.GetComponent<Animator>();
+        axeAnim = GameObject.Find("Male").GetComponent<Animator>();
         source = gameObject.GetComponent<AudioSource>();
     }
 
@@ -22,7 +22,7 @@ public class PickaxeController : MonoBehaviour
         if(!isMining)
         {
             isMining = true;
-            axeAnim.SetTrigger("Swing");
+            axeAnim.SetTrigger("Mine Swing");
             StartCoroutine(ResetAttackingBool());
         }
     }
@@ -33,8 +33,8 @@ public class PickaxeController : MonoBehaviour
         {
             PlayMiningSound();
             canGetResource = false;
-            Debug.Log(other.name);
-            // Adding to inventory here
+            Inventory.AddItem("Stone" , 1);
+            print("Stone: " + Inventory.GetCount("Stone"));
         }
     }
 

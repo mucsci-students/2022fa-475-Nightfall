@@ -13,6 +13,7 @@ public class WeaponController : MonoBehaviour
     private PickaxeController pickaxeController;
     private SwordController swordController;
     private AxeController axeController;
+    private Animator playerAnim;
     private int selectedWeapon;
 
 
@@ -22,6 +23,7 @@ public class WeaponController : MonoBehaviour
         swordController = transform.GetChild(0).GetComponent<SwordController>();
         axeController = transform.GetChild(1).GetComponent<AxeController>();
         pickaxeController = transform.GetChild(2).GetComponent<PickaxeController>();
+        playerAnim = GameObject.Find("Male").GetComponent<Animator>();
         SetWeapons();
         Select(selectedWeapon);
     }
@@ -41,12 +43,29 @@ public class WeaponController : MonoBehaviour
 
         if(previousWeapon != selectedWeapon)
         {
-            // Scuffed fix for now. Probably not great to do this in Update(). 
-            Animator anim = weapons[previousWeapon].gameObject.GetComponent<Animator>();
-            // Allows the animator to reset, so our tools don't get displaced from animation cancels.
-            anim.Rebind();
-            anim.Update(0f);
+            playerAnim.Rebind();
+            playerAnim.Update(0f);
             Select(selectedWeapon);
+
+            switch(selectedWeapon)
+            {
+                case 0:
+                    playerAnim.SetTrigger("swordEquip"); 
+                    break;
+
+                case 1:
+                    playerAnim.SetTrigger("axeEquip");
+                    break;
+                
+                case 2:
+                    playerAnim.SetTrigger("pickEquip");       
+                    break;
+
+                case 3:
+                    playerAnim.SetTrigger("torchEquip");
+                    break;
+            }
+        
         }
 
         if(Input.GetMouseButtonDown(0))

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AxeController : MonoBehaviour
 {
     [SerializeField] private AudioClip[] axeSounds;
-    private Animator axeAnim;
+    private Animator hatchetAnim;
     private AudioSource source;
     private bool canGetResource;        // Control for getting one resource + playing sound once. 
     private bool isChopping = false;    // Control for animation and allowing gathering
@@ -13,7 +13,7 @@ public class AxeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        axeAnim = gameObject.GetComponent<Animator>();
+        hatchetAnim = GameObject.Find("Male").GetComponent<Animator>();
         source = gameObject.GetComponent<AudioSource>();
         canGetResource = true;
     }
@@ -24,7 +24,7 @@ public class AxeController : MonoBehaviour
         {
             isChopping = true;
             // GameManager.SwingTool("axes");
-            axeAnim.SetTrigger("Swing");
+            hatchetAnim.SetTrigger("Chop Swing");
             StartCoroutine(ResetAttackingBool());
         }
     }
@@ -35,8 +35,8 @@ public class AxeController : MonoBehaviour
         {
             canGetResource = false;
             PlayAxeSound();
-            Debug.Log(other.name);
-            // Adding to inventory goes here.
+            Inventory.AddItem("Wood" , 1);
+            print("Wood: " + Inventory.GetCount("Wood"));
         }
     }
     
@@ -55,10 +55,10 @@ public class AxeController : MonoBehaviour
         axeSounds[0] = source.clip;
     }
 
-    // Set to the length of axeAnim for use of isChopping
+    // Set to the length of hatchetAnim for use of isChopping
     IEnumerator ResetAttackingBool()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1.0f);
         isChopping = false;
         canGetResource = true;
     }

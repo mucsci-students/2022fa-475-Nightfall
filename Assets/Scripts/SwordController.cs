@@ -5,9 +5,7 @@ using UnityEngine;
 public class SwordController : MonoBehaviour
 {
     private PlayerHandler plr;
-
     private Animator swordAnim;
-    private Animator cameraAnim;
     private AudioSource source;
 
     private bool firstAttack = true;
@@ -22,9 +20,7 @@ public class SwordController : MonoBehaviour
     void Start()
     {
         //plr = GameManager.GetPlr();
-
-        swordAnim = GetComponent<Animator>();
-        cameraAnim = gameObject.transform.parent.parent.GetChild(0).GetComponent<Animator>();
+        swordAnim = GameObject.Find("Male").GetComponent<Animator>();
         source = gameObject.GetComponent<AudioSource>();
         canDealDamage = true;
     }
@@ -72,8 +68,9 @@ public class SwordController : MonoBehaviour
         firstAttack = false; 
         // plr.SwingTool("swords");
         swordAnim.SetBool("First Attack", firstAttack);
-        cameraAnim.SetTrigger("Swing");
+        
         source.PlayOneShot(source.clip);
+        
         canDealDamage = true;
         isAttacking = true;
         swordAnim.SetTrigger("Attack");
@@ -86,11 +83,10 @@ public class SwordController : MonoBehaviour
         secondAttack = false;
         // GameManager.SwingTool("swords");
         swordAnim.SetBool("Second Attack", secondAttack);
-        cameraAnim.SetTrigger("Swing2");
         source.PlayOneShot(source.clip);
         canDealDamage = true;
         isAttacking = true;
-        swordAnim.SetTrigger("Attack2");
+        swordAnim.SetTrigger("2ndAttack");
     }
 
     IEnumerator ResetCoolDown()
