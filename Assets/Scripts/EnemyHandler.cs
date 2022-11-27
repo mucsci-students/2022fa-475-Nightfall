@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHandler : MonoBehaviour
 {
-    private struct enemy
+    public struct enemy
     {
         GameObject enemyType;
         int health;
@@ -14,6 +14,8 @@ public class EnemyHandler : MonoBehaviour
     }
 
     public GameObject basicEnemy;
+
+    private List<enemy> enemies = new List<enemy>();
     
     private int currentCount = 0;
     private int killedCount = 0;
@@ -32,6 +34,7 @@ public class EnemyHandler : MonoBehaviour
 
     private void SpawnEnemy()
     {
-
+        enemy newEnemy = new enemy();
+        
     }
 }
