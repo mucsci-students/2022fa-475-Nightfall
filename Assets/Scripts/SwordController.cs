@@ -33,8 +33,8 @@ public class SwordController : MonoBehaviour
             StartCoroutine(ResetSecondAttack());
             StartCoroutine(ResetAttackingBool());
             SwordAttack();
-            secondAttack = false;
-            swordAnim.SetBool("Second Attack", secondAttack);
+            // secondAttack = false;
+            // swordAnim.SetBool("Second Attack", secondAttack);
         }
                 
         // Do second attack if first cooldown is over
@@ -57,7 +57,6 @@ public class SwordController : MonoBehaviour
         if(other.tag == "Enemy" && isAttacking && canDealDamage)
         {
             canDealDamage = false;
-            Debug.Log(other.name);
             print(other.name);
         }
     }
@@ -87,6 +86,7 @@ public class SwordController : MonoBehaviour
         canDealDamage = true;
         isAttacking = true;
         swordAnim.SetTrigger("2ndAttack");
+        StartCoroutine(ResetAnim());
     }
 
     IEnumerator ResetCoolDown()
@@ -95,6 +95,8 @@ public class SwordController : MonoBehaviour
         yield return new WaitForSeconds(firstAttackCooldown);
         firstAttack = true;
         swordAnim.SetBool("First Attack", firstAttack);
+        swordAnim.Rebind();
+        swordAnim.Update(0f);
         secondAttack = false;
         swordAnim.SetBool("Second Attack", secondAttack);
     }
@@ -109,7 +111,6 @@ public class SwordController : MonoBehaviour
             secondAttack = true;
             swordAnim.SetBool("Second Attack", secondAttack);
         }
-        
     }
 
     // Set to the length of swordAnimations for use of isAttacking
@@ -117,5 +118,12 @@ public class SwordController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
+    }
+
+    IEnumerator ResetAnim()
+    {
+        yield return new WaitForSeconds(1.0f);
+        swordAnim.Rebind();
+        swordAnim.Update(0f);
     }
 }

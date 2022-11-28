@@ -44,32 +44,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -4.873, y: 59.645, z: -7.641}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 1
-        value: {x: -4.873, y: 59.645, z: -7.641}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
         value: {x: 2.409, y: -22.421, z: 36.62}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -584,33 +558,41 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: LeftTargetParent/LeftTarget
-  m_PositionCurves:
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.0234, y: 0.2243, z: -0.0104}
+        value: {x: 77.133, y: -7.736, z: 2.518}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 1
-        value: {x: 0.0234, y: 0.2243, z: -0.0104}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        inWeight: {x: 0, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0, y: 0.33333334, z: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch
+  m_PositionCurves:
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -705,6 +687,23 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: RightTargetParent/RightTarget
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0.032, y: 0.076, z: -0.026}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0, y: 0.33333334, z: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -730,13 +729,6 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2664386102
-      attribute: 1
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
       path: 3027091415
       attribute: 1
       script: {fileID: 0}
@@ -744,14 +736,14 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 639848127
-      attribute: 4
+      path: 1332163616
+      attribute: 1
       script: {fileID: 0}
       typeID: 4
-      customType: 4
+      customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2664386102
+      path: 639848127
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -897,6 +889,20 @@ AnimationClip:
       typeID: 4
       customType: 4
       isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1332163616
+      attribute: 4
+      script: {fileID: 0}
+      typeID: 4
+      customType: 4
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3515400498
+      attribute: 4
+      script: {fileID: 0}
+      typeID: 4
+      customType: 4
+      isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -1001,180 +1007,6 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
     path: RightTargetParent/RightTarget
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -4.873
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: -4.873
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.x
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 59.645
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 59.645
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.y
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -7.641
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: -7.641
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.z
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.0234
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0.0234
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.2243
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0.2243
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -0.0104
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: -0.0104
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3223,6 +3055,186 @@ AnimationClip:
     path: RightTargetParent/RightTarget
     classID: 4
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: -0.032
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.076
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: -0.026
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 77.133
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: -7.736
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 2.518
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2
@@ -3427,7 +3439,7 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
     path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
+      down_deform/hand_joint/thumb_prox/thumb_inter/thumb_dist
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3438,7 +3450,7 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
     path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
+      down_deform/hand_joint/thumb_prox/thumb_inter/thumb_dist
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3449,7 +3461,7 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
     path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/RescaleWeapon/WeaponHolder/OldHandTorch
+      down_deform/hand_joint/thumb_prox/thumb_inter/thumb_dist
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3917,9 +3929,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/thumb_prox/thumb_inter/thumb_dist
+    attribute: m_LocalEulerAngles.z
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3929,8 +3941,41 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/thumb_prox/thumb_inter/thumb_dist
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3940,8 +3985,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: fp_male_hand_right/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
-      down_deform/hand_joint/thumb_prox/thumb_inter/thumb_dist
+    path: fp_male_hand_left/amrature_fp_hand/shoulder/arm_up_deform/arm_down_deform/forearm_up_deform/forearm_
+      down_deform/hand_joint/ResizeTorch/OldHandTorch/OldHandTorch
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
