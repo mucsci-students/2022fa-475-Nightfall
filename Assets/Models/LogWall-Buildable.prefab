@@ -801,6 +801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4801799129598781792}
+  - component: {fileID: 2278495054928292509}
   m_Layer: 0
   m_Name: LogWall-Buildable
   m_TagString: Untagged
@@ -824,6 +825,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &2278495054928292509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5325711560573957082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e698fd36bbef3054a940b5647b685e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabPath: Assets/Models/LogWall-Buildable.prefab
 --- !u!1 &5453411915211292414
 GameObject:
   m_ObjectHideFlags: 0
