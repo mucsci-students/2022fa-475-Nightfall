@@ -14,7 +14,7 @@ public class WeaponController : MonoBehaviour
     private SwordController swordController;
     private AxeController axeController;
     private Animator playerAnim;
-    private int selectedWeapon;
+    public int selectedWeapon { get; private set; }
 
 
     // Start is called before the first frame update
@@ -47,24 +47,7 @@ public class WeaponController : MonoBehaviour
             playerAnim.Update(0f);
             Select(selectedWeapon);
 
-            switch(selectedWeapon)
-            {
-                case 0:
-                    playerAnim.SetTrigger("swordEquip"); 
-                    break;
-
-                case 1:
-                    playerAnim.SetTrigger("axeEquip");
-                    break;
-                
-                case 2:
-                    playerAnim.SetTrigger("pickEquip");       
-                    break;
-
-                case 3:
-                    playerAnim.SetTrigger("torchEquip");
-                    break;
-            }
+            UpdateAnimation();
         
         }
 
@@ -91,6 +74,15 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    public void ForceWeapon(int weaponIndex)
+    {
+
+        selectedWeapon = weaponIndex;
+        Select(selectedWeapon);
+        UpdateAnimation();
+
+    }
+
     private void SetWeapons()
     {
         weapons = new Transform[transform.childCount];
@@ -112,5 +104,29 @@ public class WeaponController : MonoBehaviour
         {
             weapons[i].gameObject.SetActive(i == weaponIndex);
         }
+    }
+
+    private void UpdateAnimation()
+    {
+        
+        switch (selectedWeapon)
+        {
+            case 0:
+                playerAnim.SetTrigger("swordEquip");
+                break;
+
+            case 1:
+                playerAnim.SetTrigger("axeEquip");
+                break;
+
+            case 2:
+                playerAnim.SetTrigger("pickEquip");
+                break;
+
+            case 3:
+                playerAnim.SetTrigger("torchEquip");
+                break;
+        }
+
     }
 }

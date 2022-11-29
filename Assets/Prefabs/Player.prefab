@@ -3258,6 +3258,7 @@ GameObject:
   - component: {fileID: 7046804473428632588}
   - component: {fileID: 4196609734246092110}
   - component: {fileID: 1348742631}
+  - component: {fileID: 1295314657219903149}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -3482,6 +3483,8 @@ MonoBehaviour:
     smooth: 0
     smoothTime: 5
     lockCursor: 1
+    m_CharacterTargetRot: {x: 0, y: 0, z: 0, w: 0}
+    m_CameraTargetRot: {x: 0, y: 0, z: 0, w: 0}
   m_StepInterval: 6
   m_FootstepSounds:
   - {fileID: 8300000, guid: e70c5fa5ed6b97f41aa555d63ca56d42, type: 3}
@@ -3531,6 +3534,18 @@ CapsuleCollider:
   m_Height: 2.000123
   m_Direction: 1
   m_Center: {x: 0, y: 0.00031089783, z: 0}
+--- !u!114 &1295314657219903149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511521097452256554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2d0880e305ae04b97b31942e78c8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7563955356636403834
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ToolData
 {
-    private static Dictionary<string, Dictionary<string, Dictionary<string, int>>> _tools = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
+    private static Dictionary<string, Dictionary<string, Dictionary<string, int>>> _tools;
 
     public static void Initialize()
     {
+
+        _tools = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
+
         Dictionary<string, Dictionary<string, int>> swords = new Dictionary<string, Dictionary<string, int>>();
         Dictionary<string, Dictionary<string, int>> axes = new Dictionary<string, Dictionary<string, int>>();
         Dictionary<string, Dictionary<string, int>> pickaxes = new Dictionary<string, Dictionary<string, int>>();
@@ -42,4 +45,5 @@ public class ToolData
     {
         return _tools[type][quality][field];
     }
+
 }
