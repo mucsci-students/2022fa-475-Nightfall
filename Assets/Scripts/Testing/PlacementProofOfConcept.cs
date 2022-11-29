@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlacementProofOfConcept : MonoBehaviour
 {
 
-    private Camera _cameraComponent;
+    private Camera _cameraHolderCamera;
 
     [SerializeField]
     private BuildObjectPair[] _spawnablePrefabs;
@@ -22,7 +22,12 @@ public class PlacementProofOfConcept : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-        => _cameraComponent = GetComponentInChildren<Camera>();
+    {
+
+        var cameras = GetComponentsInChildren<Camera>();
+        _cameraHolderCamera = cameras.Where(camera => camera.name == "CameraHolder").FirstOrDefault();
+        
+    }
 
     // Update is called once per frame
     void Update()
@@ -116,14 +121,14 @@ public class PlacementProofOfConcept : MonoBehaviour
     {
 
         // Ignore hits against the object being placed and the player
-        IEnumerable<RaycastHit> allHits = Physics.RaycastAll(_cameraComponent.transform.position, _cameraComponent.transform.forward, distanceLimit);
+        IEnumerable<RaycastHit> allHits = Physics.RaycastAll(_cameraHolderCamera.transform.position, _cameraHolderCamera.transform.forward, distanceLimit);
         allHits = allHits.Where(hit => hit.collider.gameObject != _activeOutline && hit.collider.gameObject != gameObject);
 
         // In the case that there was no raycast hits, position at the point at the end of the limit
         if (allHits.Count() == 0)
         {
-            Vector3 cameraForwardVector = _cameraComponent.transform.forward;
-            return cameraForwardVector * distanceLimit + _cameraComponent.transform.position;
+            Vector3 cameraForwardVector = _cameraHolderCamera.transform.forward;
+            return cameraForwardVector * distanceLimit + _cameraHolderCamera.transform.position;
         }
 
         // Take the closest hit to the player
