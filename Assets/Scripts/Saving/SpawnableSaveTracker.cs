@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-
 public class SpawnableSaveTracker : SaveGameTrackable
 {
-
-    public string PrefabPath;
 
     public override SaveRecord GenerateSaveRecord()
     {
 
+        string prefabName = gameObject.name.Substring(0, gameObject.name.IndexOf("(Clone)"));
+
         SerializableTransform serializableTransform = new SerializableTransform(transform);        
-        SpawnableSaveRecord record = new SpawnableSaveRecord(serializableTransform, PrefabPath);
+        SpawnableSaveRecord record = new SpawnableSaveRecord(serializableTransform, prefabName);
         return record;
 
     }

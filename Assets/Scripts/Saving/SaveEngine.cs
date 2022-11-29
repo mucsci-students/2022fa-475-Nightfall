@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -84,7 +83,7 @@ public class SaveEngine : MonoBehaviour
             else if (restoreMethod == RestoreMethod.INSTANTIATE_THEN_RESTORE)
             {
 
-                var target = (GameObject)AssetDatabase.LoadAssetAtPath(recordPair.baseRecord.Target, typeof(GameObject));
+                var target = (GameObject)Resources.Load(recordPair.baseRecord.Target);
                 var spawned = Instantiate(target);
                 var trackable = spawned.GetComponent<SaveGameTrackable>();
 
