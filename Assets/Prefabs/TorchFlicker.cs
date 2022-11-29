@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TorchFlicker : MonoBehaviour
 {
-    public GameObject light;
+    public GameObject torchLight;
     public GameObject flame;
 
     private Light lightSource;
 
     void Start()
     {
-        lightSource = light.GetComponent<Light>();
+        lightSource = torchLight.GetComponent<Light>();
     }
 
     // Update is called once per frame
