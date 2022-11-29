@@ -63,4 +63,9 @@ public class Inventory : MonoBehaviour
         return new Dictionary<string, int>(_items);
     }
 
+    public static Dictionary<string, string> GetAllTools() => _tools;
+
+    public static void SetTools(Dictionary<string, string> newTools) 
+        => _tools = new Dictionary<string, string>(newTools);
+
 }

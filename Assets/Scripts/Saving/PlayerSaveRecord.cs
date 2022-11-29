@@ -8,6 +8,7 @@ public class PlayerSaveRecord : SaveRecord
     public SerializableQuaternion TargetPlayerRotation;
     public SerializableQuaternion TargetCameraRotation;
     public Dictionary<string, int> PlayerInventory;
+    public Dictionary<string, string> PlayerTools;
     public int SelectedWeapon;
     public int Health;
     public int Stamina;
@@ -21,6 +22,7 @@ public class PlayerSaveRecord : SaveRecord
         SerializableQuaternion targetCameraRotation,
         int selectedWeapon,
         Dictionary<string, int> playerInventory,
+        Dictionary<string, string> playerTools,
         int health,
         int stamina)
     {
@@ -33,6 +35,7 @@ public class PlayerSaveRecord : SaveRecord
         TargetCameraRotation = targetCameraRotation;
         SelectedWeapon = selectedWeapon;
         PlayerInventory = playerInventory;
+        PlayerTools = playerTools;
         Health = health;
         Stamina = stamina;
 

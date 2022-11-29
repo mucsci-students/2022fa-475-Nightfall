@@ -27,6 +27,7 @@ public class PlayerSaveTracker : SaveGameTrackable
         new SerializableQuaternion(_mouseLook.m_CameraTargetRot),
         _weaponController.selectedWeapon,
         Inventory.GetAllItems(),
+        Inventory.GetAllTools(),
         PlayerHandler._health,
         PlayerHandler._stamina
     );
@@ -56,6 +57,7 @@ public class PlayerSaveTracker : SaveGameTrackable
             PlayerHandler.SetVitality(_deserializedRecord.Health, _deserializedRecord.Stamina);
 
             Inventory.AddItems(_deserializedRecord.PlayerInventory);
+            Inventory.SetTools(_deserializedRecord.PlayerTools);
 
             // Wait for all calls to Update() to finish in the controller before continuing
             Invoke(nameof(FinishRestore), 1.2f);
