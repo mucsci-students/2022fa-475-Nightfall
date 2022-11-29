@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private static Dictionary<string, int> _items = new Dictionary<string, int>();
+    private static Dictionary<string, int> _items;
 
-    private static Dictionary<string, string> _tools = new Dictionary<string, string>();
+    private static Dictionary<string, string> _tools;
     
     public static void Initialize()
     {
+
+        _items = new Dictionary<string, int>();
+        _tools = new Dictionary<string, string>();
+
         _items.Add("Wood", 0);
         _items.Add("Stone", 0);
         _items.Add("Copper Ore", 0);
@@ -25,6 +29,13 @@ public class Inventory : MonoBehaviour
     public static void AddItem(string n, int qty)
     {
         _items[n] += qty;
+    }
+
+    public static void AddItems(IReadOnlyCollection<KeyValuePair<string, int>> items)
+    {
+
+        foreach (var item in items) { AddItem(item.Key, item.Value); }
+
     }
 
     public static void RemoveItem(string n, int qty)
@@ -51,4 +62,5 @@ public class Inventory : MonoBehaviour
     {
         return new Dictionary<string, int>(_items);
     }
+
 }

@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class PlayerHandler
 {
-    private static int _health;
+    public static int _health { get; private set; }
     private static int _maxHealth;
 
-    private static int _stamina;
+    public static int _stamina { get; private set; }
     private static int _maxStamina;
     
     public static void Initialize()
@@ -47,5 +47,13 @@ public class PlayerHandler
         }
 
         return -1;
+    }
+
+    public static void SetVitality (int newHealth, int newStamina)
+    {
+
+        _health = newHealth;
+        _stamina = newStamina;
+
     }
 }
