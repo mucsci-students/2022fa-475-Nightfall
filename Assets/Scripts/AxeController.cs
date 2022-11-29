@@ -9,6 +9,7 @@ public class AxeController : MonoBehaviour
     private AudioSource source;
     private bool canGetResource;        // Control for getting one resource + playing sound once. 
     private bool isChopping = false;    // Control for animation and allowing gathering
+    private ParticleSystem woodChips;
     
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class AxeController : MonoBehaviour
         hatchetAnim = GameObject.Find("Male").GetComponent<Animator>();
         source = gameObject.GetComponent<AudioSource>();
         canGetResource = true;
+        woodChips = GetComponentInChildren<ParticleSystem>(true);
     }
 
     public void SwingAxe()
@@ -37,6 +39,8 @@ public class AxeController : MonoBehaviour
             PlayAxeSound();
             Inventory.AddItem("Wood" , 1);
             print("Wood: " + Inventory.GetCount("Wood"));
+            woodChips.Play();
+
         }
     }
     
