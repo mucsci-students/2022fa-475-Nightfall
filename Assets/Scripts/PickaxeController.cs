@@ -9,12 +9,14 @@ public class PickaxeController : MonoBehaviour
     private AudioSource source;
     private bool canGetResource;        // Control for getting one resource + playing sound once. 
     private bool isMining = false;      // Control for animation and allowing gathering
+    private ParticleSystem stoneChips;
     
     // Start is called before the first frame update
     void Start()
     {
         axeAnim = GameObject.Find("Male").GetComponent<Animator>();
         source = gameObject.GetComponent<AudioSource>();
+        stoneChips = GetComponentInChildren<ParticleSystem>(true);
     }
 
     public void SwingPickaxe()
@@ -35,6 +37,7 @@ public class PickaxeController : MonoBehaviour
             canGetResource = false;
             Inventory.AddItem("Stone" , 1);
             print("Stone: " + Inventory.GetCount("Stone"));
+            stoneChips.Play();
         }
     }
 
