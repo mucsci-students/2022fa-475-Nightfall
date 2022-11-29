@@ -18,6 +18,7 @@ public class EnemyHandler : MonoBehaviour
     public GameObject player;
 
     private List<enemy> enemies = new List<enemy>();
+    private Transform[] spawnPositions;
     
     private int currentCount = 0;
     private int killedCount = 0;
@@ -27,6 +28,9 @@ public class EnemyHandler : MonoBehaviour
     void Start()
     {
         lastSpawn = Time.time;
+        
+        GameObject parent = GameObject.Find("SpawnPositions");
+        spawnPositions = parent.GetComponentsInChildren<Transform>();
     }
 
     // Update is called once per frame
@@ -48,10 +52,12 @@ public class EnemyHandler : MonoBehaviour
     private void SpawnEnemy()
     {
         enemy newEnemy = new enemy();
-        newEnemy.enemyObject = Instantiate(skeletonEnemy);
+        newEnemy.enemyObject = Instantiate(skeletonEnemy, spawnPositions[0].position, spawnPositions[0].rotation);
         newEnemy.maxHealth = 100;
         newEnemy.health = newEnemy.maxHealth;
         newEnemy.agent = newEnemy.enemyObject.GetComponent<NavMeshAgent>();
         newEnemy.agent.speed = 20;
+        
+        enemies.Add(newEnemy);
     }
 }
