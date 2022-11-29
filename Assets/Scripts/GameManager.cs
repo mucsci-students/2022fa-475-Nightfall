@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private float timeOfDay;
+    private int daysSurvived;
+    private int currentStructures;
 
     public GameObject sun;
     public Material skyboxMaterial;
@@ -17,6 +19,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         timeOfDay = 12;
+        daysSurvived = 0;
+        currentStructures = 0;
+
         skyboxMaterial.SetFloat("_Exposure", 1);
 
         ToolData.Initialize();
@@ -66,6 +71,7 @@ public class GameManager : MonoBehaviour
         }
         if (timeOfDay > 24)
         {
+            ++daysSurvived;
             timeOfDay -= 24f;
         }
 
@@ -77,8 +83,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UpdateValue(string field)
+    public void AddStructure()
     {
+        ++currentStructures;
+    }
 
+    public int GetDaysSurvived()
+    {
+        return daysSurvived;
+    }
+
+    public float GetTimeOfDay()
+    {
+        return timeOfDay;
+    }
+
+    public int GetCurrentStructures()
+    {
+        return currentStructures;
     }
 }
