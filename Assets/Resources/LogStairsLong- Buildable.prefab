@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e698fd36bbef3054a940b5647b685e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabPath: Assets/Models/LogStairsLong- Buildable.prefab
+  PrefabPath: Resources/LogStairsLong- Buildable.prefab
 --- !u!1 &8097502406974415927
 GameObject:
   m_ObjectHideFlags: 0
