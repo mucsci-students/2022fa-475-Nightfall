@@ -14,6 +14,7 @@ public class ResourceHealth : MonoBehaviour
     private float maxHealth;
 
     private GameObject resourceParent;
+    private TreeSound treeSound;
     private Animator anim;
     private MeshCollider mesh;
     private GameObject player;
@@ -26,6 +27,7 @@ public class ResourceHealth : MonoBehaviour
         maxHealth = Random.Range(lowerHealthBound, upperHealthBound);
         anim = GetComponent<Animator>();
         mesh = GetComponent<MeshCollider>();
+        treeSound = gameObject.GetComponentInChildren<TreeSound>();
         player = GameObject.Find("Player");
         location = resourceParent.transform.position;
         print(maxHealth);
@@ -44,6 +46,7 @@ public class ResourceHealth : MonoBehaviour
             {
                 PlayStoneAnimation();
             }
+
             StartCoroutine(DesrtoyResource());
         }
     }
@@ -68,10 +71,13 @@ public class ResourceHealth : MonoBehaviour
                 // Player is to the top right of the resource.
                 anim.SetTrigger("SE");
             }
-            // Player is to the top left of the resource.
-            anim.SetTrigger("NE");
-
+            else
+            {
+                // Player is to the top left of the resource.
+                anim.SetTrigger("SW");
+            }
         }
+
         // Player is to the left of the resource.
         else if (playerX <= location.x)
         {
@@ -80,16 +86,25 @@ public class ResourceHealth : MonoBehaviour
             {
                 anim.SetTrigger("NW");
             }
-            // Player is to the left and above the resource.
-            anim.SetTrigger("SW");
+            else
+            {
+                // Player is to the left and above the resource.
+                anim.SetTrigger("NE");
+            }
         }
-
-        anim.SetTrigger("Destroy");
+        if(treeSound != null)
+        {
+            treeSound.PlayTreeDeathSound();
+        }
+        else
+        {
+            print("Error, no sound on this tree.");
+        }
     }
 
     IEnumerator DesrtoyResource()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(5.0f);
         gameObject.transform.parent.gameObject.SetActive(false);
     }
 }
