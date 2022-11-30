@@ -61,3 +61,5 @@ crashlytics-build.properties
 
 # Ignore the save file
 savefile.json
+manualsave
+autosave

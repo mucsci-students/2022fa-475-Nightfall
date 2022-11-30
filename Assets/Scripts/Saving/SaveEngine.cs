@@ -17,7 +17,7 @@ public class SaveEngine : MonoBehaviour
     /// </summary>
     private static bool _worldIsDirty;
 
-    private const string _defaultSaveFileName = "savefile.json";
+    private const string _defaultSaveFileName = "autosave";
 
     // Start is called before the first frame update
     void Start()
