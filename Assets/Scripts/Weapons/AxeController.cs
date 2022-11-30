@@ -41,6 +41,15 @@ public class AxeController : MonoBehaviour
             print("Wood: " + Inventory.GetCount("Wood"));
             woodChips.Play();
 
+            if (other.TryGetComponent(out ResourceHealth resourceHealth))
+            {
+                // Will change the passed float to tool type dmg
+                resourceHealth.SubtractHealth(1.0f);
+                print("player position: " + gameObject.transform.position);
+                print("Resource position: " + other.gameObject.transform.position);
+                print(other.transform.position - gameObject.transform.position);
+            }
+
         }
     }
     

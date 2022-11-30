@@ -38,6 +38,12 @@ public class PickaxeController : MonoBehaviour
             Inventory.AddItem("Stone" , 1);
             print("Stone: " + Inventory.GetCount("Stone"));
             stoneChips.Play();
+
+            if (other.TryGetComponent(out ResourceHealth resourceHealth))
+            {
+                // Will change the passed float to tool type dmg
+                resourceHealth.SubtractHealth(1.0f);
+            }
         }
     }
 
