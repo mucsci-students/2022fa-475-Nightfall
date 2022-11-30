@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SaveGameTrackable
 {
     private float timeOfDay;
     private int daysSurvived;
@@ -101,5 +101,18 @@ public class GameManager : MonoBehaviour
     public int GetCurrentStructures()
     {
         return currentStructures;
+    }
+
+    public override SaveRecord GenerateSaveRecord() => new GameManagerSaveRecord(gameObject.name, timeOfDay, daysSurvived, currentStructures);
+
+    public override void RestoreFromSaveRecord(string recordJson)
+    {
+
+        GameManagerSaveRecord record = ObjectExtensions.FromJson<GameManagerSaveRecord>(recordJson);
+
+        daysSurvived = record.DaysSurvived;
+        currentStructures = record.CurrentStructures;
+        timeOfDay = record.TimeOfDay;
+
     }
 }
