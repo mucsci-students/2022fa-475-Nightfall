@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject sun;
     public Material skyboxMaterial;
-    public float timeScale, intensityScale;
+    public float timeScale, intensityScale, skyboxRotation;
     [SerializeField] [Range(0f, 1f)] float colorStep;
     public Color settingColor, noonColor;
 
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         timeOfDay += Time.deltaTime * timeScale;
 
-        skyboxMaterial.SetFloat("_Rotation", skyboxMaterial.GetFloat("_Rotation") + .01f);
+        skyboxMaterial.SetFloat("_Rotation", skyboxMaterial.GetFloat("_Rotation") + skyboxRotation);
 
         if (timeOfDay > 7 && timeOfDay < 21)
         {

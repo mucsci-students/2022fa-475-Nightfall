@@ -56,7 +56,7 @@ public class EnemyHandler : MonoBehaviour
         newEnemy.maxHealth = 100;
         newEnemy.health = newEnemy.maxHealth;
         newEnemy.agent = newEnemy.enemyObject.GetComponent<NavMeshAgent>();
-        newEnemy.agent.speed = 20;
+        newEnemy.agent.speed = 10;
         
         enemies.Add(newEnemy);
     }
