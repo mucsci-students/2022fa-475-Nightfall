@@ -99,6 +99,7 @@ public class ResourceHealth : MonoBehaviour
         else
         {
             print("Error, no sound on this tree.");
+            return;
         }
     }
 
