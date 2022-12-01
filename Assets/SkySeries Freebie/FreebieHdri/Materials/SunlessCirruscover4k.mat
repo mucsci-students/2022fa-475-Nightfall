@@ -26,13 +26,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-<<<<<<< HEAD
-    - _Exposure: 1.1994629
-    - _Rotation: 4455.2803
-=======
-    - _Exposure: 1
-    - _Rotation: 2485.5261
->>>>>>> InitialEnemy
+    - _Exposure: 0.3602934
+    - _Rotation: 2518.1472
     m_Colors:
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []

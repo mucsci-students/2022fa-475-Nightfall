@@ -164,7 +164,7 @@ MonoBehaviour:
   flame: {fileID: 1236873831}
   intensityChange: 0.0005
   rangeChange: 0.005
-  color1: {r: 0.4339623, g: 0.15697092, b: 0.026610907, a: 0}
+  color1: {r: 0.43529412, g: 0.24552597, b: 0.02745099, a: 0}
   color2: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &197554559 stripped
 Transform:
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonEnemy: {fileID: 673624404}
-  player: {fileID: 1818885324}
+  player: {fileID: 1431167595}
 --- !u!1 &307860727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1519,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 591ced21e1f881247ab0f414cb52ed48, type: 3}
+--- !u!1 &1431167595 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7511521097452256554, guid: 65b0362be0aabe649968e2cbf4962be8, type: 3}
+  m_PrefabInstance: {fileID: 962764836}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1447886454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,8 +1551,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1918239888}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2034,7 +2038,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1719070850
 MonoBehaviour:

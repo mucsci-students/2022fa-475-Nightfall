@@ -42,7 +42,7 @@ public class TorchFlicker : MonoBehaviour
         }
         lightSource.intensity += sign * intensityChange;
         lightSource.range += sign * rangeChange;
-        lightSource.color = new Color(lightSource.color.r + sign * intensityChange, lightSource.color.g, lightSource.color.b);
+        lightSource.color = new Color(lightSource.color.r + sign * intensityChange / 10, lightSource.color.g - sign * intensityChange / 10, lightSource.color.b);
 
     }
 }
