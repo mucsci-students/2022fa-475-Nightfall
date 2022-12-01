@@ -31,19 +31,18 @@ public class ResourcePool : MonoBehaviour
     {
         pooledTrees = new List<GameObject>();
         GameObject temp;
-        
+
         for(int i = 0; i < treeAmountToPool; i++)
         {
             Vector3 spawnLocation = GenerateSpawnLocation();
             Vector3 pos = spawnLocation;
+
             // I believe we can use "bounds" or something similar from:
             // https://docs.unity3d.com/ScriptReference/TerrainData.html
             // to obtain world coordinates for terrain.
-
             pos.y = Terrain.activeTerrain.SampleHeight(spawnLocation);
             spawnLocation = pos;
 
-           
             temp = Instantiate(treeToPull, spawnLocation, Quaternion.identity);
             temp.SetActive(false);
             pooledTrees.Add(temp);
