@@ -103,16 +103,32 @@ public class GameManager : SaveGameTrackable
         return currentStructures;
     }
 
-    public override SaveRecord GenerateSaveRecord() => new GameManagerSaveRecord(gameObject.name, timeOfDay, daysSurvived, currentStructures);
+    public override SaveRecord GenerateSaveRecord() => new GameManagerSaveRecord(
+        gameObject.name, 
+        timeOfDay, 
+        sun.GetComponent<Light>().intensity, 
+        skyboxMaterial.GetFloat("_Exposure"), 
+        t, 
+        daysSurvived, 
+        currentStructures,
+        sun.GetComponent<Light>().color,
+        RenderSettings.fogColor);
 
     public override void RestoreFromSaveRecord(string recordJson)
     {
 
         GameManagerSaveRecord record = ObjectExtensions.FromJson<GameManagerSaveRecord>(recordJson);
+        Vector3 pulledLightColor = record.LightColor.Value;
+        Vector3 pulledFogColor = record.FogColor.Value;
 
         daysSurvived = record.DaysSurvived;
         currentStructures = record.CurrentStructures;
         timeOfDay = record.TimeOfDay;
+        sun.GetComponent<Light>().intensity = record.SunIntensity;
+        skyboxMaterial.SetFloat("_Exposure", record.Exposure);
+        t = record.t;        
+        sun.GetComponent<Light>().color = new Color(pulledLightColor.x, pulledLightColor.y, pulledLightColor.z);
+        RenderSettings.fogColor = new Color(pulledFogColor.x, pulledFogColor.y, pulledFogColor.z);
 
     }
 }
