@@ -469,7 +469,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7511521097452256554, guid: 65b0362be0aabe649968e2cbf4962be8, type: 3}
   m_PrefabInstance: {fileID: 1196721700}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1000999364
+--- !u!114 &1000999374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -478,26 +478,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000999353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98be8c8ebebdf9845bb1027d1eaf848f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0661450b6e4c9a34ea70b8dd0451d5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnablePrefabs:
-  - ObjectToSpawn: {fileID: 5325711560573957082, guid: 48aab697b35e0f74cb143e71b101ade8, type: 3}
-    OutlineObject: {fileID: 1021590378627858659, guid: 3aa9a5af273552f4aacfa80f8b616aeb, type: 3}
-  - ObjectToSpawn: {fileID: 5959909905902975035, guid: 8700b9853c2ea094bbde0546f3e42ef8, type: 3}
-    OutlineObject: {fileID: 6391781037200454601, guid: 7aebfb73341c36b44b266fcd18f389ee, type: 3}
-  - ObjectToSpawn: {fileID: 7921543561513323570, guid: 1348f521b70246142ac5582f275ace2d, type: 3}
-    OutlineObject: {fileID: 1255299063320172761, guid: 6b9a63a6de37cd04d89ecf8c1b741d08, type: 3}
-  - ObjectToSpawn: {fileID: 5328493721939886067, guid: 59be750a5bd589e41ab856f9198fdf0a, type: 3}
-    OutlineObject: {fileID: 586215820063795992, guid: fdd96bd3e0ed197498267c27722f34b3, type: 3}
-  - ObjectToSpawn: {fileID: 6330383493804913173, guid: 66a3a4151281b65429cdc5479d3cf5de, type: 3}
-    OutlineObject: {fileID: 2641699549125229728, guid: f0656cef63a89574facf218916eb9437, type: 3}
-  - ObjectToSpawn: {fileID: 3990095667925011512, guid: 2d83274935a9bcc4aad0b154a82ed221, type: 3}
-    OutlineObject: {fileID: 307931847570965225, guid: 5c57ae1cfbf2c984cbb42869da21590a, type: 3}
-  - ObjectToSpawn: {fileID: 6933374540963440392, guid: 4d3d20483336ff045be8ceb5ae3815f7, type: 3}
-    OutlineObject: {fileID: 1713712089762639675, guid: 090412e4d4067164ba940d31f7dd4734, type: 3}
-  - ObjectToSpawn: {fileID: 1132136422219002222, guid: b602182c0aa5e294e8f6d3cf64639015, type: 3}
-    OutlineObject: {fileID: 8891641807580690448, guid: b7797d8bad55969459e0963ce9b7208c, type: 3}
 --- !u!1 &1036310914
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +932,7 @@ MonoBehaviour:
   skyboxMaterial: {fileID: 2100000, guid: 14458869d885fdf4d9afa53258a80d5c, type: 2}
   timeScale: 1
   intensityScale: 0.25
+  skyboxRotation: 0
   colorStep: 0.711
   settingColor: {r: 0.8490566, g: 0.6424398, b: 0.50863296, a: 1}
   noonColor: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}

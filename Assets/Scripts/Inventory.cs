@@ -43,6 +43,13 @@ public class Inventory : MonoBehaviour
         _items[n] -= qty;
     }
 
+    public static void RemoveItems(IEnumerable<KeyValuePair<string, int>> toRemove)
+    {
+
+        foreach (var item in toRemove) { RemoveItem(item.Key, item.Value); }
+
+    }
+
     public static int GetCount(string n)
     {
         return _items[n];
