@@ -19,30 +19,39 @@ public class ResourceHealth : MonoBehaviour
     private MeshCollider mesh;
     private GameObject player;
     private Vector3 location;
+    private List<string> miningType;
 
     // Start is called before the first frame update
     void Start()
     {
-        resourceParent = gameObject.transform.parent.gameObject;
         maxHealth = Random.Range(lowerHealthBound, upperHealthBound);
-        anim = GetComponent<Animator>();
-        mesh = GetComponent<MeshCollider>();
         treeSound = gameObject.GetComponentInChildren<TreeSound>();
-        player = GameObject.Find("Player");
+        resourceParent = gameObject.transform.parent.gameObject;
         location = resourceParent.transform.position;
-        print(maxHealth);
+        
+        mesh = GetComponent<MeshCollider>();
+        anim = GetComponent<Animator>();
+
+        player = GameObject.Find("Player");
+       
+        miningType = new List<string>();
+        miningType.Add("Copper Ore");
+        miningType.Add("Iron Ore");
+        miningType.Add("Stone");
+        
     }
 
     public void SubtractHealth(float dmg)
     {
         maxHealth -= dmg;
+
         if (maxHealth <= 0.0f)
         {
             if(gameObject.tag == "Wood")
             {
                 PlayTreeAnimation();
             }
-            else if (gameObject.tag == "Stone")
+            else if (miningType.Contains(gameObject.tag))
             {
                 PlayStoneAnimation();
             }
@@ -99,6 +108,7 @@ public class ResourceHealth : MonoBehaviour
         else
         {
             print("Error, no sound on this tree.");
+            return;
         }
     }
 
