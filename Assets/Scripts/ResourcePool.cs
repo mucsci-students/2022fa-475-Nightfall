@@ -58,12 +58,12 @@ public class ResourcePool : MonoBehaviour
         int randomPrefab = UnityEngine.Random.Range(0, treePrefabs.Length);
 
         temp = Instantiate(treePrefabs[randomPrefab], spawnLocation, Quaternion.identity);
-        
-        var randomRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-        temp.transform.rotation = randomRotation;
+        //var randomRotation = Quaternion.Euler(Random.Range(0, 3), Random.Range(0, 100), Random.Range(0, 3));
+        //temp.transform.rotation = randomRotation;
         AlignTransform(temp.transform, t);
-
         
+        print(temp.gameObject.name);
+        print(temp.transform.position);
         temp.SetActive(true);
 
         pooledTrees.Add(temp);
@@ -119,7 +119,7 @@ public class ResourcePool : MonoBehaviour
 
         temp = Instantiate(metalsPrefabs[randomPrefab], spawnLocation, Quaternion.identity);
         AlignTransform(temp.transform, t);
-        var randomRotation = Quaternion.Euler(0, Random.Range(0, 360)  , 0);
+        var randomRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
         temp.transform.rotation = randomRotation;
         temp.SetActive(true);
         pooledMetals.Add(temp);
@@ -137,7 +137,7 @@ public class ResourcePool : MonoBehaviour
         return null;
     }
 
-    private Vector3 GenerateSpawnLocation(Terrain t)
+    private static Vector3 GenerateSpawnLocation(Terrain t)
     {
         // Generate random coordinate within the bounds of the given terrain.
         Vector3 spawnLocation = new Vector3 (
@@ -157,21 +157,48 @@ public class ResourcePool : MonoBehaviour
 
     private static void AlignTransform(Transform transform, Terrain t)
     {
-        Vector3 sample = SampleNormal(transform.position, t);
+        Vector3 sample = SampleNormal(transform, t);
+        if(transform.tag == "Wood")
+        {
+            if(FindSurfaceSlope(sample) > 30f)
+            {
+                RecalculateSpawn(transform, t);
+            }
+        }
         
         Vector3 proj = transform.forward - (Vector3.Dot(transform.forward, sample)) * sample;
         transform.rotation = Quaternion.LookRotation(proj, sample);
     }
 
-    private static Vector3 SampleNormal(Vector3 position, Terrain t)
+    private static Vector3 SampleNormal(Transform transform, Terrain t)
     {
-        var terrainLocalPos = position - t.transform.position;
+        var terrainLocalPos = transform.position - t.transform.position;
         var normalizedPos = new Vector2(
             Mathf.InverseLerp(0f, t.terrainData.size.x, terrainLocalPos.x),
             Mathf.InverseLerp(0f, t.terrainData.size.z, terrainLocalPos.z)
         );
+        
         var terrainNormal = t.terrainData.GetInterpolatedNormal(normalizedPos.x, normalizedPos.y);
+
+        print("Transform of resource is: " + transform.name + "Angle of terrain is: " + FindSurfaceSlope(terrainNormal));
+
+        
         return terrainNormal;
+    }
+
+    private static float FindSurfaceSlope (Vector3 surfNormal) 
+    {
+        return Vector3.Angle (surfNormal, Vector3.up);
+    }
+
+    private static void RecalculateSpawn(Transform transform, Terrain t)
+    {
+        print("Angle too steep. Generating new location.");
+        Vector3 spawnLocation = GenerateSpawnLocation(t);
+        transform.position = spawnLocation;
+        transform.name = "Changed";
+        transform.rotation = Quaternion.identity;
+        SampleNormal(transform, t);
     }
 
 }
