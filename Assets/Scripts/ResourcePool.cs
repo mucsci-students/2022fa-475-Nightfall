@@ -53,19 +53,16 @@ public class ResourcePool : MonoBehaviour
 
     private void SpawnTrees(Terrain t)
     {
-        GameObject temp;
-        Vector3 spawnLocation = GenerateSpawnLocation(t);
+        
         int randomPrefab = UnityEngine.Random.Range(0, treePrefabs.Length);
-
-        temp = Instantiate(treePrefabs[randomPrefab], spawnLocation, Quaternion.identity);
+        GameObject temp = Instantiate(treePrefabs[randomPrefab], Vector3.zero, Quaternion.identity);
+        Transform spawnPoint = temp.transform;
+        GenerateSpawnLocation(t, spawnPoint);
         //var randomRotation = Quaternion.Euler(Random.Range(0, 3), Random.Range(0, 100), Random.Range(0, 3));
         //temp.transform.rotation = randomRotation;
-        AlignTransform(temp.transform, t);
-        
-        print(temp.gameObject.name);
-        print(temp.transform.position);
-        temp.SetActive(true);
+        // AlignTransform(spawnPoint, t);
 
+        temp.SetActive(true);
         pooledTrees.Add(temp);
     }
 
@@ -81,21 +78,19 @@ public class ResourcePool : MonoBehaviour
         return null;
     }
 
+
     private void SpawnRocks(Terrain t)
     {
-        GameObject temp;
-        Vector3 spawnLocation = GenerateSpawnLocation(t);
-        
         // Grab random prefab from List of given prefabs.
         int randomPrefab = UnityEngine.Random.Range(0, rockPrefabs.Length);
-
-        temp = Instantiate(rockPrefabs[randomPrefab], spawnLocation, Quaternion.identity);
-        AlignTransform(temp.transform, t);
-        var randomRotation = Quaternion.Euler(0, Random.Range(0, 360) , 0);
-        temp.transform.rotation = randomRotation;
+        GameObject temp = Instantiate(rockPrefabs[randomPrefab], Vector3.zero, Quaternion.identity);
+        Transform spawnPoint = temp.transform;
+        
+        GenerateSpawnLocation(t, spawnPoint);
         temp.SetActive(true);
         pooledRocks.Add(temp);
     }
+
 
     public GameObject GetPooledRocks()
     {
@@ -109,18 +104,15 @@ public class ResourcePool : MonoBehaviour
         return null;
     }
 
-     private void SpawnMetals(Terrain t)
+
+    private void SpawnMetals(Terrain t)
     {
-        GameObject temp;
-        Vector3 spawnLocation = GenerateSpawnLocation(t);
-        
         // Grab random prefab from List of given prefabs.
         int randomPrefab = UnityEngine.Random.Range(0, metalsPrefabs.Length);
-
-        temp = Instantiate(metalsPrefabs[randomPrefab], spawnLocation, Quaternion.identity);
-        AlignTransform(temp.transform, t);
-        var randomRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-        temp.transform.rotation = randomRotation;
+        GameObject temp = Instantiate(metalsPrefabs[randomPrefab],  Vector3.zero, Quaternion.identity);
+        Transform spawnPoint = temp.transform;
+        
+        GenerateSpawnLocation(t, spawnPoint);
         temp.SetActive(true);
         pooledMetals.Add(temp);
     }
@@ -137,68 +129,73 @@ public class ResourcePool : MonoBehaviour
         return null;
     }
 
-    private static Vector3 GenerateSpawnLocation(Terrain t)
+    private static Transform GenerateSpawnLocation(Terrain t, Transform spawnResourceLocation)
     {
+        bool validSpawn;
+
         // Generate random coordinate within the bounds of the given terrain.
-        Vector3 spawnLocation = new Vector3 (
+        Vector3 spawnLocation = new Vector3 
+        (
             UnityEngine.Random.Range(t.transform.position.x, t.transform.position.x + t.terrainData.size.x),
             UnityEngine.Random.Range(t.transform.position.y, t.transform.position.y + t.terrainData.size.y),
             UnityEngine.Random.Range(t.transform.position.z, t.transform.position.z + t.terrainData.size.z)
         );
 
-        Vector3 pos = spawnLocation;
-
         // Make sure Y coordinate is ontop of terrain.
+        Vector3 pos = spawnLocation;
         pos.y = t.SampleHeight(spawnLocation) + t.transform.position.y;
-        spawnLocation = pos;
+        spawnResourceLocation.position = pos;
 
-        return spawnLocation;
+        // Calculates normal of terrain and returns bool.
+        validSpawn = AlignTransform(spawnResourceLocation, t);
+
+        if(!validSpawn)
+        {
+            // If not valid, get new coordinates.
+            return GenerateSpawnLocation(t, spawnResourceLocation);
+        }
+
+        return spawnResourceLocation;
     }
 
-    private static void AlignTransform(Transform transform, Terrain t)
+    /* Align resource with surface of terrain + check slope of terrain for trees */
+    private static bool AlignTransform(Transform spawnResourceLocation, Terrain t)
     {
-        Vector3 sample = SampleNormal(transform, t);
-        if(transform.tag == "Wood")
+        // Get the normal vector for the coordinates resource is spawning at.
+        Vector3 sample = SampleNormal(spawnResourceLocation, t);
+
+        // If resource is a tree, check slope.
+        if(spawnResourceLocation.tag == "Wood")
         {
             if(FindSurfaceSlope(sample) > 30f)
             {
-                RecalculateSpawn(transform, t);
+                return false;
             }
         }
         
-        Vector3 proj = transform.forward - (Vector3.Dot(transform.forward, sample)) * sample;
-        transform.rotation = Quaternion.LookRotation(proj, sample);
+        // Resource positions appropriately regardless of slope.
+        Vector3 proj = spawnResourceLocation.forward - (Vector3.Dot(spawnResourceLocation.forward, sample)) * sample;
+        spawnResourceLocation.rotation = Quaternion.LookRotation(proj, sample);
+        return true;
     }
 
-    private static Vector3 SampleNormal(Transform transform, Terrain t)
+    // Get the normal vector
+    private static Vector3 SampleNormal(Transform spawnResourceLocation, Terrain t)
     {
-        var terrainLocalPos = transform.position - t.transform.position;
+        var terrainLocalPos = spawnResourceLocation.position - t.transform.position;
         var normalizedPos = new Vector2(
             Mathf.InverseLerp(0f, t.terrainData.size.x, terrainLocalPos.x),
             Mathf.InverseLerp(0f, t.terrainData.size.z, terrainLocalPos.z)
         );
-        
+
         var terrainNormal = t.terrainData.GetInterpolatedNormal(normalizedPos.x, normalizedPos.y);
-
-        print("Transform of resource is: " + transform.name + "Angle of terrain is: " + FindSurfaceSlope(terrainNormal));
-
-        
         return terrainNormal;
+        
     }
 
+    // Check angle of spawn point.
     private static float FindSurfaceSlope (Vector3 surfNormal) 
     {
         return Vector3.Angle (surfNormal, Vector3.up);
     }
-
-    private static void RecalculateSpawn(Transform transform, Terrain t)
-    {
-        print("Angle too steep. Generating new location.");
-        Vector3 spawnLocation = GenerateSpawnLocation(t);
-        transform.position = spawnLocation;
-        transform.name = "Changed";
-        transform.rotation = Quaternion.identity;
-        SampleNormal(transform, t);
-    }
-
 }
