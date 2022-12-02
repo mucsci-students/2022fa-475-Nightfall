@@ -10,6 +10,15 @@ public class PickaxeController : MonoBehaviour
     private bool canGetResource;        // Control for getting one resource + playing sound once. 
     private bool isMining = false;      // Control for animation and allowing gathering
     private ParticleSystem stoneChips;
+    private List<string> resourceType;
+
+    void Awake()
+    {
+        resourceType = new List<string>();
+        resourceType.Add("Stone");
+        resourceType.Add("Iron Ore");
+        resourceType.Add("Copper Ore");
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -31,14 +40,13 @@ public class PickaxeController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(isMining && canGetResource && other.tag == "Stone")
+        if(isMining && canGetResource && resourceType.Contains(other.tag))
         {
             PlayMiningSound();
             canGetResource = false;
-            Inventory.AddItem("Stone" , 1);
-            print("Stone: " + Inventory.GetCount("Stone"));
+            Inventory.AddItem(other.tag , 1);
+            print(other.tag + Inventory.GetCount(other.tag));
             stoneChips.Play();
-
             if (other.TryGetComponent(out ResourceHealth resourceHealth))
             {
                 // Will change the passed float to tool type dmg

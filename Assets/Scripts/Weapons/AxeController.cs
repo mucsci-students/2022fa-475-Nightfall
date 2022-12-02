@@ -10,7 +10,7 @@ public class AxeController : MonoBehaviour
     private bool canGetResource;        // Control for getting one resource + playing sound once. 
     private bool isChopping = false;    // Control for animation and allowing gathering
     private ParticleSystem woodChips;
-    
+
     // Start is called before the first frame update
     void Start()
     {

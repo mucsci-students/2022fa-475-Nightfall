@@ -9,6 +9,8 @@ TagManager:
   - Stone
   - Copper
   - Iron
+  - Copper Ore
+  - Iron Ore
   layers:
   - Default
   - TransparentFX
