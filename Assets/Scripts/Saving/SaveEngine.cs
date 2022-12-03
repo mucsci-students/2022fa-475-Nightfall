@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,8 @@ public class SaveEngine : MonoBehaviour
     /// </summary>
     private static bool _worldIsDirty;
 
+    private const string _defaultSaveFileName = "autosave";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +27,7 @@ public class SaveEngine : MonoBehaviour
 
     }
 
-    public static void SaveGame(string saveFileName = "savefile.json")
+    public static void SaveGame(string saveFileName = _defaultSaveFileName)
     {
 
         // Save the world
@@ -36,7 +39,7 @@ public class SaveEngine : MonoBehaviour
 
     }
 
-    public static void LoadSaveFile(string saveFileName = "savefile.json")
+    public static void LoadSaveFile(string saveFileName = _defaultSaveFileName)
     { 
         
         _activeSaveFile = SaveFile.ReadSaveFile(saveFileName);
@@ -44,17 +47,28 @@ public class SaveEngine : MonoBehaviour
 
     }
 
-    public static void ReloadWorldFromLoadedSave()
+    public static void ReloadWorldFromLoadedSave() => LoadSceneFromLoadedSave(SceneManager.GetActiveScene().buildIndex);
+    
+    public static void LoadSceneFromLoadedSave(int sceneIndex)
     {
 
         // Mark the world as dirty
         _worldIsDirty = true;
 
-        // Reload the world
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
+        // Load the scene
+        SceneManager.LoadScene(sceneIndex);
 
     }
+
+    public static void LoadSaveThenLoadScene(int sceneIndex, string saveFileName = _defaultSaveFileName)
+    {
+
+        LoadSaveFile(saveFileName);
+        LoadSceneFromLoadedSave(sceneIndex);
+
+    }
+
+    public static bool HasSaveFileByName(string saveFileName = _defaultSaveFileName) => File.Exists(_defaultSaveFileName);
 
     private void RestoreWorld()
     {
@@ -77,6 +91,17 @@ public class SaveEngine : MonoBehaviour
                 }
 
                 else { Debug.LogError($"No trackable named \"{recordPair.baseRecord.Target}\" found"); }
+
+            }
+
+            else if (restoreMethod == RestoreMethod.INSTANTIATE_THEN_RESTORE)
+            {
+
+                var target = (GameObject)Resources.Load(recordPair.baseRecord.Target);
+                var spawned = Instantiate(target);
+                var trackable = spawned.GetComponent<SaveGameTrackable>();
+
+                trackable.RestoreFromSaveRecord(recordPair.recordJson);
 
             }
 

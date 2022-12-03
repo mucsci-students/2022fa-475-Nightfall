@@ -464,6 +464,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1000999353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7511521097452256554, guid: 65b0362be0aabe649968e2cbf4962be8, type: 3}
+  m_PrefabInstance: {fileID: 1196721700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1000999374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000999353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0661450b6e4c9a34ea70b8dd0451d5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1036310914
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +740,7 @@ GameObject:
   - component: {fileID: 1395780166}
   - component: {fileID: 1395780165}
   - component: {fileID: 1395780167}
+  - component: {fileID: 1395780168}
   m_Layer: 0
   m_Name: SaveEngine
   m_TagString: Untagged
@@ -742,6 +760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f708c2f80520fcb4cb87d717f0ccd7ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saveFileName: manualsave
+  _allowManualSaving: 1
 --- !u!4 &1395780166
 Transform:
   m_ObjectHideFlags: 0
@@ -769,6 +789,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4407fd959e28c814e9fae7c8f98e2144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1395780168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395780164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f85ad54a685234b89ee4bba5370e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _autoSaveIntervalMinutes: 2
 --- !u!1001 &1529472438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -896,12 +929,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1203886174}
-  skyboxMaterial: {fileID: 2100000, guid: efd1c33efd2d58340b88804268e6833f, type: 2}
-  timeScale: 0
-  intensityScale: 0
-  colorStep: 0
-  settingColor: {r: 0, g: 0, b: 0, a: 0}
-  noonColor: {r: 0, g: 0, b: 0, a: 0}
+  skyboxMaterial: {fileID: 2100000, guid: 14458869d885fdf4d9afa53258a80d5c, type: 2}
+  timeScale: 1
+  intensityScale: 0.25
+  skyboxRotation: 0
+  colorStep: 0.711
+  settingColor: {r: 0.8490566, g: 0.6424398, b: 0.50863296, a: 1}
+  noonColor: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
 --- !u!4 &1690267710
 Transform:
   m_ObjectHideFlags: 0
