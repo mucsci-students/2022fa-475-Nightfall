@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8484945639517593262}
   - component: {fileID: 693351038056816221}
   - component: {fileID: 9183944678313879036}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ore_small_iron
   m_TagString: Iron Ore
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8484945639517815431}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Small Iron Ore
   m_TagString: Iron Ore
   m_Icon: {fileID: 0}

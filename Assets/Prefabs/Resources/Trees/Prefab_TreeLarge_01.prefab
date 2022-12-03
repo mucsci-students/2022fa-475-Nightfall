@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 244349136214273105}
   - component: {fileID: 244349136211405939}
   - component: {fileID: 244349136212373171}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tree_Large_01_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 244349136214273107}
   - component: {fileID: 244349136211405941}
   - component: {fileID: 244349136212373173}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tree_Large_01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 535055093647501493}
   - component: {fileID: 2162774795968703947}
   - component: {fileID: 2162774795968703946}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tree_Large_01_LOD0
   m_TagString: Wood
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244349136214569077}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 2.87
   m_Height: 10.8
@@ -315,7 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 244349136214273111}
   - component: {fileID: 244349136194205943}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prefab_TreeLarge_01
   m_TagString: Wood
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 244349136214273119}
   - component: {fileID: 244349136211405937}
   - component: {fileID: 244349136212373169}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tree_Large_01_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 2162774794982572186}
   - component: {fileID: 2162774794982572190}
   - component: {fileID: 2162774794982572185}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TreeFall
   m_TagString: Wood
   m_Icon: {fileID: 0}

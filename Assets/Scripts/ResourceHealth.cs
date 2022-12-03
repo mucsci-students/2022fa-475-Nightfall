@@ -41,6 +41,10 @@ public class ResourceHealth : MonoBehaviour
         
     }
 
+    private void OnTrigger(Collider other) {
+        print("ow! @ " + gameObject.transform + " with " + other.name + other.gameObject.transform);
+    }
+
     public void SubtractHealth(float dmg)
     {
         maxHealth -= dmg;

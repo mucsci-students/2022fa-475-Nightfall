@@ -22,6 +22,7 @@ public class ResourcePool : MonoBehaviour
     private List<GameObject> pooledMetals;
     
     private Terrain[] myTerrains;
+    public Terrain mainTerrain;
 
     void Awake()
     {
@@ -34,33 +35,37 @@ public class ResourcePool : MonoBehaviour
     void Start()
     {
         myTerrains = Terrain.activeTerrains;
-        
+        for(int i = 0; i < myTerrains.Length; i++)
+        {
+            // print(myTerrains[i].name);
+        }
+
+        //DoTrees();
+
         for(int i = 0; i < treeAmountToPool; i++)
         {
-            SpawnTrees(myTerrains[1]);
+            // SpawnTrees(myTerrains[0]);
+            SpawnTrees(mainTerrain);
         }
+        
 
         for(int i = 0; i < rockAmountToPool; i++)
         {
-            SpawnRocks(myTerrains[1]);
+            //SpawnRocks(myTerrains[0]);
         }
 
         for(int i = 0; i < metalAmountToPool; i++)
         {
-            SpawnMetals(myTerrains[1]);
+            //SpawnMetals(myTerrains[0]);
         }
     }
 
     private void SpawnTrees(Terrain t)
     {
-        
         int randomPrefab = UnityEngine.Random.Range(0, treePrefabs.Length);
         GameObject temp = Instantiate(treePrefabs[randomPrefab], Vector3.zero, Quaternion.identity);
         Transform spawnPoint = temp.transform;
         GenerateSpawnLocation(t, spawnPoint);
-        //var randomRotation = Quaternion.Euler(Random.Range(0, 3), Random.Range(0, 100), Random.Range(0, 3));
-        //temp.transform.rotation = randomRotation;
-        // AlignTransform(spawnPoint, t);
 
         temp.SetActive(true);
         pooledTrees.Add(temp);
@@ -78,6 +83,12 @@ public class ResourcePool : MonoBehaviour
         return null;
     }
 
+    private void DoTrees()
+    {
+         
+        //StartCoroutine(Spawn());
+    }
+
 
     private void SpawnRocks(Terrain t)
     {
@@ -85,8 +96,8 @@ public class ResourcePool : MonoBehaviour
         int randomPrefab = UnityEngine.Random.Range(0, rockPrefabs.Length);
         GameObject temp = Instantiate(rockPrefabs[randomPrefab], Vector3.zero, Quaternion.identity);
         Transform spawnPoint = temp.transform;
-        
         GenerateSpawnLocation(t, spawnPoint);
+
         temp.SetActive(true);
         pooledRocks.Add(temp);
     }
@@ -109,10 +120,10 @@ public class ResourcePool : MonoBehaviour
     {
         // Grab random prefab from List of given prefabs.
         int randomPrefab = UnityEngine.Random.Range(0, metalsPrefabs.Length);
-        GameObject temp = Instantiate(metalsPrefabs[randomPrefab],  Vector3.zero, Quaternion.identity);
+        GameObject temp = Instantiate(metalsPrefabs[randomPrefab], Vector3.zero, Quaternion.identity);
         Transform spawnPoint = temp.transform;
-        
         GenerateSpawnLocation(t, spawnPoint);
+
         temp.SetActive(true);
         pooledMetals.Add(temp);
     }
@@ -131,7 +142,7 @@ public class ResourcePool : MonoBehaviour
 
     private static Transform GenerateSpawnLocation(Terrain t, Transform spawnResourceLocation)
     {
-        bool validSpawn;
+        bool validSpawn = true;
 
         // Generate random coordinate within the bounds of the given terrain.
         Vector3 spawnLocation = new Vector3 
@@ -145,6 +156,15 @@ public class ResourcePool : MonoBehaviour
         Vector3 pos = spawnLocation;
         pos.y = t.SampleHeight(spawnLocation) + t.transform.position.y;
         spawnResourceLocation.position = pos;
+
+
+        //float radius = (whatever radius you want to check)
+        
+        //if(Physics.CheckSphere(pos, 3, 11))
+        //{
+            //print("too close! " + spawnLocation);
+            //return GenerateSpawnLocation(t, spawnResourceLocation);
+       // }
 
         // Calculates normal of terrain and returns bool.
         validSpawn = AlignTransform(spawnResourceLocation, t);
@@ -197,5 +217,14 @@ public class ResourcePool : MonoBehaviour
     private static float FindSurfaceSlope (Vector3 surfNormal) 
     {
         return Vector3.Angle (surfNormal, Vector3.up);
+    }
+
+    private IEnumerator Spawn()
+    {
+        // for(int i = 0; i < treeAmountToPool; i++)
+        // {
+            yield return new WaitForSeconds(0.5f);
+        //     SpawnTrees(myTerrains[0]);
+        // }   
     }
 }

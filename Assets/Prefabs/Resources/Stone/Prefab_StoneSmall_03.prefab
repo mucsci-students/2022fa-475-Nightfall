@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4516992251892573006}
   - component: {fileID: 8144304136364189857}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prefab_StoneSmall_03
   m_TagString: Stone
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 3330024615696055842}
   - component: {fileID: 3330024615696055844}
   - component: {fileID: 3330024615696055845}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SM_StoneSmall_03
   m_TagString: Stone
   m_Icon: {fileID: 0}
