@@ -4,12 +4,13 @@ using UnityEngine;
 //using UnityStandardAssets.CrossPlatformInput;
 //using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityEngine.Audio;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
-    public class FirstPersonController : MonoBehaviour
+    public class FirstPersonController : MonoBehaviour, ICustomMessenger
     {
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -26,6 +27,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float _furnaceReachDistance = 10;
 
         private Camera m_Camera;
+        private Camera m_Other_Camera;
+        private SkinnedMeshRenderer m_Right_Arm;
+        private SkinnedMeshRenderer m_Left_Arm;
         private bool m_Jump;
         private float m_YRotation;
         private Vector2 m_Input;
@@ -41,6 +45,34 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public MouseLook GetMouseLook() => m_MouseLook;
 
+        private bool cursorLock = true;
+        public void ToggleMenuMessage()
+        {
+            cursorLock = !cursorLock;
+            m_MouseLook.SetCursorLock(cursorLock);
+        }
+        private bool benderMode = false;
+        public void BenderModeMessage()
+        {
+            benderMode = !benderMode;
+            if (benderMode)
+            {
+                cursorLock = true;
+                m_MouseLook.SetCursorLock(true);
+                m_Other_Camera.fieldOfView = 120f;
+                m_Left_Arm.enabled = false;
+                m_Right_Arm.enabled = false;
+            }
+            else
+            {
+                cursorLock = false;
+                m_MouseLook.SetCursorLock(false);
+                m_Other_Camera.fieldOfView = 45f;
+                m_Right_Arm.enabled = true;
+                m_Left_Arm.enabled = true;
+            }
+        }
+        
         public bool IsNearFurnace() 
             => FindObjectsOfType<IFurnace>()
                 .Where(furnace => Vector3.Distance(transform.position, furnace.transform.position) <= _furnaceReachDistance)
@@ -50,6 +82,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
+            m_Other_Camera = GameObject.Find("Player/CameraHolder").GetComponent<Camera>();
+            m_Left_Arm = GameObject.Find("Player/CameraHolder/Male/fp_male_hand_left/fp_male_hand").GetComponent<SkinnedMeshRenderer>();
+            m_Right_Arm = GameObject.Find("Player/CameraHolder/Male/fp_male_hand_right/fp_male_hand").GetComponent<SkinnedMeshRenderer>();
             
             // m_Camera = GetComponent<Camera>();
             m_Camera = gameObject.transform.GetChild(0).GetComponent<Camera>();
