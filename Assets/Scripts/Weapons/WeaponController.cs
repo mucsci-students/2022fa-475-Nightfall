@@ -28,7 +28,7 @@ public class WeaponController : MonoBehaviour
         Select(selectedWeapon);
     }
 
-        // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
         int previousWeapon = selectedWeapon;
