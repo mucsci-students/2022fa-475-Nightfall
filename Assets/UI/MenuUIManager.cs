@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuUIManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class MenuUIManager : MonoBehaviour
     private GameObject sfxVol;
 
     private AudioMixer mixer;
+
+    private bool hasPreviousSave = false;
 
     void Start()
     {
@@ -55,6 +58,18 @@ public class MenuUIManager : MonoBehaviour
         ToggleSFX();
         ChangeMusicVol();
         ChangeSFXVol();
+
+        if (SaveEngine.HasSaveFileByName())
+        {
+            hasPreviousSave = true;
+        }else
+        {
+            GameObject cont = GameObject.Find("MenuScreen/Selections/Continue");
+            TextMeshProUGUI txt = GameObject.Find("MenuScreen/Selections/Continue/BtnText").GetComponent<TextMeshProUGUI>();
+            Color col = txt.faceColor;
+            txt.faceColor = new Color(col.r / 10, col.g / 10, col.b / 10);
+            cont.GetComponent<Button>().interactable = false;
+        }
 
         options.SetActive(false);
         controls.SetActive(false);
