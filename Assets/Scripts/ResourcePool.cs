@@ -37,26 +37,23 @@ public class ResourcePool : MonoBehaviour
         myTerrains = Terrain.activeTerrains;
         for(int i = 0; i < myTerrains.Length; i++)
         {
-            // print(myTerrains[i].name);
         }
 
-        //DoTrees();
 
         for(int i = 0; i < treeAmountToPool; i++)
         {
-            // SpawnTrees(myTerrains[0]);
             SpawnTrees(mainTerrain);
         }
         
 
         for(int i = 0; i < rockAmountToPool; i++)
         {
-            //SpawnRocks(myTerrains[0]);
+            SpawnRocks(mainTerrain);
         }
 
         for(int i = 0; i < metalAmountToPool; i++)
         {
-            //SpawnMetals(myTerrains[0]);
+            SpawnMetals(mainTerrain);
         }
     }
 
