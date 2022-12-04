@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7732268805796989722}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Small Copper Ore
   m_TagString: Copper Ore
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7732268805797792561}
   - component: {fileID: 880398830673387364}
   - component: {fileID: 6109485390192695569}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ore_small_bronze
   m_TagString: Copper Ore
   m_Icon: {fileID: 0}

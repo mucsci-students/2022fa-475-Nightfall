@@ -11,6 +11,9 @@ public class PickaxeController : MonoBehaviour
     private bool isMining = false;      // Control for animation and allowing gathering
     private ParticleSystem stoneChips;
     private List<string> resourceType;
+    private Dictionary<string, int> pickaxePower;
+    private string currentTool;
+    private int pickaxeStrength;
 
     void Awake()
     {
@@ -18,14 +21,18 @@ public class PickaxeController : MonoBehaviour
         resourceType.Add("Stone");
         resourceType.Add("Iron Ore");
         resourceType.Add("Copper Ore");
+
+        pickaxePower = new Dictionary<string, int>();
+        pickaxePower.Add("Wood", 1);
+        pickaxePower.Add("Stone", 2);
+        pickaxePower.Add("Copper", 3);
+        pickaxePower.Add("Iron", 4);
     }
     
     // Start is called before the first frame update
     void Start()
     {
-        axeAnim = GameObject.Find("Male").GetComponent<Animator>();
-        source = gameObject.GetComponent<AudioSource>();
-        stoneChips = GetComponentInChildren<ParticleSystem>(true);
+        currentTool = Inventory.GetTool("pickaxe");
     }
 
     public void SwingPickaxe()
@@ -42,22 +49,77 @@ public class PickaxeController : MonoBehaviour
     {
         if(isMining && canGetResource && resourceType.Contains(other.tag))
         {
+            string otherTag = other.tag;
+            print(pickaxeStrength);
+
             PlayMiningSound();
             canGetResource = false;
-            Inventory.AddItem(other.tag , 1);
-            print(other.tag + Inventory.GetCount(other.tag));
-            stoneChips.Play();
+
+            UpdateToolAbility();
+
             if (other.TryGetComponent(out ResourceHealth resourceHealth))
             {
-                // Will change the passed float to tool type dmg
-                resourceHealth.SubtractHealth(1.0f);
+                // Didn't know case statements had to be constants. So gross 'ifs' instead.
+                // Wooden Pick
+                if(currentTool == "Wood")
+                {
+                    if(otherTag == "Stone")
+                    {
+                        Inventory.AddItem(otherTag, pickaxeStrength);
+                        resourceHealth.SubtractHealth(pickaxeStrength);
+                    }
+                    else
+                    {
+                        print("Tool too weak!");
+                    }
+                }
+                
+                // Stone Pick
+                else if(currentTool == "Stone")
+                {
+                    
+                    if(otherTag == "Stone")
+                    {
+                        Inventory.AddItem(otherTag, pickaxeStrength);
+                        resourceHealth.SubtractHealth(pickaxeStrength);
+                    }
+                    else if(otherTag == "Copper Ore")
+                    {
+                        Inventory.AddItem(otherTag, pickaxeStrength);
+                        resourceHealth.SubtractHealth(pickaxeStrength);
+                    }
+                    else
+                    {
+                        print("Tool too weak!");
+                    }
+                }
+
+                else if(currentTool == "Copper" || currentTool == "Iron")
+                {
+                    Inventory.AddItem(otherTag, pickaxeStrength);
+                    resourceHealth.SubtractHealth(pickaxeStrength);
+                }
+
+                print(other.tag + Inventory.GetCount(other.tag));
+                stoneChips.Play();
             }
         }
+    }
+
+    public void UpdateToolAbility()
+    {
+        currentTool = Inventory.GetTool("pickaxe");
+        pickaxeStrength = pickaxePower[currentTool];
     }
 
     void OnEnable()
     {
         isMining = false;
+        currentTool = Inventory.GetTool("pickaxe");
+        pickaxeStrength = pickaxePower[currentTool];
+        axeAnim = GameObject.Find("Male").GetComponent<Animator>();
+        source = gameObject.GetComponent<AudioSource>();
+        stoneChips = GetComponentInChildren<ParticleSystem>(true);
     }
 
     private void PlayMiningSound()
@@ -69,7 +131,6 @@ public class PickaxeController : MonoBehaviour
         miningSounds[n] = miningSounds[0];
         miningSounds[0] = source.clip;
     }
-
 
     // Set to the length of mining animation for use of isMining
     IEnumerator ResetAttackingBool ()

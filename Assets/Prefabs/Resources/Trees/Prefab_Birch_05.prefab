@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3991069169403947019}
   - component: {fileID: 6941535823887221925}
   - component: {fileID: 2156119552513530158}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Birch_06_LOD0
   m_TagString: Wood
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6036317894257598034}
   - component: {fileID: 6036317894260465266}
   - component: {fileID: 6036317894259498162}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Birch_06_LOD1
   m_TagString: Wood
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 6036317894257598036}
   - component: {fileID: 6036317894260465268}
   - component: {fileID: 6036317894259498164}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Birch_06_LOD2
   m_TagString: Wood
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6036317894257598038}
   - component: {fileID: 6036317894276549360}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prefab_Birch_05
   m_TagString: Wood
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 1669439044566677907}
   - component: {fileID: 3836478301665051208}
   - component: {fileID: 103089560066938673}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TreeFall
   m_TagString: Wood
   m_Icon: {fileID: 0}

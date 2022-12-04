@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8950453326865027719}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prefab_RocksRound3
   m_TagString: Stone
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2547125451929279392}
   - component: {fileID: 6908145317576085373}
   - component: {fileID: 6908145317576085372}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RocksRound_03
   m_TagString: Stone
   m_Icon: {fileID: 0}

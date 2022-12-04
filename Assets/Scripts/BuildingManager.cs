@@ -171,6 +171,7 @@ public class BuildingManager : MonoBehaviour
     {
 
         Renderer outlineRenderer = _activeOutline.GetComponentInChildren<Renderer>();
+        print(outlineRenderer == null);
         float yOffset = outlineRenderer == null ? 0 : outlineRenderer.bounds.size.y / 2f;
 
         _activeOutline.transform.position = GetObjectPreviewLocation() + new Vector3(0f, yOffset, 0f);

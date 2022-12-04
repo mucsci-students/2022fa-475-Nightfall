@@ -10,14 +10,23 @@ public class AxeController : MonoBehaviour
     private bool canGetResource;        // Control for getting one resource + playing sound once. 
     private bool isChopping = false;    // Control for animation and allowing gathering
     private ParticleSystem woodChips;
+    private List<string> resourceType;
+    private Dictionary<string, int> hatchetPower;
+    private string currentTool;
+    private int hatchetStrength;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        hatchetPower = new Dictionary<string, int>();
+        hatchetPower.Add("Wood", 1);
+        hatchetPower.Add("Stone", 2);
+        hatchetPower.Add("Copper", 3);
+        hatchetPower.Add("Iron", 4);
+    }
+
     void Start()
     {
-        hatchetAnim = GameObject.Find("Male").GetComponent<Animator>();
-        source = gameObject.GetComponent<AudioSource>();
-        canGetResource = true;
-        woodChips = GetComponentInChildren<ParticleSystem>(true);
+        currentTool = Inventory.GetTool("axe");
     }
 
     public void SwingAxe()
@@ -25,7 +34,6 @@ public class AxeController : MonoBehaviour
         if(!isChopping)
         {
             isChopping = true;
-            // GameManager.SwingTool("axes");
             hatchetAnim.SetTrigger("Chop Swing");
             StartCoroutine(ResetAttackingBool());
         }
@@ -37,27 +45,24 @@ public class AxeController : MonoBehaviour
         {
             canGetResource = false;
             PlayAxeSound();
-            Inventory.AddItem("Wood" , 1);
+            Inventory.AddItem("Wood" , hatchetStrength);
             print("Wood: " + Inventory.GetCount("Wood"));
             woodChips.Play();
+            UpdateToolAbility();
 
             if (other.TryGetComponent(out ResourceHealth resourceHealth))
             {
-                // Will change the passed float to tool type dmg
-                resourceHealth.SubtractHealth(1.0f);
-                print("player position: " + gameObject.transform.position);
-                print("Resource position: " + other.gameObject.transform.position);
-                print(other.transform.position - gameObject.transform.position);
+                resourceHealth.SubtractHealth(hatchetStrength);
             }
-
         }
     }
-    
-    void OnEnable()
-    {
-        isChopping = false;
-    }
 
+    public void UpdateToolAbility()
+    {
+        currentTool = Inventory.GetTool("axe");
+        hatchetStrength = hatchetPower[currentTool];
+    }
+    
     private void PlayAxeSound()
     {
         int n = Random.Range(1, axeSounds.Length);
@@ -66,6 +71,17 @@ public class AxeController : MonoBehaviour
         // move picked sound to index 0 so it's not picked next time
         axeSounds[n] = axeSounds[0];
         axeSounds[0] = source.clip;
+    }
+
+    void OnEnable()
+    {
+        isChopping = false;
+        currentTool = Inventory.GetTool("axe");
+        hatchetStrength = hatchetPower[currentTool];
+        hatchetAnim = GameObject.Find("Male").GetComponent<Animator>();
+        source = gameObject.GetComponent<AudioSource>();
+        canGetResource = true;
+        woodChips = GetComponentInChildren<ParticleSystem>(true);
     }
 
     // Set to the length of hatchetAnim for use of isChopping

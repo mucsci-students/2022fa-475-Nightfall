@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : SaveGameTrackable
 {
-    private float timeOfDay;
+    public float TimeOfDay { get; private set; }
     private int daysSurvived;
     private int currentStructures;
 
@@ -18,7 +18,7 @@ public class GameManager : SaveGameTrackable
     // Start is called before the first frame update
     void Start()
     {
-        timeOfDay = 12;
+        TimeOfDay = 12;
         daysSurvived = 0;
         currentStructures = 0;
 
@@ -33,46 +33,46 @@ public class GameManager : SaveGameTrackable
     float t = 0;
     void Update()
     {
-        timeOfDay += Time.deltaTime * timeScale;
+        TimeOfDay += Time.deltaTime * timeScale;
 
         skyboxMaterial.SetFloat("_Rotation", skyboxMaterial.GetFloat("_Rotation") + skyboxRotation);
 
-        if (timeOfDay > 7 && timeOfDay < 21)
+        if (TimeOfDay > 7 && TimeOfDay < 21)
         {
-            sun.transform.SetLocalPositionAndRotation(sun.transform.position, new Quaternion(0.408217877f, (timeOfDay/6f ) - 2f, 0.109381631f, 0.875426114f));
+            sun.transform.SetLocalPositionAndRotation(sun.transform.position, new Quaternion(0.408217877f, (TimeOfDay/6f ) - 2f, 0.109381631f, 0.875426114f));
         }
-        if (timeOfDay > 6 && timeOfDay < 11)
+        if (TimeOfDay > 6 && TimeOfDay < 11)
         {           
             sun.GetComponent<Light>().intensity += Time.deltaTime * intensityScale;
             //sun.GetComponent<Light>().color = Color.Lerp(settingColor, noonColor, colorStep * Time.deltaTime);
-            float newR = settingColor.r + ((noonColor.r - settingColor.r) * (timeOfDay - 6) / 5);
-            float newG = settingColor.g + ((noonColor.g - settingColor.g) * (timeOfDay - 6) / 5);
-            float newB = settingColor.b + ((noonColor.b - settingColor.b) * (timeOfDay - 6) / 5);
+            float newR = settingColor.r + ((noonColor.r - settingColor.r) * (TimeOfDay - 6) / 5);
+            float newG = settingColor.g + ((noonColor.g - settingColor.g) * (TimeOfDay - 6) / 5);
+            float newB = settingColor.b + ((noonColor.b - settingColor.b) * (TimeOfDay - 6) / 5);
             sun.GetComponent<Light>().color = new Color(newR, newG, newB);
-            skyboxMaterial.SetFloat("_Exposure", (timeOfDay - 5) / 5);
-            float newValue = (timeOfDay - 6) / 10;
+            skyboxMaterial.SetFloat("_Exposure", (TimeOfDay - 5) / 5);
+            float newValue = (TimeOfDay - 6) / 10;
             RenderSettings.fogColor = new Color(newValue, newValue, newValue);
         }
-        if (timeOfDay > 16 && timeOfDay < 21)
+        if (TimeOfDay > 16 && TimeOfDay < 21)
         {
             sun.GetComponent<Light>().intensity -= Time.deltaTime * intensityScale;
             //sun.GetComponent<Light>().color = Color.Lerp(noonColor, settingColor, colorStep * Time.deltaTime);
-            float newR = noonColor.r - ((noonColor.r - settingColor.r) * (timeOfDay - 16) / 5);
-            float newG = noonColor.g - ((noonColor.g - settingColor.g) * (timeOfDay - 16) / 5);
-            float newB = noonColor.b - ((noonColor.b - settingColor.b) * (timeOfDay - 16) / 5);
+            float newR = noonColor.r - ((noonColor.r - settingColor.r) * (TimeOfDay - 16) / 5);
+            float newG = noonColor.g - ((noonColor.g - settingColor.g) * (TimeOfDay - 16) / 5);
+            float newB = noonColor.b - ((noonColor.b - settingColor.b) * (TimeOfDay - 16) / 5);
             sun.GetComponent<Light>().color = new Color(newR, newG, newB);
-            skyboxMaterial.SetFloat("_Exposure", 1.4f - ((timeOfDay - 15) / 5));
-            float newValue = .5f - (timeOfDay - 16) / 10;
+            skyboxMaterial.SetFloat("_Exposure", 1.4f - ((TimeOfDay - 15) / 5));
+            float newValue = .5f - (TimeOfDay - 16) / 10;
             RenderSettings.fogColor = new Color(newValue, newValue, newValue);
         }
-        if (timeOfDay > 21 && timeOfDay < 7)
+        if (TimeOfDay > 21 && TimeOfDay < 7)
         {
             sun.GetComponent<Light>().intensity = 0;
         }
-        if (timeOfDay > 24)
+        if (TimeOfDay > 24)
         {
             ++daysSurvived;
-            timeOfDay -= 24f;
+            TimeOfDay -= 24f;
         }
 
         t += Time.deltaTime;
@@ -95,7 +95,7 @@ public class GameManager : SaveGameTrackable
 
     public float GetTimeOfDay()
     {
-        return timeOfDay;
+        return TimeOfDay;
     }
 
     public int GetCurrentStructures()
@@ -105,7 +105,7 @@ public class GameManager : SaveGameTrackable
 
     public override SaveRecord GenerateSaveRecord() => new GameManagerSaveRecord(
         gameObject.name, 
-        timeOfDay, 
+        TimeOfDay, 
         sun.GetComponent<Light>().intensity, 
         skyboxMaterial.GetFloat("_Exposure"), 
         t, 
@@ -123,7 +123,7 @@ public class GameManager : SaveGameTrackable
 
         daysSurvived = record.DaysSurvived;
         currentStructures = record.CurrentStructures;
-        timeOfDay = record.TimeOfDay;
+        TimeOfDay = record.TimeOfDay;
         sun.GetComponent<Light>().intensity = record.SunIntensity;
         skyboxMaterial.SetFloat("_Exposure", record.Exposure);
         t = record.t;        

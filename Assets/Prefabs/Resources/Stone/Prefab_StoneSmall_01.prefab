@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1197008008222605059}
   - component: {fileID: 6434396324862735386}
   - component: {fileID: 3587651203525742892}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SM_Stone_01_LOD1
   m_TagString: Stone
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7959120883524060349}
   - component: {fileID: 9128445995881933376}
   - component: {fileID: 9128445995881933388}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SM_Stone_01_LOD0
   m_TagString: Stone
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 8621787134889125481}
   - component: {fileID: 4894142472381177791}
   - component: {fileID: 8812705508818297122}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SM_Stone_01_LOD2
   m_TagString: Stone
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5410908568641260330}
   - component: {fileID: 4856277029964799470}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prefab_StoneSmall_01
   m_TagString: Stone
   m_Icon: {fileID: 0}
