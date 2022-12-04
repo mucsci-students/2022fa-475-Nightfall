@@ -2,7 +2,7 @@ using UnityEngine.EventSystems;
 
 public interface ICustomMessenger : IEventSystemHandler
 {
-    void InventoryMenuMessage();
+    void ToggleMenuMessage();
 
     void BenderModeMessage();
 }

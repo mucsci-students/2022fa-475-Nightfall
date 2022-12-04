@@ -111,4 +111,7 @@ public class SaveEngine : MonoBehaviour
 
     }
 
+    public static void DeleteSaveFileByName(string saveFileName = _defaultSaveFileName)
+    { if (HasSaveFileByName(saveFileName)) { File.Delete(saveFileName); } }
+
 }

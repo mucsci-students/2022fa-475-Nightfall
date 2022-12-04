@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyHandler : MonoBehaviour
 {
     private string[] policies = { "passive", "patrol", "cautious", "aggressive" };
-    private float spawnDelay = 5f;
+    private float spawnDelay = 100f;
 
     public GameObject skeletonEnemy;
     public GameObject player;
@@ -113,6 +113,12 @@ public class EnemyHandler : MonoBehaviour
         }
         //Debug.Log("Position: " + temp.position);
         return temp;
+    }
+
+    private void UpdateRewards()
+    {
+
+     
     }
 
     private string GetPolicy()

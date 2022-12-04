@@ -3,6 +3,7 @@ using UnityEngine;
 //using UnityStandardAssets.CrossPlatformInput;
 //using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityEngine.Audio;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -24,6 +25,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
         private Camera m_Camera;
+        private Camera m_Other_Camera;
+        private SkinnedMeshRenderer m_Right_Arm;
+        private SkinnedMeshRenderer m_Left_Arm;
         private bool m_Jump;
         private float m_YRotation;
         private Vector2 m_Input;
@@ -40,7 +44,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public MouseLook GetMouseLook() => m_MouseLook;
 
         private bool cursorLock = true;
-        public void InventoryMenuMessage()
+        public void ToggleMenuMessage()
         {
             cursorLock = !cursorLock;
             m_MouseLook.SetCursorLock(cursorLock);
@@ -51,11 +55,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             benderMode = !benderMode;
             if (benderMode)
             {
-                m_Camera.fieldOfView = 100;
+                cursorLock = true;
+                m_MouseLook.SetCursorLock(true);
+                m_Other_Camera.fieldOfView = 120f;
+                m_Left_Arm.enabled = false;
+                m_Right_Arm.enabled = false;
             }
             else
             {
-                m_Camera.fieldOfView = 45;
+                cursorLock = false;
+                m_MouseLook.SetCursorLock(false);
+                m_Other_Camera.fieldOfView = 45f;
+                m_Right_Arm.enabled = true;
+                m_Left_Arm.enabled = true;
             }
         }
 
@@ -63,6 +75,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
+            m_Other_Camera = GameObject.Find("Player/CameraHolder").GetComponent<Camera>();
+            m_Left_Arm = GameObject.Find("Player/CameraHolder/Male/fp_male_hand_left/fp_male_hand").GetComponent<SkinnedMeshRenderer>();
+            m_Right_Arm = GameObject.Find("Player/CameraHolder/Male/fp_male_hand_right/fp_male_hand").GetComponent<SkinnedMeshRenderer>();
             
             // m_Camera = GetComponent<Camera>();
             m_Camera = gameObject.transform.GetChild(0).GetComponent<Camera>();
