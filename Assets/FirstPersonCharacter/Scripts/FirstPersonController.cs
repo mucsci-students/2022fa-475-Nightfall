@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 //using UnityStandardAssets.CrossPlatformInput;
 //using UnityStandardAssets.Utility;
@@ -22,6 +23,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip[] m_JumpSounds;        // An array of jump sounds that will be randomly selected when the player jumps.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] private float _furnaceReachDistance = 10;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -38,6 +40,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         public MouseLook GetMouseLook() => m_MouseLook;
+
+        public bool IsNearFurnace() 
+            => FindObjectsOfType<IFurnace>()
+                .Where(furnace => Vector3.Distance(transform.position, furnace.transform.position) <= _furnaceReachDistance)
+                .FirstOrDefault() != null;
 
         // Use this for initialization
         private void Start()
