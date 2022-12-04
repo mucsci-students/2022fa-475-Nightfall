@@ -3500,6 +3500,12 @@ MonoBehaviour:
     Spawnables:
       ObjectToSpawn: {fileID: 2938475895297666015, guid: e578fdd200f79ca45ae646cc884457ac, type: 3}
       OutlineObject: {fileID: 3154321911457498058, guid: 645348463b229164e8ae6f07305b5e07, type: 3}
+  - Name: Campfire
+    RequiredItems:
+    - Stone,15
+    Spawnables:
+      ObjectToSpawn: {fileID: 1759868829679104754, guid: d10819dcf74755c499862a3238befadc, type: 3}
+      OutlineObject: {fileID: 7624102609073607395, guid: 927177a7f7be20f4d8ab438ea0ccb890, type: 3}
 --- !u!1 &7563955356636403834
 GameObject:
   m_ObjectHideFlags: 0
