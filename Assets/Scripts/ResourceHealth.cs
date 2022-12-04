@@ -12,6 +12,7 @@ public class ResourceHealth : MonoBehaviour
 
     [SerializeField]
     private float maxHealth;
+    private float currentHealth;
 
     private GameObject resourceParent;
     private TreeSound treeSound;
@@ -25,6 +26,7 @@ public class ResourceHealth : MonoBehaviour
     void Start()
     {
         maxHealth = Random.Range(lowerHealthBound, upperHealthBound);
+        currentHealth = maxHealth;
         treeSound = gameObject.GetComponentInChildren<TreeSound>();
         resourceParent = gameObject.transform.parent.gameObject;
         location = resourceParent.transform.position;
@@ -41,15 +43,11 @@ public class ResourceHealth : MonoBehaviour
         
     }
 
-    private void OnTrigger(Collider other) {
-        print("ow! @ " + gameObject.transform + " with " + other.name + other.gameObject.transform);
-    }
-
-    public void SubtractHealth(float dmg)
+    public void SubtractHealth(int dmg)
     {
-        maxHealth -= dmg;
+        currentHealth -= dmg;
 
-        if (maxHealth <= 0.0f)
+        if (currentHealth <= 0)
         {
             if(gameObject.tag == "Wood")
             {
@@ -62,6 +60,14 @@ public class ResourceHealth : MonoBehaviour
 
             StartCoroutine(DesrtoyResource());
         }
+    }
+
+    private void OnEnable()
+    {
+        anim = GetComponent<Animator>();
+        anim.Rebind();
+        anim.Update(0f);
+        currentHealth = maxHealth;
     }
 
     private void PlayStoneAnimation()
@@ -119,6 +125,6 @@ public class ResourceHealth : MonoBehaviour
     IEnumerator DesrtoyResource()
     {
         yield return new WaitForSeconds(5.0f);
-        gameObject.transform.parent.gameObject.SetActive(false);
+        resourceParent.SetActive(false);
     }
 }

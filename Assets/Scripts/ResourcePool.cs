@@ -7,19 +7,19 @@ public class ResourcePool : MonoBehaviour
     public static ResourcePool SharedInstance;
 
     [Header("Trees")]
-    [SerializeField] private GameObject[] treePrefabs;
-    [SerializeField] private int treeAmountToPool;
-    private List<GameObject> pooledTrees;
+    public GameObject[] treePrefabs;
+    public int treeAmountToPool;
+    public List<GameObject> pooledTrees;
     
     [Header("Stone")]
-    [SerializeField] private GameObject[] rockPrefabs;
-    [SerializeField] private int rockAmountToPool;
-    private List<GameObject> pooledRocks;
+    public GameObject[] rockPrefabs;
+    public int rockAmountToPool;
+    public List<GameObject> pooledRocks;
 
     [Header("Metals")]
-    [SerializeField] private GameObject[] metalsPrefabs;
-    [SerializeField] private int metalAmountToPool;
-    private List<GameObject> pooledMetals;
+    public GameObject[] metalsPrefabs;
+    public int metalAmountToPool;
+    public List<GameObject> pooledMetals;
     
     private Terrain[] myTerrains;
     public Terrain mainTerrain;
@@ -71,24 +71,34 @@ public class ResourcePool : MonoBehaviour
         pooledTrees.Add(temp);
     }
 
-    public GameObject GetPooledTrees()
+    // ResourcePool.SharedInstance.RespawnResources();
+    public void RespawnResources()
     {
         for(int i = 0; i < treeAmountToPool; i++)
         {
             if(!pooledTrees[i].activeInHierarchy)
             {
-                return pooledTrees[i];
+                pooledTrees[i].SetActive(true);
             }
         }
-        return null;
-    }
 
-    private void DoTrees()
-    {
-         
-        //StartCoroutine(Spawn());
-    }
+        for(int i = 0; i < rockAmountToPool; i++)
+        {
+            if(!pooledRocks[i].activeInHierarchy)
+            {
+                pooledRocks[i].SetActive(true);
+            }
+        }
 
+        for(int i = 0; i < metalAmountToPool; i++)
+        {
+            if(!pooledMetals[i].activeInHierarchy)
+            {
+                pooledMetals[i].SetActive(true);
+            }
+        }
+        return;
+    }
 
     private void SpawnRocks(Terrain t)
     {
@@ -102,20 +112,6 @@ public class ResourcePool : MonoBehaviour
         pooledRocks.Add(temp);
     }
 
-
-    public GameObject GetPooledRocks()
-    {
-        for(int i = 0; i < rockAmountToPool; i++)
-        {
-            if(!pooledRocks[i].activeInHierarchy)
-            {
-                return pooledRocks[i];
-            }
-        }
-        return null;
-    }
-
-
     private void SpawnMetals(Terrain t)
     {
         // Grab random prefab from List of given prefabs.
@@ -126,18 +122,6 @@ public class ResourcePool : MonoBehaviour
 
         temp.SetActive(true);
         pooledMetals.Add(temp);
-    }
-
-    public GameObject GetPooledMetals()
-    {
-        for(int i = 0; i < metalAmountToPool; i++)
-        {
-            if(!pooledMetals[i].activeInHierarchy)
-            {
-                return pooledMetals[i];
-            }
-        }
-        return null;
     }
 
     private static Transform GenerateSpawnLocation(Terrain t, Transform spawnResourceLocation)
@@ -157,14 +141,16 @@ public class ResourcePool : MonoBehaviour
         pos.y = t.SampleHeight(spawnLocation) + t.transform.position.y;
         spawnResourceLocation.position = pos;
 
-
-        //float radius = (whatever radius you want to check)
         
-        //if(Physics.CheckSphere(pos, 3, 11))
-        //{
-            //print("too close! " + spawnLocation);
-            //return GenerateSpawnLocation(t, spawnResourceLocation);
-       // }
+        /* Unity despises this check for spawning objects.
+        //Physics.CheckSphere(transform, radius(int), LayerMask(int))
+
+        if(Physics.CheckSphere(pos, 3, 11))
+        {
+            print("too close! " + spawnLocation);
+            return GenerateSpawnLocation(t, spawnResourceLocation);
+       }
+        */
 
         // Calculates normal of terrain and returns bool.
         validSpawn = AlignTransform(spawnResourceLocation, t);
@@ -217,14 +203,5 @@ public class ResourcePool : MonoBehaviour
     private static float FindSurfaceSlope (Vector3 surfNormal) 
     {
         return Vector3.Angle (surfNormal, Vector3.up);
-    }
-
-    private IEnumerator Spawn()
-    {
-        // for(int i = 0; i < treeAmountToPool; i++)
-        // {
-            yield return new WaitForSeconds(0.5f);
-        //     SpawnTrees(myTerrains[0]);
-        // }   
     }
 }
