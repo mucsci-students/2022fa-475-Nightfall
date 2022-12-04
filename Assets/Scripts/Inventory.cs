@@ -66,6 +66,12 @@ public class Inventory : MonoBehaviour
     public static void ChangeTool(string type, string n)
     {
         _tools[type] = n;
+        ApplyToolMaterial(type, n);
+    }
+
+    private static void ApplyToolMaterial(string toolType, string toolVariation)
+    {
+
         _weaponHolder = GameObject.Find("WeaponHolder");
         MeshRenderer swordMesh = _weaponHolder.transform.GetChild(0).GetComponent<MeshRenderer>();
         MeshRenderer hatchetMesh = _weaponHolder.transform.GetChild(1).GetComponent<MeshRenderer>();
@@ -80,21 +86,21 @@ public class Inventory : MonoBehaviour
             _materials[5] - Copper Sword Material
         */
 
-        if(type == "sword")
+        if (toolType == "sword")
         {
             Material[] oldMater /*lmfao*/ = swordMesh.materials;
 
-            if(n == "Stone")
+            if (toolVariation == "Stone")
             {
                 oldMater[0] = _materials[1];
                 swordMesh.materials = oldMater;
             }
-            else if (n == "Copper")
+            else if (toolVariation == "Copper")
             {
                 oldMater[0] = _materials[5];
                 swordMesh.materials = oldMater;
             }
-            else if(n == "Iron")
+            else if (toolVariation == "Iron")
             {
                 oldMater[0] = _materials[3];
                 swordMesh.materials = oldMater;
@@ -103,7 +109,7 @@ public class Inventory : MonoBehaviour
             {
                 print("Invalid material type.");
             }
-            
+
         }
         /*
             axe: oldMater[0] - Handle
@@ -111,22 +117,22 @@ public class Inventory : MonoBehaviour
             axe: oldMater[2] - Cutting Edge
         */
 
-        if(type == "axe")
+        if (toolType == "axe")
         {
             Material[] oldMater = hatchetMesh.materials;
 
-            if(n == "Stone")
+            if (toolVariation == "Stone")
             {
                 oldMater[1] = _materials[1];
                 oldMater[2] = _materials[4];
                 hatchetMesh.materials = oldMater;
             }
-            else if (n == "Copper")
+            else if (toolVariation == "Copper")
             {
                 oldMater[1] = _materials[2];
                 hatchetMesh.materials = oldMater;
             }
-            else if(n == "Iron")
+            else if (toolVariation == "Iron")
             {
                 oldMater[1] = _materials[3];
                 hatchetMesh.materials = oldMater;
@@ -143,23 +149,23 @@ public class Inventory : MonoBehaviour
             pickaxe: oldMater[2] - Head
         */
 
-        else if(type == "pickaxe")
+        else if (toolType == "pickaxe")
         {
             Material[] oldMater = pickaxeMesh.materials;
 
-            if(n == "Stone")
+            if (toolVariation == "Stone")
             {
                 oldMater[1] = _materials[1];
                 oldMater[2] = _materials[1];
                 pickaxeMesh.materials = oldMater;
             }
-            else if (n == "Copper")
+            else if (toolVariation == "Copper")
             {
                 oldMater[1] = _materials[2];
                 oldMater[2] = _materials[2];
                 pickaxeMesh.materials = oldMater;
             }
-            else if(n == "Iron")
+            else if (toolVariation == "Iron")
             {
                 oldMater[0] = _materials[2];
                 oldMater[1] = _materials[4];
@@ -171,6 +177,7 @@ public class Inventory : MonoBehaviour
                 print("Invalid material type.");
             }
         }
+
     }
 
     public static string GetTool(string type)
@@ -185,7 +192,12 @@ public class Inventory : MonoBehaviour
 
     public static Dictionary<string, string> GetAllTools() => _tools;
 
-    public static void SetTools(Dictionary<string, string> newTools) 
-        => _tools = new Dictionary<string, string>(newTools);
+    public static void SetTools(Dictionary<string, string> newTools)
+    {
 
+        _tools = new Dictionary<string, string>(newTools);
+        foreach(var tool in _tools) { ApplyToolMaterial(tool.Key, tool.Value); }
+
+    }
+    
 }
