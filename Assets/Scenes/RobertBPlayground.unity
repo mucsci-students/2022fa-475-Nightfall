@@ -629,6 +629,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7046804473428632588, guid: 65b0362be0aabe649968e2cbf4962be8, type: 3}
+      propertyPath: _maxFurnaceDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7511521097452256554, guid: 65b0362be0aabe649968e2cbf4962be8, type: 3}
       propertyPath: m_Name
       value: Player
