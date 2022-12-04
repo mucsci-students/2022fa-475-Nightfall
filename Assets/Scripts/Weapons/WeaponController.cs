@@ -76,7 +76,6 @@ public class WeaponController : MonoBehaviour
 
     public void ForceWeapon(int weaponIndex)
     {
-
         selectedWeapon = weaponIndex;
         Select(selectedWeapon);
         UpdateAnimation();

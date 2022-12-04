@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8172398060485438191}
   - component: {fileID: 8172398060485438188}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prefab_SmallRock_03
   m_TagString: Stone
   m_Icon: {fileID: 0}
@@ -108,6 +108,10 @@ PrefabInstance:
       value: SM_SmallRock_03
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 97e4bb11fd981cc4a9e5ec509fd0e562, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 97e4bb11fd981cc4a9e5ec509fd0e562, type: 3}
       propertyPath: m_TagString
       value: Stone
       objectReference: {fileID: 0}
@@ -118,6 +122,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 97e4bb11fd981cc4a9e5ec509fd0e562, type: 3}
   m_PrefabInstance: {fileID: 8172398061778980754}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &530164098
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165469535781131931}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7147368263500332268, guid: 97e4bb11fd981cc4a9e5ec509fd0e562, type: 3}
 --- !u!95 &1552355676717803226
 Animator:
   serializedVersion: 4
@@ -153,20 +171,6 @@ MonoBehaviour:
   lowerHealthBound: 1
   upperHealthBound: 3
   maxHealth: 0
---- !u!64 &530164098
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165469535781131931}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7147368263500332268, guid: 97e4bb11fd981cc4a9e5ec509fd0e562, type: 3}
 --- !u!23 &1907005775628214855 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 97e4bb11fd981cc4a9e5ec509fd0e562, type: 3}
