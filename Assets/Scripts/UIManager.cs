@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class UIManager : MonoBehaviour
 
     public static Image[] tools = new Image[4];
     public static GameObject inventory;
+    public static GameObject building;
+    public static GameObject crafting;
+    public static GameObject plr;
 
     private static InputAction inventoryAction = new InputAction(binding: "<Keyboard>/tab");
 
@@ -32,9 +36,17 @@ public class UIManager : MonoBehaviour
 
         inventory = GameObject.Find("MainUI/Inventory");
         inventory.SetActive(false);
+        building = GameObject.Find("MainUI/Building");
+        building.SetActive(false);
+        crafting = GameObject.Find("MainUI/Crafting");
+        crafting.SetActive(false);
+
+        plr = GameObject.Find("Player");
 
         inventoryAction.performed += ctx =>
         {
+            ExecuteEvents.Execute<ICustomMessenger>(plr, null, (x, y) => x.InventoryMenuMessage());
+
             UpdateCount("Wood");
             UpdateCount("Planks");
             UpdateCount("Stone");
@@ -45,6 +57,8 @@ public class UIManager : MonoBehaviour
             UpdateCount("IronBar");
 
             inventory.SetActive(!inventory.activeSelf);
+            building.SetActive(inventory.activeSelf);
+            crafting.SetActive(inventory.activeSelf);
         };
 
         inventoryAction.Enable();
@@ -65,21 +79,10 @@ public class UIManager : MonoBehaviour
     public static void UpdateCount(string field)
     {
         counts[field].text = Inventory.GetCount(field).ToString();
-        /*if (string.Equals(field, "Wood"))
-        {
-            woodCount.text = Inventory.GetCount(field).ToString();
-        }
-        else if (string.Equals(field, "Planks"))
-        {
-            stoneCount.text = Inventory.GetCount(field).ToString();
-        }
-        else if (string.Equals(field, "Stone"))
-        {
-            stoneCount.text = Inventory.GetCount(field).ToString();
-        }
-        else if (string.Equals(field, "CutStone"))
-        {
-            stoneCount.text = Inventory.GetCount(field).ToString();
-        }*/
+    }
+
+    public static void ToggleBenderMode()
+    {
+        ExecuteEvents.Execute<ICustomMessenger>(plr, null, (x, y) => x.BenderModeMessage());
     }
 }

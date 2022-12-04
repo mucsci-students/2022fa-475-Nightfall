@@ -8,7 +8,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
-    public class FirstPersonController : MonoBehaviour
+    public class FirstPersonController : MonoBehaviour, ICustomMessenger
     {
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -38,6 +38,26 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         public MouseLook GetMouseLook() => m_MouseLook;
+
+        private bool cursorLock = true;
+        public void InventoryMenuMessage()
+        {
+            cursorLock = !cursorLock;
+            m_MouseLook.SetCursorLock(cursorLock);
+        }
+        private bool benderMode = false;
+        public void BenderModeMessage()
+        {
+            benderMode = !benderMode;
+            if (benderMode)
+            {
+                m_Camera.fieldOfView = 100;
+            }
+            else
+            {
+                m_Camera.fieldOfView = 45;
+            }
+        }
 
         // Use this for initialization
         private void Start()
