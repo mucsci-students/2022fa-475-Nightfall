@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -179,7 +180,7 @@ public class ResourcePoolEdited : MonoBehaviour
         spawnPoint.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
     }
 }
-
+*/
 
 // This script has been optimized in a few ways:
 
@@ -188,3 +189,87 @@ public class ResourcePoolEdited : MonoBehaviour
 // - The `Awake` method now sets the singleton instance of the `ResourcePool` class, instead of doing it in the `Start` method. This ensures that the singleton instance is available to other scripts as soon as the `ResourcePool` script is initialized.
 
 // I hope this helps! Let me know if you have any other questions.
+
+/* PHEW IT DIDN'T WORK AND I DIDN'T WASTE ALL THAT TIME! */
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ResourcePoolEdited : MonoBehaviour
+{
+    // Object pool for spawning resources
+    [SerializeField] private GameObject resourcePrefab;
+    private Queue<GameObject> resourcePool = new Queue<GameObject>();
+
+    // Maximum number of resources in the pool
+    [SerializeField] private int maxResources = 100;
+
+    // Rate at which resources are spawned
+    [SerializeField] private float spawnRate = 1f;
+    private float timeSinceLastSpawn = 0f;
+
+    // Range of terrain over which resources are spawned
+    [SerializeField] private Vector2 spawnRange = new Vector2(100, 100);
+
+    // Maximum angle of terrain at which resources are spawned
+    [SerializeField] private float maxTerrainAngle = 30f;
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Update time since last resource spawn
+        timeSinceLastSpawn += Time.deltaTime;
+
+        // Check if it's time to spawn another resource
+        if (timeSinceLastSpawn >= spawnRate)
+        {
+            // Reset time since last resource spawn
+            timeSinceLastSpawn = 0f;
+
+            // Generate random position on terrain within spawn range
+            float x = Random.Range(-spawnRange.x, spawnRange.x);
+            float z = Random.Range(-spawnRange.y, spawnRange.y);
+            Vector3 pos = new Vector3(x, 0, z);
+
+            // Get height of terrain at random position
+            float y = Terrain.activeTerrain.SampleHeight(pos);
+            pos.y = y;
+
+            // Get normal of terrain at random position
+            Vector3 normal = Terrain.activeTerrain.terrainData.GetInterpolatedNormal(x / Terrain.activeTerrain.terrainData.size.x, z / Terrain.activeTerrain.terrainData.size.z);
+
+            // Check if terrain angle is within allowed range
+            if (Vector3.Angle(Vector3.up, normal) <= maxTerrainAngle)
+            {
+                // Get resource from pool
+                GameObject resource = GetResourceFromPool();
+
+                // Set position and rotation of resource
+                resource.transform.position = pos;
+                resource.transform.rotation = Quaternion.FromToRotation(Vector3.up, normal);
+
+                // Enable resource
+                resource.SetActive(true);
+            }
+        }
+    }
+
+    // Get resource from object pool
+    GameObject GetResourceFromPool()
+    {
+        // Check if there are resources in the pool
+        if (resourcePool.Count > 0)
+        {
+            // Return resource from the front of the queue
+            return resourcePool.Dequeue();
+        }
+        else
+        {
+            // Create new resource and add it to the pool
+            GameObject resource = Instantiate(resourcePrefab);
+            resourcePool.Enqueue(resource);
+            return resource;
+        }
+    }
+}

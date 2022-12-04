@@ -2781,7 +2781,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b993cc115443ac499addfa8921e62b5, type: 2}
+  - {fileID: 2100000, guid: 97627cc58123f2f4695567948d3a386f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3390,6 +3390,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1991fcba09c25a945b0e43fac8290783, type: 3}
   - {fileID: 8300000, guid: 762ff696d44ec634bbdbeec5f4f59d45, type: 3}
   m_LandSound: {fileID: 8300000, guid: 635e1fdad8372754592152fb611f5aa1, type: 3}
+  _furnaceReachDistance: 10
 --- !u!54 &4196609734246092110
 Rigidbody:
   m_ObjectHideFlags: 0

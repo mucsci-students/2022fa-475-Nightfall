@@ -2,14 +2,15 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Grass_Advanced
   m_Shader: {fileID: 4800000, guid: 9f6cf5b484f74e14596c9f39e21a0e3c, type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -87,6 +88,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.761
     - _BumpScale: 1
@@ -117,7 +119,7 @@ Material:
     - _WindNoiseLarge: 20
     - _WindNoiseLargeMultiply: 0.2
     - _WindNoiseSmall: 40
-    - _WindNoiseSmallMultiply: -0.7
+    - _WindNoiseSmallMultiply: 0.1
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
@@ -134,3 +136,4 @@ Material:
     - _Vector0: {r: 0, g: 0.2, b: 0, a: 0}
     - _Vector1: {r: 0, g: 0.1, b: 0, a: 0}
     - _WaveSpeed: {r: 0.32075465, g: 0.025720898, b: 0.025720898, a: 0}
+  m_BuildTextureStacks: []
