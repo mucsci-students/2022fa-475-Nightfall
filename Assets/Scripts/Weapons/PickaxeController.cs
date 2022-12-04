@@ -55,6 +55,8 @@ public class PickaxeController : MonoBehaviour
             PlayMiningSound();
             canGetResource = false;
 
+            UpdateToolAbility();
+
             if (other.TryGetComponent(out ResourceHealth resourceHealth))
             {
                 // Didn't know case statements had to be constants. So gross 'ifs' instead.
@@ -75,7 +77,8 @@ public class PickaxeController : MonoBehaviour
                 // Stone Pick
                 else if(currentTool == "Stone")
                 {
-                    if( otherTag == "Stone")
+                    
+                    if(otherTag == "Stone")
                     {
                         Inventory.AddItem(otherTag, pickaxeStrength);
                         resourceHealth.SubtractHealth(pickaxeStrength);
@@ -93,7 +96,6 @@ public class PickaxeController : MonoBehaviour
 
                 else if(currentTool == "Copper" || currentTool == "Iron")
                 {
-                    print(currentTool);
                     Inventory.AddItem(otherTag, pickaxeStrength);
                     resourceHealth.SubtractHealth(pickaxeStrength);
                 }
@@ -102,6 +104,12 @@ public class PickaxeController : MonoBehaviour
                 stoneChips.Play();
             }
         }
+    }
+
+    public void UpdateToolAbility()
+    {
+        currentTool = Inventory.GetTool("pickaxe");
+        pickaxeStrength = pickaxePower[currentTool];
     }
 
     void OnEnable()

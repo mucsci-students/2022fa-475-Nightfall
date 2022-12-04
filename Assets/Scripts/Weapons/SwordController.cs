@@ -13,8 +13,21 @@ public class SwordController : MonoBehaviour
     private bool isAttacking = false;
     private bool canDealDamage;
 
+    private Dictionary<string, int> swordPower;
+    private string currentSword;
+    private int swordStrength;
+
     public float firstAttackCooldown = 2.0f;
     public float secondAttackCooldown = 0.6f;
+
+    void Awake()
+    {
+        swordPower = new Dictionary<string, int>();
+        swordPower.Add("Wood", 1);
+        swordPower.Add("Stone", 2);
+        swordPower.Add("Copper", 3);
+        swordPower.Add("Iron", 4);
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -23,6 +36,14 @@ public class SwordController : MonoBehaviour
         swordAnim = GameObject.Find("Male").GetComponent<Animator>();
         source = gameObject.GetComponent<AudioSource>();
         canDealDamage = true;
+        currentSword = "Wood";
+    }
+
+    void OnEnable()
+    {
+        // Scuffed fix for now. This means, swapping back here immediately restarts CD.
+        firstAttack = true;
+        StartCoroutine(SetSword());
     }
 
     public void SwingSword()
@@ -45,20 +66,14 @@ public class SwordController : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        // Scuffed fix for now. This means, swapping back here immediately restarts CD.
-        firstAttack = true;
-    }
-
     private void OnTriggerEnter(Collider other) 
     {
         // If swinging at enemy with a sword
         if(other.tag == "Enemy" && isAttacking && canDealDamage)
         {
+            UpdateToolAbility();
+
             canDealDamage = false;
-            Debug.Log(other.name);
-            print(other.name);
         }
     }
 
@@ -89,6 +104,12 @@ public class SwordController : MonoBehaviour
         swordAnim.SetTrigger("2ndAttack");
     }
 
+    public void UpdateToolAbility()
+    {
+        currentSword = Inventory.GetTool("sword");
+        swordStrength = swordPower[currentSword];
+    }
+
     IEnumerator ResetCoolDown()
     {
         // After firstAttackCooldown seconds, can do first attack again.
@@ -109,7 +130,6 @@ public class SwordController : MonoBehaviour
             secondAttack = true;
             swordAnim.SetBool("Second Attack", secondAttack);
         }
-        
     }
 
     // Set to the length of swordAnimations for use of isAttacking
@@ -117,5 +137,11 @@ public class SwordController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
+    }
+    IEnumerator SetSword()
+    {
+        yield return new WaitForSeconds(0.2f);
+        currentSword = Inventory.GetTool("sword");
+        swordStrength = swordPower[currentSword];
     }
 }
