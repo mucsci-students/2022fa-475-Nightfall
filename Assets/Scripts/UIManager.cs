@@ -137,6 +137,10 @@ public class UIManager : MonoBehaviour
             }
             else
             {
+                PlayerPrefs.SetString("MusicToggle", musicToggle.GetComponent<Toggle>().isOn.ToString());
+                PlayerPrefs.SetFloat("MusicVolume", musicSlider.GetComponent<Slider>().value);
+                PlayerPrefs.SetString("SFXToggle", sfxToggle.GetComponent<Toggle>().isOn.ToString());
+                PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
                 Time.timeScale = 1;
             }
         };

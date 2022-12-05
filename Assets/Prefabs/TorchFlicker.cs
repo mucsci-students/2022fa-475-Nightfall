@@ -17,7 +17,7 @@ public class TorchFlicker : MonoBehaviour
 
     [SerializeField] [Range(0f, .001f)] public float intensityChange;
     [SerializeField] [Range(0f, .01f)] public float rangeChange;
-    public Color color1, color2;
+    public Color color1;
 
     // Update is called once per frame
     private float t = 0;

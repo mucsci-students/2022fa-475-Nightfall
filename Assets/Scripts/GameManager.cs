@@ -13,7 +13,7 @@ public class GameManager : SaveGameTrackable
     public Material skyboxMaterial;
     public float timeScale, intensityScale, skyboxRotation;
     [SerializeField] [Range(0f, 1f)] float colorStep;
-    public Color settingColor, noonColor;
+    public Color sunColor;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +42,15 @@ public class GameManager : SaveGameTrackable
         }
         skyboxMaterial.SetFloat("_Rotation", rot + skyboxRotation);
 
-        if (TimeOfDay > 7 && TimeOfDay < 21)
+        float exposure = Mathf.Clamp(-.1f * Mathf.Pow(.5f * (TimeOfDay - 12f), 2) + 1.5f, .05f, 1f);
+        skyboxMaterial.SetFloat("_Exposure", exposure);
+        sun.transform.SetLocalPositionAndRotation(sun.transform.position, new Quaternion(0.4f, (TimeOfDay / 6f) - 2f, 0.1f, 0.87f));
+        sun.GetComponent<Light>().color = sunColor * exposure;
+        sun.GetComponent<Light>().intensity = exposure;
+        RenderSettings.fogColor = Color.gray * exposure;
+        RenderSettings.ambientIntensity = exposure;
+
+        /*if (TimeOfDay > 7 && TimeOfDay < 21)
         {
             sun.transform.SetLocalPositionAndRotation(sun.transform.position, new Quaternion(0.408217877f, (TimeOfDay/6f ) - 2f, 0.109381631f, 0.875426114f));
         }
@@ -53,10 +61,9 @@ public class GameManager : SaveGameTrackable
             float newG = settingColor.g + ((noonColor.g - settingColor.g) * (TimeOfDay - 6) / 5);
             float newB = settingColor.b + ((noonColor.b - settingColor.b) * (TimeOfDay - 6) / 5);
             sun.GetComponent<Light>().color = new Color(newR, newG, newB);
-            skyboxMaterial.SetFloat("_Exposure", (TimeOfDay - 5) / 5);
             float newValue = (TimeOfDay - 6) / 10;
             RenderSettings.fogColor = new Color(newValue, newValue, newValue);
-            RenderSettings.ambientIntensity += Time.deltaTime * (intensityScale / 5);
+            //RenderSettings.ambientIntensity = ((TimeOfDay - 6) / 5); //* (intensityScale / 5);
         }
         if (TimeOfDay > 16 && TimeOfDay < 21)
         {
@@ -68,12 +75,12 @@ public class GameManager : SaveGameTrackable
             skyboxMaterial.SetFloat("_Exposure", 1.4f - ((TimeOfDay - 15) / 5));
             float newValue = .5f - (TimeOfDay - 16) / 10;
             RenderSettings.fogColor = new Color(newValue, newValue, newValue);
-            RenderSettings.ambientIntensity -= Time.deltaTime * (intensityScale / 5);
+            //RenderSettings.ambientIntensity -= Time.deltaTime * (intensityScale / 5);
         }
         if (TimeOfDay > 21 && TimeOfDay < 7)
         {
             sun.GetComponent<Light>().intensity = 0;
-        }
+        }*/
         if (TimeOfDay > 24)
         {
             ++daysSurvived;
