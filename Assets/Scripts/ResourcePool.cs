@@ -21,7 +21,7 @@ public class ResourcePool : MonoBehaviour
     public int metalAmountToPool;
     public List<GameObject> pooledMetals;
     
-    private Terrain[] myTerrains;
+    // private Terrain[] myTerrains;
     public Terrain mainTerrain;
 
     void Awake()
@@ -34,10 +34,10 @@ public class ResourcePool : MonoBehaviour
 
     void Start()
     {
-        myTerrains = Terrain.activeTerrains;
-        for(int i = 0; i < myTerrains.Length; i++)
-        {
-        }
+        // myTerrains = Terrain.activeTerrains;
+        // for(int i = 0; i < myTerrains.Length; i++)
+        // {
+        // }
 
 
         for(int i = 0; i < treeAmountToPool; i++)
@@ -55,17 +55,6 @@ public class ResourcePool : MonoBehaviour
         {
             SpawnMetals(mainTerrain);
         }
-    }
-
-    private void SpawnTrees(Terrain t)
-    {
-        int randomPrefab = UnityEngine.Random.Range(0, treePrefabs.Length);
-        GameObject temp = Instantiate(treePrefabs[randomPrefab], Vector3.zero, Quaternion.identity);
-        Transform spawnPoint = temp.transform;
-        GenerateSpawnLocation(t, spawnPoint);
-
-        temp.SetActive(true);
-        pooledTrees.Add(temp);
     }
 
     // ResourcePool.SharedInstance.RespawnResources();
@@ -95,6 +84,17 @@ public class ResourcePool : MonoBehaviour
             }
         }
         return;
+    }
+
+    private void SpawnTrees(Terrain t)
+    {
+        int randomPrefab = UnityEngine.Random.Range(0, treePrefabs.Length);
+        GameObject temp = Instantiate(treePrefabs[randomPrefab], Vector3.zero, Quaternion.identity);
+        Transform spawnPoint = temp.transform;
+        GenerateSpawnLocation(t, spawnPoint);
+
+        temp.SetActive(true);
+        pooledTrees.Add(temp);
     }
 
     private void SpawnRocks(Terrain t)
@@ -143,14 +143,15 @@ public class ResourcePool : MonoBehaviour
         spawnResourceLocation.position = pos;
 
         
-        /* Unity despises this check for spawning objects.
+        /*
+        // Unity despises this check for spawning objects.
         //Physics.CheckSphere(transform, radius(int), LayerMask(int))
 
         if(Physics.CheckSphere(pos, 3, 11))
         {
-            print("too close! " + spawnLocation);
+            //print("too close! " + spawnLocation);
             return GenerateSpawnLocation(t, spawnResourceLocation);
-       }
+        }
         */
 
         // Calculates normal of terrain and returns bool.
@@ -205,4 +206,5 @@ public class ResourcePool : MonoBehaviour
     {
         return Vector3.Angle (surfNormal, Vector3.up);
     }
+
 }
