@@ -188,6 +188,18 @@ public class UIManager : MonoBehaviour
         msgText.SetActive(!msgText.activeSelf);
     }
 
+    public static void SetMsgText(string msg)
+    {
+        if (msg.Length != 0)
+        {
+            msgText.GetComponent<TextMeshProUGUI>().text = msg;
+        }
+        else
+        {
+            msgText.GetComponent<TextMeshProUGUI>().text = "Click the material icon in the Crafting or Building\n boxes to make it.";
+        }
+    }
+
     public static void ToggleMusic()
     {
         if (musicToggle.GetComponent<Toggle>().isOn)

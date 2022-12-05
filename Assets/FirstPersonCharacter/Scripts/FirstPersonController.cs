@@ -25,7 +25,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip[] m_JumpSounds;        // An array of jump sounds that will be randomly selected when the player jumps.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
-        [SerializeField] private float _furnaceReachDistance = 10;
+        [SerializeField] private static float _furnaceReachDistance = 10;
+        [SerializeField] private static GameObject plr;
         [SerializeField] private List<GameObject> _spawnWhenKilled = new List<GameObject>();
 
         private Camera m_Camera;
@@ -75,8 +76,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-        public bool IsNearFurnace() => FindObjectsOfType<IFurnace>()
-           .Where(furnace => Vector3.Distance(transform.position, furnace.transform.position) <= _furnaceReachDistance)
+        public static bool IsNearFurnace() => FindObjectsOfType<IFurnace>()
+           .Where(furnace => Vector3.Distance(plr.transform.position, furnace.transform.position) <= _furnaceReachDistance)
+           .FirstOrDefault() != null;
+
+        public static bool IsNearWorkbench() => FindObjectsOfType<IWorkbench>()
+           .Where(workbench => Vector3.Distance(plr.transform.position, workbench.transform.position) <= _furnaceReachDistance)
            .FirstOrDefault() != null;
 
         // Use this for initialization
@@ -98,6 +103,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             // Attach death handler
             PlayerHandler.OnPlayerKilled += HandlePlayerKilled;
+
+            plr = GameObject.Find("Player");
         }
 
         private void HandlePlayerKilled(object sender, EventArgs args)

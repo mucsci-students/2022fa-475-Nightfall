@@ -5,21 +5,47 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class CraftingBtnEvents : MonoBehaviour
 {
+    private bool msgDisplaying = false;
+
     public void Planks()
     {
-        Debug.Log("Planks");
+        if (!FirstPersonController.IsNearFurnace() && !msgDisplaying)
+        {
+            msgDisplaying = true;
+            UIManager.SetMsgText("You must have a workbench nearby to make this");
+            StartCoroutine(FadeMsg());
+        }
+        else
+        {
+            Debug.Log("made plank");
+        }
     }
     public void CutStone()
     {
-        Debug.Log("Cut");
+        if (!FirstPersonController.IsNearFurnace() && !msgDisplaying)
+        {
+            msgDisplaying = true;
+            UIManager.SetMsgText("You must have a workbench nearby to make this");
+            StartCoroutine(FadeMsg());
+        }
     }
     public void CopperBar()
     {
-        Debug.Log("copper");
+        if (!FirstPersonController.IsNearFurnace() && !msgDisplaying)
+        {
+            msgDisplaying = true;
+            UIManager.SetMsgText("You must have a furnace nearby to make this");
+            StartCoroutine(FadeMsg());
+        }
     }
     public void IronBar()
     {
-
+        if (!FirstPersonController.IsNearFurnace() && !msgDisplaying)
+        {
+            msgDisplaying = true;
+            UIManager.SetMsgText("You must have a furnace nearby to make this");
+            StartCoroutine(FadeMsg());
+        }
     }
     public void StoneSword()
     {
@@ -56,5 +82,12 @@ public class CraftingBtnEvents : MonoBehaviour
     public void IronPickaxe()
     {
 
+    }
+    IEnumerator FadeMsg()
+    {
+        yield return new WaitForSeconds(2);
+
+        UIManager.SetMsgText("");
+        msgDisplaying = false;
     }
 }
