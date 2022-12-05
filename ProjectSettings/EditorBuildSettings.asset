@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 620a34a89ae54f345afbe216464099dc
   - enabled: 1
-    path: Assets/Scenes/RobertBPlayground.unity
-    guid: 9c8bc0506252d4b4da9f92a71e7d14ac
+    path: Assets/Scenes/Demo.unity
+    guid: c955e02741ea51045828cd5cf1d842e9
   m_configObjects: {}
