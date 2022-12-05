@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.001
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 355987664}
-  m_IndirectSpecularColor: {r: 0.0002100376, g: 0.00024823434, b: 0.0003082481, a: 0.001}
+  m_IndirectSpecularColor: {r: 0.00021003376, g: 0.00024824482, b: 0.00030828264, a: 0.001}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2536,7 +2536,7 @@ MonoBehaviour:
   - {fileID: 2487155155018168633, guid: b18b1a4c3421a6b44bbb6fd701a7bcc6, type: 3}
   - {fileID: 8442098279281703294, guid: e83545502abb70641b66c45b593c755d, type: 3}
   - {fileID: 5775473991879470633, guid: cb0845da05479f14484ac18a980f5d1b, type: 3}
-  treeAmountToPool: 2000
+  treeAmountToPool: 1800
   pooledTrees: []
   rockPrefabs:
   - {fileID: 2302545960517392990, guid: 89dd82164950ef74c9d99d14927c11e0, type: 3}
@@ -2551,12 +2551,12 @@ MonoBehaviour:
   - {fileID: 546453620307953847, guid: 0a3376876ae246440a0c51014d858daf, type: 3}
   - {fileID: 6750898715325228891, guid: 6187b6d76977ee244b671bac49de8415, type: 3}
   - {fileID: 3436882302758415389, guid: 461603a3c43c2d74d925f1c84f2b62cd, type: 3}
-  rockAmountToPool: 1000
+  rockAmountToPool: 800
   pooledRocks: []
   metalsPrefabs:
   - {fileID: 7732268805796828986, guid: a93a5f1d42e911749a4dc976c565b126, type: 3}
   - {fileID: 8484945639517593255, guid: 7bf56cc9ad77010408dc1b876156695d, type: 3}
-  metalAmountToPool: 500
+  metalAmountToPool: 400
   pooledMetals: []
   mainTerrain: {fileID: 510092745}
 --- !u!1 &1517700346
