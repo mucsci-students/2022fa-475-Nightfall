@@ -95,7 +95,7 @@ public class MenuUIManager : MonoBehaviour
     {
         if (musicToggle.GetComponent<Toggle>().isOn)
         {
-            mixer.SetFloat("MusicVolume", 100 * Mathf.Log10(musicVol.GetComponent<Slider>().value + .5f) + 1);
+            mixer.SetFloat("MusicVolume", 80 * Mathf.Log10(musicVol.GetComponent<Slider>().value + .5f) - 10);
         }
         else
         {
@@ -106,7 +106,7 @@ public class MenuUIManager : MonoBehaviour
     {
         if (sfxToggle.GetComponent<Toggle>().isOn)
         {
-            mixer.SetFloat("SFXVolume", 100 * Mathf.Log10(sfxVol.GetComponent<Slider>().value + .5f) + 1);
+            mixer.SetFloat("SFXVolume", 80 * Mathf.Log10(sfxVol.GetComponent<Slider>().value + .5f) - 10);
         }
         else
         {
@@ -115,11 +115,11 @@ public class MenuUIManager : MonoBehaviour
     }
     public void ChangeMusicVol()
     {
-        mixer.SetFloat("MusicVolume", 100 * Mathf.Log10(musicVol.GetComponent<Slider>().value + .5f) + 1);
+        mixer.SetFloat("MusicVolume", 80 * Mathf.Log10(musicVol.GetComponent<Slider>().value + .5f) - 10);
     }
     public void ChangeSFXVol()
     {
-        mixer.SetFloat("SFXVolume", 100 * Mathf.Log10(sfxVol.GetComponent<Slider>().value + .5f) + 1);
+        mixer.SetFloat("SFXVolume", 80 * Mathf.Log10(sfxVol.GetComponent<Slider>().value + .5f) - 10);
     }
 
     public void NewGame()

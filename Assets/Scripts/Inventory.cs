@@ -12,21 +12,33 @@ public class Inventory : MonoBehaviour
     private static Dictionary<string, int> _items;
 
     private static Dictionary<string, string> _tools;
+
+    private static Dictionary<string, int> _maxCapacities;
     
     public static void Initialize()
     {   
         _items = new Dictionary<string, int>();
         _tools = new Dictionary<string, string>();
         _materials = new List<Material>();
+        _maxCapacities = new Dictionary<string, int>();
 
         _items.Add("Wood", 0);
         _items.Add("Planks", 0);
         _items.Add("Stone", 0);
-        _items.Add("Cut Stone", 0);
+        _items.Add("CutStone", 0);
         _items.Add("Copper Ore", 0);
         _items.Add("Copper Bar", 0);
         _items.Add("Iron Ore", 0);
         _items.Add("Iron Bar", 0);
+
+        _maxCapacities.Add("Wood", 50);
+        _maxCapacities.Add("Planks", 50);
+        _maxCapacities.Add("Stone", 50);
+        _maxCapacities.Add("CutStone", 50);
+        _maxCapacities.Add("Copper Ore", 50);
+        _maxCapacities.Add("Copper Bar", 50);
+        _maxCapacities.Add("Iron Ore", 50);
+        _maxCapacities.Add("Iron Bar", 50);
 
         _tools.Add("sword", "Wood");
         _tools.Add("axe", "Wood");
@@ -43,8 +55,8 @@ public class Inventory : MonoBehaviour
     }
 
     public static void AddItem(string n, int qty)
-    {
-        _items[n] += qty;
+    {        
+        _items[n] = Mathf.Min(_maxCapacities[n], _items[n] + qty);
     }
 
     public static void AddItems(IReadOnlyCollection<KeyValuePair<string, int>> items)
@@ -54,6 +66,7 @@ public class Inventory : MonoBehaviour
 
     public static void RemoveItem(string n, int qty)
     {
+        if (_items[n] - qty < 0) { Debug.Log("Not enough quantity!"); return; }
         _items[n] -= qty;
     }
 

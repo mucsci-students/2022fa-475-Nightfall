@@ -48,10 +48,10 @@ public class UIManager : MonoBehaviour
         counts.Add("Planks", GameObject.Find("MainUI/Inventory/PlanksCount").GetComponent<TextMeshProUGUI>());
         counts.Add("Stone", GameObject.Find("MainUI/Inventory/StoneCount").GetComponent<TextMeshProUGUI>());
         counts.Add("CutStone", GameObject.Find("MainUI/Inventory/CutStoneCount").GetComponent<TextMeshProUGUI>());
-        counts.Add("CopperOre", GameObject.Find("MainUI/Inventory/CopperOreCount").GetComponent<TextMeshProUGUI>());
-        counts.Add("CopperBar", GameObject.Find("MainUI/Inventory/CopperBarCount").GetComponent<TextMeshProUGUI>());
-        counts.Add("IronOre", GameObject.Find("MainUI/Inventory/IronOreCount").GetComponent<TextMeshProUGUI>());
-        counts.Add("IronBar", GameObject.Find("MainUI/Inventory/IronBarCount").GetComponent<TextMeshProUGUI>());
+        counts.Add("Copper Ore", GameObject.Find("MainUI/Inventory/CopperOreCount").GetComponent<TextMeshProUGUI>());
+        counts.Add("Copper Bar", GameObject.Find("MainUI/Inventory/CopperBarCount").GetComponent<TextMeshProUGUI>());
+        counts.Add("Iron Ore", GameObject.Find("MainUI/Inventory/IronOreCount").GetComponent<TextMeshProUGUI>());
+        counts.Add("Iron Bar", GameObject.Find("MainUI/Inventory/IronBarCount").GetComponent<TextMeshProUGUI>());
 
         inventory = GameObject.Find("MainUI/Inventory");
         inventory.SetActive(false);
@@ -101,10 +101,10 @@ public class UIManager : MonoBehaviour
             UpdateCount("Planks");
             UpdateCount("Stone");
             UpdateCount("CutStone");
-            UpdateCount("CopperOre");
-            UpdateCount("CopperBar");
-            UpdateCount("IronOre");
-            UpdateCount("IronBar");
+            UpdateCount("Copper Ore");
+            UpdateCount("Copper Bar");
+            UpdateCount("Iron Ore");
+            UpdateCount("Iron Bar");
 
             inventory.SetActive(!inventory.activeSelf);
             building.SetActive(inventory.activeSelf);
@@ -173,7 +173,7 @@ public class UIManager : MonoBehaviour
     {
         if (musicToggle.GetComponent<Toggle>().isOn)
         {
-            mixer.SetFloat("MusicVolume", 100 * Mathf.Log10(musicSlider.GetComponent<Slider>().value + .5f) + 1);
+            mixer.SetFloat("MusicVolume", 80 * Mathf.Log10(musicSlider.GetComponent<Slider>().value + .5f) - 10);
         }
         else
         {
@@ -184,7 +184,7 @@ public class UIManager : MonoBehaviour
     {
         if (sfxToggle.GetComponent<Toggle>().isOn)
         {
-            mixer.SetFloat("SFXVolume", 100 * Mathf.Log10(sfxSlider.GetComponent<Slider>().value + .5f) + 1);
+            mixer.SetFloat("SFXVolume", 80 * Mathf.Log10(sfxSlider.GetComponent<Slider>().value + .5f) - 10);
         }
         else
         {
@@ -193,11 +193,11 @@ public class UIManager : MonoBehaviour
     }
     public static void ChangeMusicVol()
     {
-        mixer.SetFloat("MusicVolume", 100 * Mathf.Log10(musicSlider.GetComponent<Slider>().value + .5f) + 1);
+        mixer.SetFloat("MusicVolume", 80 * Mathf.Log10(musicSlider.GetComponent<Slider>().value + .5f) - 10);
     }
     public static void ChangeSFXVol()
     {
-        mixer.SetFloat("SFXVolume", 100 * Mathf.Log10(sfxSlider.GetComponent<Slider>().value + .5f) + 1);
+        mixer.SetFloat("SFXVolume", 80 * Mathf.Log10(sfxSlider.GetComponent<Slider>().value + .5f) - 10);
     }
 
     public static void ExitToMenu()
