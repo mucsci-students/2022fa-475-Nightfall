@@ -72,11 +72,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Left_Arm.enabled = true;
             }
         }
-        
-        public bool IsNearFurnace() 
-            => FindObjectsOfType<IFurnace>()
-                .Where(furnace => Vector3.Distance(transform.position, furnace.transform.position) <= _furnaceReachDistance)
-                .FirstOrDefault() != null;
+
+        public bool IsNearFurnace() => FindObjectsOfType<IFurnace>()
+           .Where(furnace => Vector3.Distance(transform.position, furnace.transform.position) <= _furnaceReachDistance)
+           .FirstOrDefault() != null;
 
         // Use this for initialization
         private void Start()
@@ -154,7 +153,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 {
                     PlayerHandler.AddValue("stamina", 3);
                 }
-                else
+                else if (speed >= 1)
                 {
                     PlayerHandler.AddValue("stamina", -4);
                 }
@@ -247,7 +246,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+            m_IsWalking = PlayerHandler.GetValue("stamina") > 4 ? !Input.GetKey(KeyCode.LeftShift) : true;
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;

@@ -87,7 +87,7 @@ public class ToolData
             {
                 {"Basic", new Dictionary<string, int>()
                 {
-                    {"brightness", 5 }
+                    {"brightness", 10 }
                 } }
             } }
         };        

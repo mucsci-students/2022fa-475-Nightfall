@@ -112,7 +112,7 @@ public class UIManager : MonoBehaviour
             inventory.SetActive(!inventory.activeSelf);
             building.SetActive(inventory.activeSelf);
             crafting.SetActive(inventory.activeSelf);
-            ToggleMsgText("Click an item in the Crafting or Building\n boxes to create it.");
+            ToggleMsgText("Click the material icon in the Crafting or Building\n boxes to make it.");
         };
         pauseAction.performed += ctx =>
         {
