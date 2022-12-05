@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerHandler
 {
@@ -12,6 +13,9 @@ public class PlayerHandler
     public static int _stamina { get; private set; }
     private static int _maxStamina;
     
+    public static event EventHandler OnPlayerKilled;
+    public static bool PlayerIsDead { get; private set; }
+
     public static void Initialize()
     {
         _maxHealth = 100;
@@ -19,6 +23,8 @@ public class PlayerHandler
 
         _maxStamina = 100;
         _stamina = _maxStamina;
+
+        PlayerIsDead = false;
     }
 
     public static void AddValue(string field, int value)
@@ -27,6 +33,11 @@ public class PlayerHandler
         {
             _health = Math.Clamp(_health + value, 0, _maxHealth);
             UIManager.UpdateValue(field, _health, _maxHealth);
+            if (_health <= 0) 
+            {
+                PlayerIsDead = true;
+                OnPlayerKilled?.Invoke(null, EventArgs.Empty);
+            }
         }
         else if (String.Equals(field, "stamina"))
         {
