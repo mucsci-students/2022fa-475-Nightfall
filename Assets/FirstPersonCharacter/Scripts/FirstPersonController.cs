@@ -5,6 +5,7 @@ using UnityEngine;
 //using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 using UnityEngine.Audio;
+using System.Collections.Generic;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -25,6 +26,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_JumpSounds;        // An array of jump sounds that will be randomly selected when the player jumps.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
         [SerializeField] private float _furnaceReachDistance = 10;
+        [SerializeField] private List<GameObject> _spawnWhenKilled = new List<GameObject>();
 
         private Camera m_Camera;
         private Camera m_Other_Camera;
@@ -93,8 +95,25 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+            // Attach death handler
+            PlayerHandler.OnPlayerKilled += HandlePlayerKilled;
         }
 
+        private void HandlePlayerKilled(object sender, EventArgs args)
+        {
+
+            // Spawn item(s) when player dies
+            foreach (var itemToSpawn in _spawnWhenKilled)
+            {
+                var spawned = Instantiate(itemToSpawn, gameObject.transform);
+                if (spawned.transform.parent != null) { spawned.transform.parent = null; }
+            }
+
+            PlayerHandler.OnPlayerKilled -= HandlePlayerKilled;
+            Destroy(gameObject);
+
+        }
 
         // Update is called once per frame
         private void Update()

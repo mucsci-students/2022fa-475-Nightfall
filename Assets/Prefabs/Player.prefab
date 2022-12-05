@@ -3519,6 +3519,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 762ff696d44ec634bbdbeec5f4f59d45, type: 3}
   m_LandSound: {fileID: 8300000, guid: 635e1fdad8372754592152fb611f5aa1, type: 3}
   _furnaceReachDistance: 10
+  _spawnWhenKilled:
+  - {fileID: 4759574058067597125, guid: df7eb113b3e3cd1469f5350de938a055, type: 3}
 --- !u!54 &4478747029766599678
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
         healthBar = GameObject.Find("MainUI/StatusBar/Bars/Health").GetComponent<Image>();
         staminaBar = GameObject.Find("MainUI/StatusBar/Bars/Stamina").GetComponent<Image>();
 
+        counts = new Dictionary<string, TextMeshProUGUI>();
         counts.Add("Wood", GameObject.Find("MainUI/Inventory/WoodCount").GetComponent<TextMeshProUGUI>());
         counts.Add("Planks", GameObject.Find("MainUI/Inventory/PlanksCount").GetComponent<TextMeshProUGUI>());
         counts.Add("Stone", GameObject.Find("MainUI/Inventory/StoneCount").GetComponent<TextMeshProUGUI>());
