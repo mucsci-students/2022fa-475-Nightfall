@@ -48,9 +48,11 @@ public class SwordController : MonoBehaviour
 
     public void SwingSword()
     {
+        int stamCost = ToolData.GetValue("sword", Inventory.GetTool("sword"), "stamina");
         // Do first attack if first cooldown is over.
-        if(firstAttack)
+        if (firstAttack && PlayerHandler.GetValue("stamina") >= stamCost)
         {
+            PlayerHandler.AddValue("stamina", -stamCost);
             StartCoroutine(ResetSecondAttack());
             StartCoroutine(ResetAttackingBool());
             SwordAttack();
@@ -59,8 +61,9 @@ public class SwordController : MonoBehaviour
         }
                 
         // Do second attack if first cooldown is over
-        else if(secondAttack)
+        else if(secondAttack && PlayerHandler.GetValue("stamina") >= (int)(stamCost * 1.2))
         {
+            PlayerHandler.AddValue("stamina", -(int)(stamCost * 1.2));
             StartCoroutine(ResetAttackingBool());
             SwordAttack2();
         }

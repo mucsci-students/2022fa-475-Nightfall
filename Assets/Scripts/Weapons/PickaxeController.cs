@@ -15,6 +15,8 @@ public class PickaxeController : MonoBehaviour
     private string currentTool;
     private int pickaxeStrength;
 
+    private bool msgDisplaying = false;
+
     void Awake()
     {
         resourceType = new List<string>();
@@ -37,9 +39,11 @@ public class PickaxeController : MonoBehaviour
 
     public void SwingPickaxe()
     {
-        if(!isMining)
+        int stamCost = ToolData.GetValue("pickaxe", Inventory.GetTool("pickaxe"), "stamina");
+        if (!isMining && PlayerHandler.GetValue("stamina") >= stamCost)
         {
             isMining = true;
+            PlayerHandler.AddValue("stamina", -stamCost);
             axeAnim.SetTrigger("Mine Swing");
             StartCoroutine(ResetAttackingBool());
         }
@@ -70,6 +74,12 @@ public class PickaxeController : MonoBehaviour
                     }
                     else
                     {
+                        if (!msgDisplaying)
+                        {
+                            msgDisplaying = true;
+                            UIManager.ToggleMsgText("Your pickaxe is too weak for this!");
+                            StartCoroutine(FadeMsg());
+                        }
                         print("Tool too weak!");
                     }
                 }
@@ -104,6 +114,14 @@ public class PickaxeController : MonoBehaviour
                 stoneChips.Play();
             }
         }
+    }
+
+    IEnumerator FadeMsg()
+    {
+        yield return new WaitForSeconds(2);
+
+        UIManager.ToggleMsgText("");
+        msgDisplaying = false;
     }
 
     public void UpdateToolAbility()

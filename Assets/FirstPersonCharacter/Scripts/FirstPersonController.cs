@@ -152,11 +152,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 sprintTimer = 0;
                 if (m_IsWalking)
                 {
-                    PlayerHandler.AddValue("stamina", 1);
+                    PlayerHandler.AddValue("stamina", 3);
                 }
                 else
                 {
-                    PlayerHandler.AddValue("stamina", -2);
+                    PlayerHandler.AddValue("stamina", -4);
                 }
             }
 

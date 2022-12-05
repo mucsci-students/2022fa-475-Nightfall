@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public static GameObject musicToggle;
     public static GameObject sfxSlider;
     public static GameObject sfxToggle;
+    public static GameObject msgText;
 
     public static AudioMixer mixer;
 
@@ -40,6 +41,7 @@ public class UIManager : MonoBehaviour
         musicToggle = GameObject.Find("PauseMenu/Options/Music/Toggle");
         sfxSlider = GameObject.Find("PauseMenu/Options/SFX/Volume");
         sfxToggle = GameObject.Find("PauseMenu/Options/SFX/Toggle");
+        msgText = GameObject.Find("MainUI/MsgText");
 
         healthBar = GameObject.Find("MainUI/StatusBar/Bars/Health").GetComponent<Image>();
         staminaBar = GameObject.Find("MainUI/StatusBar/Bars/Stamina").GetComponent<Image>();
@@ -90,6 +92,7 @@ public class UIManager : MonoBehaviour
         ChangeSFXVol();
 
         options.SetActive(false);
+        msgText.SetActive(false);
 
         inventoryAction.performed += ctx =>
         {
@@ -109,6 +112,7 @@ public class UIManager : MonoBehaviour
             inventory.SetActive(!inventory.activeSelf);
             building.SetActive(inventory.activeSelf);
             crafting.SetActive(inventory.activeSelf);
+            ToggleMsgText("Click an item in the Crafting or Building\n boxes to create it.");
         };
         pauseAction.performed += ctx =>
         {
@@ -167,6 +171,16 @@ public class UIManager : MonoBehaviour
             controls.SetActive(false);
             options.SetActive(false);
         }
+    }
+
+    public static void ToggleMsgText(string msg)
+    {
+        if (msg.Length != 0)
+        {
+            msgText.GetComponent<TextMeshProUGUI>().text = msg;
+        }
+
+        msgText.SetActive(!msgText.activeSelf);
     }
 
     public static void ToggleMusic()

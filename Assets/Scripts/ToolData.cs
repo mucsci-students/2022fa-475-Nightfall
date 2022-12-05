@@ -9,36 +9,88 @@ public class ToolData
     public static void Initialize()
     {
 
-        _tools = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
+        _tools = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>()
+        {
+            {"sword", new Dictionary<string, Dictionary<string, int>>()
+            {
+                {"Wood", new Dictionary<string, int>()
+                {
+                    {"speed", 5 },
+                    {"stamina", 10 }
+                } },
+                {"Stone", new Dictionary<string, int>()
+                {
+                    {"speed", 6 },
+                    {"stamina", 9 }
+                } },
+                {"Copper", new Dictionary<string, int>()
+                {
+                    {"speed", 7 },
+                    {"stamina", 8 }
+                } },
+                {"Iron", new Dictionary<string, int>()
+                {
+                    {"speed", 8 },
+                    {"stamina", 7 }
+                } }
 
-        Dictionary<string, Dictionary<string, int>> swords = new Dictionary<string, Dictionary<string, int>>();
-        Dictionary<string, Dictionary<string, int>> axes = new Dictionary<string, Dictionary<string, int>>();
-        Dictionary<string, Dictionary<string, int>> pickaxes = new Dictionary<string, Dictionary<string, int>>();
-        Dictionary<string, Dictionary<string, int>> torches = new Dictionary<string, Dictionary<string, int>>();
+            } },
+            {"axe", new Dictionary<string, Dictionary<string, int>>()
+            {
+                {"Wood", new Dictionary<string, int>()
+                {
+                    {"speed", 5 },
+                    {"stamina", 8 }
+                } },
+                {"Stone", new Dictionary<string, int>()
+                {
+                    {"speed", 6 },
+                    {"stamina", 7 }
+                } },
+                {"Copper", new Dictionary<string, int>()
+                {
+                    {"speed", 7 },
+                    {"stamina", 6 }
+                } },
+                {"Iron", new Dictionary<string, int>()
+                {
+                    {"speed", 8 },
+                    {"stamina", 5 }
+                } }
 
-        Dictionary<string, int> temp = new Dictionary<string, int>();
-        temp.Add("speed", 5);
-        temp.Add("stamina", 10);
-        swords.Add("Wood", temp);
+            } },
+            {"pickaxe", new Dictionary<string, Dictionary<string, int>>()
+            {
+                {"Wood", new Dictionary<string, int>()
+                {
+                    {"speed", 5 },
+                    {"stamina", 8 }
+                } },
+                {"Stone", new Dictionary<string, int>()
+                {
+                    {"speed", 6 },
+                    {"stamina", 7 }
+                } },
+                {"Copper", new Dictionary<string, int>()
+                {
+                    {"speed", 7 },
+                    {"stamina", 6 }
+                } },
+                {"Iron", new Dictionary<string, int>()
+                {
+                    {"speed", 8 },
+                    {"stamina", 5 }
+                } }
 
-        temp = new Dictionary<string, int>();
-        temp.Add("speed", 5);
-        temp.Add("stamina", 8);
-        axes.Add("Wood", temp);
-
-        temp = new Dictionary<string, int>();
-        temp.Add("speed", 5);
-        temp.Add("stamina", 8);
-        pickaxes.Add("Wood", temp);
-
-        temp = new Dictionary<string, int>();
-        temp.Add("brightness", 5);
-        torches.Add("Basic", temp);
-
-        _tools.Add("swords", swords);
-        _tools.Add("axes", axes);
-        _tools.Add("pickaxes", pickaxes);
-        _tools.Add("torches", torches);
+            } },
+            {"torch", new Dictionary<string, Dictionary<string, int>>()
+            {
+                {"Basic", new Dictionary<string, int>()
+                {
+                    {"brightness", 5 }
+                } }
+            } }
+        };        
     }
     
     public static int GetValue(string type, string quality, string field)

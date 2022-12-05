@@ -31,9 +31,11 @@ public class AxeController : MonoBehaviour
 
     public void SwingAxe()
     {
-        if(!isChopping)
+        int stamCost = ToolData.GetValue("axe", Inventory.GetTool("axe"), "stamina");
+        if (!isChopping && PlayerHandler.GetValue("stamina") >= stamCost)
         {
             isChopping = true;
+            PlayerHandler.AddValue("stamina", -stamCost);
             hatchetAnim.SetTrigger("Chop Swing");
             StartCoroutine(ResetAttackingBool());
         }
