@@ -396,6 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 498834}
   - component: {fileID: 13752230}
+  - component: {fileID: 1535610721}
   m_Layer: 0
   m_Name: UD_light_infantry
   m_TagString: Untagged
@@ -488,6 +489,26 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.035051912, y: 0.2145089, z: 0.12948987}
     m_Extent: {x: 0.7688222, y: 0.668301, z: 0.95111597}
   m_DirtyAABB: 0
+--- !u!95 &1535610721
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134230}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e10ddd61e5a44684e894661d5cf1f4e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &140304
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 403496}
   - component: {fileID: 9542308}
+  - component: {fileID: 599756263}
   m_Layer: 0
   m_Name: UD_demo_character
   m_TagString: Untagged
@@ -659,7 +681,7 @@ Animator:
   m_GameObject: {fileID: 165424}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f3392e95529ae7540ad53657e3d0ce7d, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e10ddd61e5a44684e894661d5cf1f4e5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -669,6 +691,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &599756263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003e903892337814ab8629b01af1ceae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &165938
 GameObject:
   m_ObjectHideFlags: 0
