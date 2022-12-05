@@ -136,6 +136,10 @@ public class ResourcePool : MonoBehaviour
         // Make sure Y coordinate is ontop of terrain.
         Vector3 pos = spawnLocation;
         pos.y = t.SampleHeight(spawnLocation) + t.transform.position.y;
+        if(pos.y < 127)
+        {
+            return GenerateSpawnLocation(t, spawnResourceLocation);
+        }
         spawnResourceLocation.position = pos;
 
         
