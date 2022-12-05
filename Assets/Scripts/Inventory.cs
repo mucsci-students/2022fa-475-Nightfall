@@ -22,11 +22,11 @@ public class Inventory : MonoBehaviour
         _items.Add("Wood", 0);
         _items.Add("Planks", 0);
         _items.Add("Stone", 0);
-        _items.Add("CutStone", 0);
-        _items.Add("CopperOre", 0);
-        _items.Add("CopperBar", 0);
-        _items.Add("IronOre", 0);
-        _items.Add("IronBar", 0);
+        _items.Add("Cut Stone", 0);
+        _items.Add("Copper Ore", 0);
+        _items.Add("Copper Bar", 0);
+        _items.Add("Iron Ore", 0);
+        _items.Add("Iron Bar", 0);
 
         _tools.Add("sword", "Wood");
         _tools.Add("axe", "Wood");
