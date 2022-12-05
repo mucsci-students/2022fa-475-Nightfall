@@ -43,6 +43,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        // On slope
+        private Vector3 velocity;
+        private float groundRayDistance = 1;
+        private RaycastHit slopeHit;
+
         public MouseLook GetMouseLook() => m_MouseLook;
 
         private bool cursorLock = true;
@@ -102,20 +107,28 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             RotateView();
             // the jump state needs to read here to make sure it is not missed
-            if (!m_Jump && !m_Jumping)
+            if (!m_Jump && !m_Jumping && !OnSteepSlope())
             {
                 m_Jump = Input.GetButtonDown("Jump");
             }
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
-                PlayLandingSound();
+                if(!OnSteepSlope())
+                {
+                    PlayLandingSound();
+                }
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
             }
             if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
                 m_MoveDir.y = 0f;
+            }
+
+            if(OnSteepSlope())
+            {
+                SlopeSlide();
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
@@ -132,19 +145,26 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float sprintTimer = 0;
         private void FixedUpdate()
         {
-            float speed;
-            GetInput(out speed);
-            // always move along the camera forward as it is the direction that it being aimed at
-            Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
+            if(!OnSteepSlope())
+            {
+            
+                float speed;
+                GetInput(out speed);
+                // always move along the camera forward as it is the direction that it being aimed at
+                Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
 
-            // get a normal for the surface that is being touched to move along it
-            RaycastHit hitInfo;
-            Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
-                               m_CharacterController.height/2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-            desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+                // get a normal for the surface that is being touched to move along it
+                RaycastHit hitInfo;
+                Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
+                                m_CharacterController.height/2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+                desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+                
+                m_MoveDir.x = desiredMove.x*speed;
+                m_MoveDir.z = desiredMove.z*speed;    
+            
 
-            m_MoveDir.x = desiredMove.x*speed;
-            m_MoveDir.z = desiredMove.z*speed;
+            // m_MoveDir.x = desiredMove.x*speed;
+            // m_MoveDir.z = desiredMove.z*speed;
 
             sprintTimer += Time.deltaTime;
             if (sprintTimer >= 1)
@@ -162,6 +182,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (m_CharacterController.isGrounded)
             {
+                if(OnSteepSlope())
+                {
+                    SlopeSlide();
+                }
                 m_MoveDir.y = -m_StickToGroundForce;
 
                 if (m_Jump)
@@ -181,21 +205,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
             ProgressStepCycle(speed);
 
             m_MouseLook.UpdateCursorLock();
+            }
         }
 
 
         private void PlayJumpSound()
         {
-
-            // pick & play a random footstep sound from the array,
-            // excluding sound at index 0
-            int n = Random.Range(1, m_JumpSounds.Length);
-            m_AudioSource.clip = m_JumpSounds[n];
-            m_AudioSource.PlayOneShot(m_AudioSource.clip);
-            // move picked sound to index 0 so it's not picked next time
-            m_JumpSounds[n] = m_JumpSounds[0];
-            m_JumpSounds[0] = m_AudioSource.clip;
-
+            if(!OnSteepSlope())
+            {
+                // pick & play a random footstep sound from the array,
+                // excluding sound at index 0
+                int n = Random.Range(1, m_JumpSounds.Length);
+                m_AudioSource.clip = m_JumpSounds[n];
+                m_AudioSource.PlayOneShot(m_AudioSource.clip);
+                // move picked sound to index 0 so it's not picked next time
+                m_JumpSounds[n] = m_JumpSounds[0];
+                m_JumpSounds[0] = m_AudioSource.clip;
+            }
             // m_AudioSource.clip = m_JumpSound;
             // m_AudioSource.Play();
         }
@@ -281,6 +307,41 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+        }
+
+        private bool OnSteepSlope()
+        {
+            if (!m_CharacterController.isGrounded)
+            {
+                return false;
+            }
+
+            if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, (m_CharacterController.height / 2) + groundRayDistance))
+            {
+                float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
+                print (slopeAngle);
+        
+                if (slopeAngle > m_CharacterController.slopeLimit) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        
+ 
+        private void SlopeSlide()
+        {
+            var normal = slopeHit.normal;
+            var yInverse = 1f - normal.y;
+            m_MoveDir.x += yInverse * normal.x;
+            m_MoveDir.z += yInverse * normal.z;
+
+            m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
         }
     }
 }
