@@ -1902,7 +1902,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5038842431505530141}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: 1.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1917,7 +1917,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5038842431505530141}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.32219696
@@ -2124,6 +2124,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3408528324967760012}
   - component: {fileID: 5955352223532318813}
+  - component: {fileID: 4354146594205557763}
+  - component: {fileID: 558503645347869044}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -2190,6 +2192,41 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &4354146594205557763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392607954650093887}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cca87d2ec2594d7b826f8ac34ff8ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mat: {fileID: 2100000, guid: 443ce5359ef28494fb447c963d3671c1, type: 2}
+  pixelOffset: 0.0068
+  noiseScale: 1.9
+  noiseFrequency: 3.2
+  noiseSpeed: 8.3
+  depthStart: 1
+  depthDistance: 300
+--- !u!114 &558503645347869044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392607954650093887}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683945944960e4710880518112405cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mat: {fileID: 2100000, guid: 7fa5e93d76bba4b35bc743d965288c0b, type: 2}
+  fogColor: {r: 0.0141509175, g: 0.701736, b: 1, a: 0}
+  depthStart: -159.7
+  depthDistance: 361.66
 --- !u!1 &6474478756688567381
 GameObject:
   m_ObjectHideFlags: 0
