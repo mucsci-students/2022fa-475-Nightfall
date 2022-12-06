@@ -45,6 +45,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private FogEffect fogEffect;
+        private UnderWaterEffect underwater;
 
         public MouseLook GetMouseLook() => m_MouseLook;
 
@@ -94,6 +96,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             
             // m_Camera = GetComponent<Camera>();
             m_Camera = gameObject.transform.GetChild(0).GetComponent<Camera>();
+            underwater = gameObject.transform.GetChild(0).GetComponent<UnderWaterEffect>();
+            fogEffect = gameObject.transform.GetChild(0).GetComponent<FogEffect>();
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
