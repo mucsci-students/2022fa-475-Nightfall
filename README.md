@@ -1,7 +1,7 @@
 # Nightfall
 ## Where to download:
 ### Windows:
-Windows download instructions go here.
+Click the 
 ### macOS:
 macOS download instructions go here.
 ## Nightfall
