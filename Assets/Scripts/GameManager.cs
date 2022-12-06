@@ -54,6 +54,7 @@ public class GameManager : SaveGameTrackable
         {
             ++daysSurvived;
             TimeOfDay -= 24f;
+            ResourcePool.SharedInstance.RespawnResources();
         }
 
         t += Time.deltaTime;
