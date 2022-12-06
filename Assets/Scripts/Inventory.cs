@@ -57,6 +57,7 @@ public class Inventory : MonoBehaviour
     public static void AddItem(string n, int qty)
     {        
         _items[n] = Mathf.Min(_maxCapacities[n], _items[n] + qty);
+        UIManager.UpdateCount(n);
     }
 
     public static void AddItems(IReadOnlyCollection<KeyValuePair<string, int>> items)
@@ -68,6 +69,7 @@ public class Inventory : MonoBehaviour
     {
         if (_items[n] - qty < 0) { Debug.Log("Not enough quantity!"); return; }
         _items[n] -= qty;
+        UIManager.UpdateCount(n);
     }
 
     public static void RemoveItems(IEnumerable<KeyValuePair<string, int>> toRemove)
