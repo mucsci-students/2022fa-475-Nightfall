@@ -3564,7 +3564,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1991fcba09c25a945b0e43fac8290783, type: 3}
   - {fileID: 8300000, guid: 762ff696d44ec634bbdbeec5f4f59d45, type: 3}
   m_LandSound: {fileID: 8300000, guid: 635e1fdad8372754592152fb611f5aa1, type: 3}
-  _furnaceReachDistance: 10
   _spawnWhenKilled:
   - {fileID: 4759574058067597125, guid: df7eb113b3e3cd1469f5350de938a055, type: 3}
 --- !u!54 &4478747029766599678
@@ -3682,6 +3681,12 @@ MonoBehaviour:
     Spawnables:
       ObjectToSpawn: {fileID: 1759868829679104754, guid: d10819dcf74755c499862a3238befadc, type: 3}
       OutlineObject: {fileID: 7624102609073607395, guid: 927177a7f7be20f4d8ab438ea0ccb890, type: 3}
+  - Name: Workbench
+    RequiredItems:
+    - Stone,15
+    Spawnables:
+      ObjectToSpawn: {fileID: 4670176972146117058, guid: 794db42df0a139143aa2e6f5ff0b38f4, type: 3}
+      OutlineObject: {fileID: 4957115480659997871, guid: bea411db41b60ea4f94fbcd04a20caf7, type: 3}
 --- !u!1 &7864167182274746204
 GameObject:
   m_ObjectHideFlags: 0
