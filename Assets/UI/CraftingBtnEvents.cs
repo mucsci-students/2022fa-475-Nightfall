@@ -81,7 +81,7 @@ public class CraftingBtnEvents : MonoBehaviour
             }
             return;
         }
-        if (Inventory.GetCount("CopperOre") < 2)
+        if (Inventory.GetCount("Copper Ore") < 2)
         {
             if (!msgDisplaying)
             {
@@ -93,8 +93,8 @@ public class CraftingBtnEvents : MonoBehaviour
         }
         else
         {
-            Inventory.RemoveItem("CopperOre", 2);
-            Inventory.AddItem("CopperBar", 1);
+            Inventory.RemoveItem("Copper Ore", 2);
+            Inventory.AddItem("Copper Bar", 1);
             msgDisplaying = true;
             UIManager.SetMsgText("Created 1 Copper Bar");
             StartCoroutine(FadeMsg());
@@ -124,8 +124,8 @@ public class CraftingBtnEvents : MonoBehaviour
         }
         else
         {
-            Inventory.RemoveItem("IronOre", 2);
-            Inventory.AddItem("IronBar", 1);
+            Inventory.RemoveItem("Iron Ore", 2);
+            Inventory.AddItem("Iron Bar", 1);
             msgDisplaying = true;
             UIManager.SetMsgText("Created 1 Iron Bar");
             StartCoroutine(FadeMsg());
@@ -279,7 +279,7 @@ public class CraftingBtnEvents : MonoBehaviour
             }
             return;
         }
-        if (Inventory.GetCount("CopperBar") < 10 || Inventory.GetCount("Planks") < 10)
+        if (Inventory.GetCount("Copper Bar") < 10 || Inventory.GetCount("Planks") < 10)
         {
             if (!msgDisplaying)
             {
@@ -291,7 +291,7 @@ public class CraftingBtnEvents : MonoBehaviour
         }
         else
         {
-            Inventory.RemoveItem("CopperBar", 10);
+            Inventory.RemoveItem("Copper Bar", 10);
             Inventory.RemoveItem("Planks", 10);
             Inventory.ChangeTool("sword", "Copper");
             msgDisplaying = true;
@@ -321,7 +321,7 @@ public class CraftingBtnEvents : MonoBehaviour
             }
             return;
         }
-        if (Inventory.GetCount("CopperBar") < 12 || Inventory.GetCount("Planks") < 8)
+        if (Inventory.GetCount("Copper Bar") < 12 || Inventory.GetCount("Planks") < 8)
         {
             if (!msgDisplaying)
             {
@@ -333,7 +333,7 @@ public class CraftingBtnEvents : MonoBehaviour
         }
         else
         {
-            Inventory.RemoveItem("CopperBar", 12);
+            Inventory.RemoveItem("Copper Bar", 12);
             Inventory.RemoveItem("Planks", 8);
             Inventory.ChangeTool("axe", "Copper");
             msgDisplaying = true;
@@ -363,7 +363,7 @@ public class CraftingBtnEvents : MonoBehaviour
             }
             return;
         }
-        if (Inventory.GetCount("CopperBar") < 11 || Inventory.GetCount("Planks") < 9)
+        if (Inventory.GetCount("Copper Bar") < 11 || Inventory.GetCount("Planks") < 9)
         {
             if (!msgDisplaying)
             {
@@ -375,7 +375,7 @@ public class CraftingBtnEvents : MonoBehaviour
         }
         else
         {
-            Inventory.RemoveItem("CopperBar", 11);
+            Inventory.RemoveItem("Copper Bar", 11);
             Inventory.RemoveItem("Planks", 9);
             Inventory.ChangeTool("pickaxe", "Copper");
             msgDisplaying = true;
@@ -405,7 +405,7 @@ public class CraftingBtnEvents : MonoBehaviour
             }
             return;
         }
-        if (Inventory.GetCount("IronBar") < 10 || Inventory.GetCount("Planks") < 10)
+        if (Inventory.GetCount("Iron Bar") < 10 || Inventory.GetCount("Planks") < 10)
         {
             if (!msgDisplaying)
             {
@@ -417,7 +417,7 @@ public class CraftingBtnEvents : MonoBehaviour
         }
         else
         {
-            Inventory.RemoveItem("IronBar", 10);
+            Inventory.RemoveItem("Iron Bar", 10);
             Inventory.RemoveItem("Planks", 10);
             Inventory.ChangeTool("sword", "Iron");
             msgDisplaying = true;
@@ -447,7 +447,7 @@ public class CraftingBtnEvents : MonoBehaviour
             }
             return;
         }
-        if (Inventory.GetCount("IronBar") < 12 || Inventory.GetCount("Planks") < 8)
+        if (Inventory.GetCount("Iron Bar") < 12 || Inventory.GetCount("Planks") < 8)
         {
             if (!msgDisplaying)
             {
@@ -459,7 +459,7 @@ public class CraftingBtnEvents : MonoBehaviour
         }
         else
         {
-            Inventory.RemoveItem("IronBar", 12);
+            Inventory.RemoveItem("Iron Bar", 12);
             Inventory.RemoveItem("Planks", 8);
             Inventory.ChangeTool("axe", "Iron");
             msgDisplaying = true;
@@ -489,7 +489,7 @@ public class CraftingBtnEvents : MonoBehaviour
             }
             return;
         }
-        if (Inventory.GetCount("IronBar") < 11 || Inventory.GetCount("Planks") < 9)
+        if (Inventory.GetCount("Iron Bar") < 11 || Inventory.GetCount("Planks") < 9)
         {
             if (!msgDisplaying)
             {
@@ -501,7 +501,7 @@ public class CraftingBtnEvents : MonoBehaviour
         }
         else
         {
-            Inventory.RemoveItem("IronBar", 11);
+            Inventory.RemoveItem("Iron Bar", 11);
             Inventory.RemoveItem("Planks", 9);
             Inventory.ChangeTool("pickaxe", "Iron");
             msgDisplaying = true;
