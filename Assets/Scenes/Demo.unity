@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 0.001
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 355987664}
-  m_IndirectSpecularColor: {r: 0.00038767367, g: 0.00045813632, b: 0.0005689028, a: 0.001}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2087,6 +2086,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &770782457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 558503645347869044, guid: 65b0362be0aabe649968e2cbf4962be8, type: 3}
+  m_PrefabInstance: {fileID: 295811372503840703}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770782450}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683945944960e4710880518112405cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &770782458 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4354146594205557763, guid: 65b0362be0aabe649968e2cbf4962be8, type: 3}
+  m_PrefabInstance: {fileID: 295811372503840703}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770782450}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cca87d2ec2594d7b826f8ac34ff8ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &785121070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,8 +2803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca9b9fd0e9ddd041b23391ce9d20153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogEffect: {fileID: 0}
-  underwater: {fileID: 0}
+  fogEffect: {fileID: 770782457}
+  underwater: {fileID: 770782458}
 --- !u!1 &903770012
 GameObject:
   m_ObjectHideFlags: 0
