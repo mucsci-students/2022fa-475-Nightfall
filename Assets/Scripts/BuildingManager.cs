@@ -154,6 +154,7 @@ public class BuildingManager : MonoBehaviour
         DestroyOutline();
         OnExitedBuildMode?.Invoke(this, EventArgs.Empty);
 
+        UIManager.ToggleMsgText("");
     }
 
     private void DestroyOutline()

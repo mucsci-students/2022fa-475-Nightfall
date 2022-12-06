@@ -200,6 +200,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public static void EnterBuildMode()
+    {
+        inventory.SetActive(false);
+        building.SetActive(false);
+        crafting.SetActive(false);
+
+        msgText.GetComponent<TextMeshProUGUI>().text = "'E' to move object further\n'Q' to move object closer\n'F' to confirm placement and 'Y' to cancel";
+        ExecuteEvents.Execute<ICustomMessenger>(plr, null, (x, y) => x.ToggleMenuMessage());
+    }
+
     public static void ToggleMusic()
     {
         if (musicToggle.GetComponent<Toggle>().isOn)

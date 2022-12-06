@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2965896594803969706}
   - component: {fileID: 8603156387560744128}
+  - component: {fileID: 4035272470164711123}
   m_Layer: 0
   m_Name: Workbench-Buildable
   m_TagString: Untagged
@@ -43,6 +44,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e698fd36bbef3054a940b5647b685e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4035272470164711123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670176972146117058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd284444b18cf64eb84639cd55a0cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8414829958542592234

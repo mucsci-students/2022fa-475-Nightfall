@@ -17,7 +17,20 @@ public class CraftingBtnEvents : MonoBehaviour
         }
         else
         {
-            Debug.Log("made plank");
+            if (Inventory.GetCount("Wood") < 2)
+            {
+                msgDisplaying = true;
+                UIManager.SetMsgText("Not enough Wood to make this");
+                StartCoroutine(FadeMsg());
+            }
+            else
+            {
+                Inventory.RemoveItem("Wood", 2);
+                Inventory.AddItem("Planks", 1);
+                msgDisplaying = true;
+                UIManager.SetMsgText("Created 1 Plank");
+                StartCoroutine(FadeMsg());
+            }
         }
     }
     public void CutStone()
