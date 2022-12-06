@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -40,8 +41,10 @@ public class SaveEngine : MonoBehaviour
     }
 
     public static void LoadSaveFile(string saveFileName = _defaultSaveFileName)
-    { 
-        
+    {
+
+        if (!HasSaveFileByName()) { throw new Exception($"Cannot load save file {saveFileName}"); }
+
         _activeSaveFile = SaveFile.ReadSaveFile(saveFileName);
         print($"Save data loaded from {saveFileName}");
 
