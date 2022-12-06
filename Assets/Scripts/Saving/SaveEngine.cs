@@ -11,7 +11,7 @@ public class SaveEngine : MonoBehaviour
     /// The save file that this SaveEngine is tracking
     /// </summary>
     private static SaveFile _activeSaveFile;
-    
+
     /// <summary>
     /// Indicates whether or not the world is dirty and needs to be restored from the save file
     /// </summary>
@@ -22,7 +22,7 @@ public class SaveEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         if (_worldIsDirty) { Invoke(nameof(RestoreWorld), _activeSaveFile.RestoreCooldown); }
 
     }
@@ -40,15 +40,15 @@ public class SaveEngine : MonoBehaviour
     }
 
     public static void LoadSaveFile(string saveFileName = _defaultSaveFileName)
-    { 
-        
+    {
+
         _activeSaveFile = SaveFile.ReadSaveFile(saveFileName);
         print($"Save data loaded from {saveFileName}");
 
     }
 
     public static void ReloadWorldFromLoadedSave() => LoadSceneFromLoadedSave(SceneManager.GetActiveScene().buildIndex);
-    
+
     public static void LoadSceneFromLoadedSave(int sceneIndex)
     {
 
@@ -74,7 +74,7 @@ public class SaveEngine : MonoBehaviour
     {
 
         IEnumerable<SaveGameTrackable> allTrackablesInWorld = FindObjectsOfType<SaveGameTrackable>();
-        
+
         foreach (var recordPair in _activeSaveFile.EveryRecordData)
         {
 
