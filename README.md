@@ -2,11 +2,15 @@
 ## Where to download:
 ### Windows:
 Click the ``Nightfall v1.0 Win64`` button under Releases to the right to download the zipped file.
+
 Extract to your desired location.
+
 Double click Nightfall.exe to run.
 ### macOS:
 Click the ``+ 1 release`` button under Releases to the right to download the zipped file.
+
 Extract to your desired location.
+
 I don't know how to use a Mac so figure it out from here yourself.
 ## Nightfall
 Nightfall is a game where you are on an island and must survive. 
